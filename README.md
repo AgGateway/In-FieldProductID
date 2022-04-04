@@ -16,9 +16,15 @@ The solution provides a three tier architecture including authentization/authori
 * Cosmos DB
   * Provides the persistent storage of the Shipped Item Instance JSON payload
 
-## User Story
-The user story is that the farmer places a seed order with an Ag Retailer.   
-At the time of shipment, the seed is gathered including the seed lot identifier and other identifying information such as seed treatement.   
+## Seed User Story
+The farmer places a seed order with an Ag Retailer.   
+At the time of shipment, the seed is gathered including the seed lot identifier and other identifying information such as seed treatement with EPA registration identifier for the primary active ingredient.
+
+## Crop Nutrition User Story
+The farmer places a fertilizer order with an Ag Retailer.   
+At the time of shipment, the fertilizer is dispensed into a shipping container such as a tank, including the identifiers such as the shipping container and the dispensing ticket identifier.
+
+## Common Implementation
 A shipping document is provided to the carrier, which includes a QR code the encodes the URL to retreive the shipment information.  
 The QR code URL includes the host, resource path, shipment.identifier and the retailer.identifier (GLN).  Their acccount number is not needed on the API call.
 
