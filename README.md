@@ -14,6 +14,7 @@ There is a three tier architecture for the solution
 -Logic App
 -- Provides the ability GET the original JSON for Farm Management Information Systems that want to receive the product into inventory at the time of receipt
 
+## User Story
 The user story is that the farmer places a seed order with an Ag Retailer.   
 At the time of shipment, the seed is gathered including the seed lot identifier and other identifying information such as seed treatement.   
 A shipping document is provided to the carrier, which includes a QR code the encodes the URL to retreive the shipment information.  
