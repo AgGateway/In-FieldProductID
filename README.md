@@ -35,6 +35,7 @@ The Farm Implement Cloud Platform sets the content-type to required format requi
 The API returns an octet-stream of the zip file, which is saves as a file on the  Farm Implement Cloud Platform.
 The Farm Implement Cloud Platform asks if the farmer would like to download the products to the tractor display now, or at a later point in time.
 
+## Product Identification - Seed Example
 The product is loaded in the tractor display prior to the planting operation.
 The farmer will select the appropriate product from the list when filling or refilling the planter box, either manual selection from a mobile app connected to the display, from the display itself, or through auto-identification such as BLE beacons, RFID tags, or barcodes on the seed tags themselves.  This is dependent on the implementation provided by the retailer and the Farm Implement Cloud Platform.
 
