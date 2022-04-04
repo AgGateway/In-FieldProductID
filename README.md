@@ -1,7 +1,7 @@
 # In-Field Product Identification
 This GitHub repo provides the Azure resources to support in-field product identification (agriculture).  The components within the Green system node in the deployment diagram below reside in this GitHub repository.  
 
-The solution provides a three tier architecture including authentization/authorization, API logic, and persistent storage
+The solution provides a three tier architecture including authentization/authorization, API logic, and persistent storage.  There are four types of components:
 
 * API Management to provide a security layer for access to the Azure unction and Logic App:
   * each verb/ resource has a specific XML policy
