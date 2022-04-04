@@ -2,16 +2,18 @@
 Resources to support in-field product identification (agriculture)
 
 The components within the Green system node in the deployment diagram reside in this GitHub repository.  
+
 There is a three tier architecture for the solution
--API Management to provide a security layer for access to the Azure unction and Logic App:
+
+API Management to provide a security layer for access to the Azure unction and Logic App:
 -- each verb/ resource has a specific XML policy
--- the all proxy provides the configuration to the Identity Provider to validate the token generated based on the client id and secret provided by the IdP
--Azure C# function
+--the all proxy provides the configuration to the Identity Provider to validate the token generated based on the client id and secret provided by the IdP
+Azure C# function
 -- Provides the ability to POST (insert) the ShippedItemInstance JSON in Cosmos, first creating an /id with the SDK then adding the document
 -- Provides the ability to PUT (replace) the ShippedItemInstance JSON in Cosmos based on the /id from the POST endpoint
 -- Provides the ability to DELETE (remove) the ShippedItemInstance JSON in Cosmos based on the /id from the POST endpoint
 -- Provides the ability to GET /setupfiles based on the content-Type HTTP header, returning either the ADAPT ADM.zip or ISOXML zip file as octet-stream.
--Logic App
+Logic App
 -- Provides the ability GET the original JSON for Farm Management Information Systems that want to receive the product into inventory at the time of receipt
 
 ## User Story
