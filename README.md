@@ -1,4 +1,32 @@
 # In-FieldProductID
 Resources to support in-field product identification (agriculture)
 
+The components within the Green system node in the deployment diagram reside in this GitHub repository.  
+There is a three tier architecture for the solution
+-API Management to provide a security layer for access to the Azure unction and Logic App:
+-- each verb/ resource has a specific XML policy
+-- the all proxy provides the configuration to the Identity Provider to validate the token generated based on the client id and secret provided by the IdP
+-Azure C# function
+-- Provides the ability to POST (insert) the ShippedItemInstance JSON in Cosmos, first creating an /id with the SDK then adding the document
+-- Provides the ability to PUT (replace) the ShippedItemInstance JSON in Cosmos based on the /id from the POST endpoint
+-- Provides the ability to DELETE (remove) the ShippedItemInstance JSON in Cosmos based on the /id from the POST endpoint
+-- Provides the ability to GET /setupfiles based on the content-Type HTTP header, returning either the ADAPT ADM.zip or ISOXML zip file as octet-stream.
+-Logic App
+-- Provides the ability GET the original JSON for Farm Management Information Systems that want to receive the product into inventory at the time of receipt
+
+The user story is that the farmer places a seed order with an Ag Retailer.   
+At the time of shipment, the seed is gathered including the seed lot identifier and other identifying information such as seed treatement.   
+A shipping document is provided to the carrier, which includes a QR code the encodes the URL to retreive the shipment information.  
+The QR code URL includes the host, resource path, shipment.identifier and the retailer.identifier (GLN).  Their acccount number is not needed on the API call.
+
+When a farmer receives the shipment, the printed document is provided to the farmer by the carrier / driver.
+The farmer logs into their Farm Implement Cloud Platform, selects the option to load the received product into the tractor display.
+The farmer scans the QR code on the shipping document.
+The Farm Implement Cloud Platform sets the content-type to required format required (ADM or ISO), and calls the API.
+The API returns an octet-stream of the zip file, which is saves as a file on the  Farm Implement Cloud Platform.
+The Farm Implement Cloud Platform asks if the farmer would like to download the products to the tractor display now, or at a later point in time.
+
+The product is loaded in the tractor display prior to the planting operation.
+The farmer will select the appropriate product from the list when filling or refilling the planter box, either manual selection from a mobile app connected to the display, from the display itself, or through auto-identification such as BLE beacons, RFID tags, or barcodes on the seed tags themselves.  This is dependent on the implementation provided by the retailer and the Farm Implement Cloud Platform.
+
 ![In-Field Product Identification](Documentation/InFieldProductIDDeploymentDiagram.png)
