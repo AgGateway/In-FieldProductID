@@ -1,9 +1,7 @@
-# In-FieldProductID
-Resources to support in-field product identification (agriculture)
+# In-Field Product Identification
+This GitHub repo provides the Azure resources to support in-field product identification (agriculture).  The components within the Green system node in the deployment diagram below reside in this GitHub repository.  
 
-The components within the Green system node in the deployment diagram reside in this GitHub repository.  
-
-There is a three tier architecture for the solution
+The solution provides a three tier architecture including authentization/authorization, API logic, and persistent storage
 
 * API Management to provide a security layer for access to the Azure unction and Logic App:
   * each verb/ resource has a specific XML policy
@@ -15,6 +13,8 @@ There is a three tier architecture for the solution
   * Provides the ability to GET /setupfiles based on the content-Type HTTP header, returning either the ADAPT ADM.zip or ISOXML zip file as octet-stream.
 * Logic App
   * Provides the ability GET the original JSON for Farm Management Information Systems that want to receive the product into inventory at the time of receipt
+* Cosmos DB
+  * Provides the persistent storage of the Shipped Item Instance JSON payload
 
 ## User Story
 The user story is that the farmer places a seed order with an Ag Retailer.   
