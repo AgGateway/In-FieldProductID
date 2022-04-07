@@ -42,6 +42,9 @@ The farmer will select the appropriate product from the list when filling or ref
 ![In-Field Product Identification](Documentation/InFieldProductIDDeploymentDiagram.png)
 
 ## Opportunity for Innovation - Node-RED Example
-
+Since Node-RED can be run on a Raspberry Pi and pre-loaded in Raspberry Pi OS 64, it can be a catalyst for future innovation when complimented with BLE Beacon identification, add-on Camera for barcode reading, or add-on RFID tag readers.
 
 ![image](https://user-images.githubusercontent.com/32434235/162245881-91930b11-9178-479a-946c-42eef0791a3f.png)
+
+Node-RED also comes with a dashboard component that can display the JSON in a table, or add other components like pie charts, etc.
+https://flows.nodered.org/node/node-red-dashboard
