@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd">
+	<file:config name="File_Config" doc:name="File Config" doc:id="0d763914-1202-4d86-b538-ee839caa40a0" >
+		<file:connection workingDir="C:\Users\nemo\AnypointStudio\studio-workspace\generateshippediteminstancelistfromcsv\input" >
+			<reconnection />
+		</file:connection>
+	</file:config>
+	<file:config name="File_Config_JSON" doc:name="File Config" doc:id="c506fa0d-e75b-4eeb-9d3e-3b0eaf83cfaf" >
+		<file:connection workingDir="C:\Users\nemo\AnypointStudio\studio-workspace\generateshippediteminstancelistfromcsv\output\shippedItemInstancePayloads" />
+	</file:config>
+	<flow name="generateshippediteminstancelistfromcsvFlow" doc:id="d0188f11-8042-4c52-b6e2-29918a28e700" >
+		<file:listener doc:name="On New or Updated File" doc:id="f9d65668-4cd7-4878-a8ad-3c35ccf125c7" config-ref="File_Config" directory="C:\Users\nemo\AnypointStudio\studio-workspace\generateshippediteminstancelistfromcsv\input" moveToDirectory="C:\Users\nemo\AnypointStudio\studio-workspace\generateshippediteminstancelistfromcsv\archive" outputMimeType='application/csv; separator=","'>
+			<scheduling-strategy >
+				<fixed-frequency frequency="5"/>
+			</scheduling-strategy>
+		</file:listener>
+		<set-variable value="#[payload]" doc:name="Set Variable" doc:id="a307c64a-b5d5-473f-9ce6-1a653cc69f30" variableName="ceresShipmentCSV" encoding="[payload]" doc:description="copy csv to a variable"/>
+		<ee:transform doc:name="Create Unique Retailer Shipment List" doc:id="0018a746-5b26-4c48-8086-de7ac1c87867" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+	"shipmentIds": payload.ShipmentNumber distinctBy $
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="f911e0d2-5741-473f-ac60-5dc7eb6c1f3c" message="#[payload]" />
+		<foreach doc:name="For Each Unique Retailer Shipment" doc:id="1bcf73fa-d9c9-441c-85e8-b7bb42eae6ed" collection="#[payload.shipmentIds]" rootMessageVariableName="shipmentId">
+			<set-variable value="#[payload as String]" doc:name="Set Variable" doc:id="822d7752-cae6-4c91-8936-48b53d6892ff" variableName="shipmentId"/>
+			<logger level="INFO" doc:name="Logger" doc:id="f2813ead-7243-4585-a6d2-745db05ab63a" message="shipmentId is = #[payload]  variable = #[vars.shipmentId]"/>
+			<ee:transform doc:name="Transform to Shipped Item Instance" doc:id="47a22509-73ea-49e7-b91a-191aa8f98c9b">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	shippedItemInstance: vars.ceresShipmentCSV filter ($.ShipmentNumber as String == vars.shipmentId as String) map ( payload01 , indexOfPayload01 ) -> {
+		typeCode: 'seed',
+		identifier: {
+			content: payload01.ShipmentNumber ++ "-" ++ payload01.SeqCode,
+			typeCode: "shipment_line_identifier"
+		},
+		item: {
+			brandName: payload01.SeedBrand,
+			manufacturerItemIdentification: {
+				identifier: if ( payload01.Crop == "TREATMENT" ) (payload01.ItemNumber) else '',
+				typeCode: if ( payload01.Crop == "TREATMENT" ) ("SKU") else ''
+			},
+			description: payload01.Description,
+			gtinid: if ( payload01.Crop != "TREATMENT" and sizeOf(payload01.Crop) > 12 ) (payload01.ItemNumber) else '',
+			varietyName: payload01.ShortDescription,
+			productName: payload01.ShortDescription
+		},
+		quantity: {
+			unitCode: payload01.UOM,
+			content: payload01.Quantity as Number
+		},
+		description: {
+			content: payload01.DisplayDescription,
+			typeCode: "mics_display"
+		},
+		classification: {
+			codes: {
+				code: [{
+					content: if ( payload01.Crop == "Corn" or payload01.Crop == "CORN" ) ("C") else 
+						if ( payload01.Crop == "Soybeans" or payload01.Crop == "SOYBEANS" ) ("S") else 
+						if ( payload01.Crop == "Alfalfa" or payload01.Crop == "ALFALFA" ) ("ALF") else 
+						if ( payload01.Crop == "Cotton" or payload01.Crop == "COTTON" ) ("CTN") else 
+						if ( payload01.Crop == "Wheat" or payload01.Crop == "WHEAT" ) ("SW") else 
+						if ( payload01.Crop == "SpringWheat" or payload01.Crop == "SPRINGWHEAT" ) ("SW") else 
+						if ( payload01.Crop == "WinterWheat" or payload01.Crop == "WINTERWHEAT" ) ("WW") else 
+						"",
+					listAgencyIdentifier: "AGIIS",
+					typeCode: payload01.Crop
+				},
+								{
+					content: payload01.SeedTrait,
+					typeCode: 'Trait'
+				}]
+			},
+			typeCode: "Crop"
+		},
+		lot: {
+			identifier: {
+				content: payload01.LotId,
+				typeCode: 'Lot'
+			}
+		},
+		documentReference: {
+			identifier: {
+				content: payload01.ShipmentNumber
+			},
+			typeCode: 'shipment_identifier',
+			documentDateTime: if ( payload01.OrderDate contains "-" ) (payload01.OrderDate ++"T00:00:00.000-05:00") else 
+			if ( sizeOf(payload01.OrderDate) == 8 ) (payload01.OrderDate[0 to 3] ++ "-" ++ payload01.OrderDate[4 to 5] ++ "-" ++  payload01.OrderDate[6 to 7] ++
+				"T00:00:00.000-05:00") 
+				else ""
+		},
+		manufacturingParty: {
+			name: payload01.ManufacturerName
+		},
+		party: [{
+			identifier: [{
+				content: payload01.CustomerNumber,
+				typeCode: "retailer_grower_identifier"
+			}],
+			name: payload01.CustomerLookupName,
+			location: {
+				glnid: payload01.CustomerGLN
+			},
+			typeCode: 'Grower'
+		},
+		{
+			name: payload01.Retailer,
+			location: {
+				glnid: payload01.RetailerGLN
+			},
+			typeCode: 'Retailer'
+		}],
+		itemIdentifierSet: [{
+			identifier: [{
+				content: payload01.SeedTreatments,
+				typeCode: "product"
+			}],
+			schemeAgencyIdentifier: "manufacturer_seed_treatment_identifier",
+			schemeIdentifier: payload01.SeedTreatments,
+			typeCode: "seed_treatment"
+		}]
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+			<logger level="INFO" doc:name="Logger" doc:id="4d2b4e96-e5e3-43d3-a637-9ac69c48b6c3" message="#[payload]" />
+			<file:write doc:name="Write" doc:id="f6d71eae-6bee-45a0-98e8-ff56df56c4e8" config-ref="File_Config_JSON" path='#["shippedItemInstance" ++ vars.shipmentId ++ ".json"]'>
+		</file:write>
+		</foreach>
+	</flow>
+</mule>
