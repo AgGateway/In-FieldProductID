@@ -40,3 +40,8 @@ The product is loaded in the tractor display prior to the planting operation.
 The farmer will select the appropriate product from the list when filling or refilling the planter box, either manual selection from a mobile app connected to the display, from the display itself, or through auto-identification such as BLE beacons, RFID tags, or barcodes on the seed tags themselves.  This is dependent on the implementation provided by the retailer and the Farm Implement Cloud Platform.
 
 ![In-Field Product Identification](Documentation/InFieldProductIDDeploymentDiagram.png)
+
+## Opportunity for Innovation - Node-RED Example
+
+
+![image](https://user-images.githubusercontent.com/32434235/162245881-91930b11-9178-479a-946c-42eef0791a3f.png)
