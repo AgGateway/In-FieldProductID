@@ -23,6 +23,7 @@ At the time of shipment, the seed is gathered including the seed lot identifier 
 ## Crop Nutrition User Story
 The farmer places a fertilizer order with an Ag Retailer.   
 At the time of shipment, the fertilizer is dispensed into a shipping container such as a tank, including the identifiers such as the shipping container and the dispensing ticket identifier.
+The Dispensing Work Record is sent back from the process control system to the Sales Order system with the shipping information including Bill of Lading images, and composition.
 
 ## Common Implementation
 A shipping document is provided to the carrier, which includes a QR code the encodes the URL to retreive the shipment information.  
