@@ -40,12 +40,12 @@ The Farm Implement Cloud Platform asks if the farmer would like to download the 
 The product is loaded in the tractor display prior to the planting operation.
 The farmer will select the appropriate product from the list when filling or refilling the planter box, either manual selection from a mobile app connected to the display, from the display itself, or through auto-identification such as BLE beacons, RFID tags, or barcodes on the seed tags themselves.  This is dependent on the implementation provided by the retailer and the Farm Implement Cloud Platform.
 
-![In-Field Product Identification](Documentation/InFieldProductIDDeploymentDiagram.png)
+![In-Field Product Identification](https://github.com/AgGateway/In-FieldProductID/blob/main/Documentation/InFieldProductIDDeploymentDiagram.png)
 
 ## Opportunity for Innovation - Node-RED Example
 Since Node-RED can be run on a Raspberry Pi and pre-loaded in Raspberry Pi OS 64, it can be a catalyst for future innovation when complimented with BLE Beacon identification, add-on Camera for barcode reading, or add-on RFID tag readers.
 
-![image](https://user-images.githubusercontent.com/32434235/Documentation/InFieldProductIDDeploymentDiagram.png)
+![image](https://github.com/AgGateway/In-FieldProductID/blob/main/Node-RED_Example/Node-RED_Example.JPG)
 
 Node-RED also comes with a dashboard component that can display the JSON in a table, or add other components like pie charts, etc.
 https://flows.nodered.org/node/node-red-dashboard
