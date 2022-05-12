@@ -36,14 +36,16 @@ paths:
               - application/vnd.aggateway.adapt.adm+zip
               - application/vnd.aggateway.adapt.iso+zip
             type: string
-            default: application/json
+            default: application/vnd.aggateway.adapt.adm+zip
       responses:
         "200":
           description: "OAGIS JSON as profiled in Score by AgGateway"
           content:
-            application/json:
+            application/octet-stream:
               schema:
-                $ref: "#/components/schemas/shippedItemInstance"
+                type: string
+                format: binary
+                example: binaryCharacters
   /shippedItemInstance:
     get:
       summary: GET JSON from NoSQL Database
@@ -99,6 +101,7 @@ paths:
             application/json: 
               schema:
                 type: string
+                example: 9e944f86-1038-4ffa-b1ec-aefb6bb0c8b0
     put:
       summary: "PUT an updated JSON to NoSQL Database"
       description: ""
@@ -112,6 +115,7 @@ paths:
           required: true
           schema:
             type: string
+            example: 9e944f86-1038-4ffa-b1ec-aefb6bb0c8b0
       requestBody:
         description: "OAGIS JSON as profiled in Score by AgGateway"
         content:
@@ -125,6 +129,7 @@ paths:
             application/json: 
               schema:
                 type: string
+                example: 9e944f86-1038-4ffa-b1ec-aefb6bb0c8b0
     delete:
       summary: "DELETE JSON from NoSQL Database"
       description: ""
@@ -138,10 +143,12 @@ paths:
           required: true
           schema:
             type: string
+            example: 9e944f86-1038-4ffa-b1ec-aefb6bb0c8b0
       responses:
         "200":
-          description: ""
+          description: "Returns the id deleted"
           content:
             application/json: 
               schema:
                 type: string
+                example: 9e944f86-1038-4ffa-b1ec-aefb6bb0c8b0
