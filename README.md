@@ -16,6 +16,8 @@ The solution provides a three tier architecture including authentization/authori
 * Cosmos DB
   * Provides the persistent storage of the Shipped Item Instance JSON payload
 
+![In-Field Product Identification](https://github.com/AgGateway/In-FieldProductID/blob/main/Documentation/InFieldProductIDDeploymentDiagram.png)
+
 ## Seed User Story
 The farmer places a seed order with an Ag Retailer.   
 At the time of shipment, the seed is gathered including the seed lot identifier and other identifying information such as seed treatement with EPA registration identifier for the primary active ingredient.
@@ -43,7 +45,6 @@ The following sequence diagram illustrates a typical implementation of the parti
 The product is loaded in the tractor display prior to the planting operation.
 The farmer will select the appropriate product from the list when filling or refilling the planter box, either manual selection from a mobile app connected to the display, from the display itself, or through auto-identification such as BLE beacons, RFID tags, or barcodes on the seed tags themselves.  This is dependent on the implementation provided by the retailer and the Farm Implement Cloud Platform.
 
-![In-Field Product Identification](https://github.com/AgGateway/In-FieldProductID/blob/main/Documentation/InFieldProductIDDeploymentDiagram.png)
 
 ## Opportunity for Innovation - Node-RED Example
 Since Node-RED can be run on a Raspberry Pi and pre-loaded in Raspberry Pi OS 64, it can be a catalyst for future innovation when complimented with BLE Beacon identification, add-on Camera for barcode reading, or add-on RFID tag readers.
