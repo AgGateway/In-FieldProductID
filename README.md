@@ -39,6 +39,7 @@ The API returns an octet-stream of the zip file, which is saves as a file on the
 The Farm Implement Cloud Platform asks if the farmer would like to download the products to the tractor display now, or at a later point in time.
 
 The following sequence diagram illustrates a typical implementation of the parties illustrated in the deploymentation
+
 ![image](https://github.com/AgGateway/In-FieldProductID/blob/main/Documentation/AgGateway%20Shipped%20Item%20Instance.png)
 
 ## In-Field Product Identification
