@@ -41,9 +41,10 @@ The Farm Implement Cloud Platform asks if the farmer would like to download the 
 The following sequence diagram illustrates a typical implementation of the parties illustrated in the deploymentation
 ![image](https://github.com/AgGateway/In-FieldProductID/blob/main/Documentation/AgGateway%20Shipped%20Item%20Instance.png)
 
-## Product Identification - Seed Example
-The product is loaded in the tractor display prior to the planting operation.
-The farmer will select the appropriate product from the list when filling or refilling the planter box, either manual selection from a mobile app connected to the display, from the display itself, or through auto-identification such as BLE beacons, RFID tags, or barcodes on the seed tags themselves.  This is dependent on the implementation provided by the retailer and the Farm Implement Cloud Platform.
+## In-Field Product Identification
+The product is loaded in the tractor display prior to the field operation.
+
+The farmer will select the appropriate product from the list prior to execution the actual field operation, either manual selection from a mobile app connected to the display, from the display itself, or through auto-identification such as BLE beacons, RFID tags, or barcodes on the seed tags themselves.  This is dependent on the implementation provided by the retailer and the Farm Implement Cloud Platform.
 
 
 ## Opportunity for Innovation - Node-RED Example
