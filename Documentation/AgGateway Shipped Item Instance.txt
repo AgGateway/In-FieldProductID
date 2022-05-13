@@ -1,11 +1,9 @@
 title AgGateway Shipped Item Instance
 
 participant Retailer
-
 participant API
 participant OEMPlatform
 actor Farmer
-
 participant MICS
 
 
@@ -19,3 +17,4 @@ OEMPlatform -> API: GET /setupfiles?content-type=ISOXML
 API -->OEMPlatform: octet-stream
 OEMPlatform ->OEMPlatform: save Zip
 OEMPlatform ->MICS: load Products
+Retailer ->API: DELETE /ShippedItemInstance
