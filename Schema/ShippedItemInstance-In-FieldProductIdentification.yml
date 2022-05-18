@@ -154,7 +154,7 @@ paths:
 
 components:
   schemas:
-    post-shippedItemInstance:
+    shippedItemInstance:
       required:
       - "shippedItemInstance"
       additionalProperties: false
