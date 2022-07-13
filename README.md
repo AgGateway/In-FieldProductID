@@ -1,7 +1,7 @@
 # In-Field Product Identification Overview
 This GitHub repo provides the Azure resources to supports the agricultural use case to improve product identification capabilities in a farmer's field (in-field product identification), focusing on actual product received by the farmer.  
 
-This allows the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment (Crop Nutrition and Crop Protection is out of scope in v1).  The number of shipment lines on a delivery document for seed product, even the existing seed lot detail currently available today on these documents, is typically 5-20 lines.  
+This allows the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment (Crop Nutrition and Crop Protection is out of scope in v1). 
 
 This also allows the Farmer to leverage either a variety of tools such as a mobile application or a Farm Management Information System (FMIS), as well as the Farmer's OEM equipment manufacturer application (e.g., Deere Operations Center, AGCO Fuse, CNH AFS, etc.) to retrieve the Product shipped by a Retailer in the form of setup files.  
 
@@ -9,7 +9,9 @@ It must be clear that an OEM Platform would send to the display _essential_ iden
 
 It is acknowledged that many capabilities do not exist on many of the platforms used by farmers and especially older displays that rely on planting prescriptions including rate information, etc.  The use of mobile applications may be warranted to provide supplemental capabilities.  The proof-of-concept in 2021 and the pilot in 2022 proved the feasibility of loading product information, with older displays have some challenges due to display length (see Issue #9).  
 
-What IS encouraging is the ability of the Retailer ERP systems to digitize the delivery document in the Shipped Item Instance JSON format.  The integration using the OpenAPI allows the generation of a QR code that can be included on the delivery document provided to a driver, allowing the farmer to retrieve the shipment detail once logged into the platform of choice.  Future work aims to add further effeciencies to provide auto-identification capabilities including BLE beacons, Data Matrix barcoding (product, lot/batch, etc), and/ or RFID tags on bags and seed boxes for use with tenders.  
+What IS encouraging is the ability of the Retailer ERP systems to digitize the delivery document in the Shipped Item Instance JSON format.  The integration using the OpenAPI allows the generation of a QR code that can be included on the delivery document provided to a driver, allowing the farmer to retrieve the shipment detail once logged into the platform of choice.  The number of shipment lines on a delivery document for seed product, even the existing seed lot detail currently available today on these documents, is typically 5-20 lines.  
+
+Future work aims to add further effeciencies to provide auto-identification capabilities including BLE beacons, Data Matrix barcoding (product, lot/batch, etc), and/ or RFID tags on bags and seed boxes for use with tenders.  
 
 # API Implementation Details
 The components within the Green system node in the deployment diagram below reside in this GitHub repository.  
