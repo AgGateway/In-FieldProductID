@@ -11,7 +11,7 @@ It is acknowledged that many capabilities do not exist on many of the platforms 
 
 What IS encouraging is the ability of the Retailer ERP systems to digitize the delivery document in the Shipped Item Instance JSON format.  The integration using the OpenAPI allows the generation of a QR code that can be included on the delivery document provided to a driver, allowing the farmer to retrieve the shipment detail once logged into the platform of choice.  The number of shipment lines on a delivery document for seed product, even accounting for the existing seed lot detail _currently available_ today on these documents, is typically 5-20 lines.  
 
-Future work aims to add further effeciencies to provide auto-identification capabilities including BLE beacons, Data Matrix barcoding (product, lot/batch, etc), and/ or RFID tags on bags and seed boxes for use with tenders.  We aim over time to avoid have the farmer enter into the cab to select the product.  Solutions could leverage Wi-Fi on a tractor displays, future High-Speed ISOBUS over Ethernet connections, and so forth.
+Future work aims to add further efficiencies to provide auto-identification capabilities including BLE beacons, Data Matrix barcoding (product, lot/batch, etc), and/ or RFID tags on bags and seed boxes for use with tenders.  We aim over time to avoid have the farmer enter into the cab to select the product.  Solutions could leverage Wi-Fi on a tractor displays, future High-Speed ISOBUS over Ethernet connections, and so forth.
 
 # API Implementation Details
 The components within the Green system node in the deployment diagram below reside in this GitHub repository.  
