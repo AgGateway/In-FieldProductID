@@ -1,7 +1,7 @@
 # In-Field Product Identification Overview
 This GitHub repo provides the Azure resources to supports the agricultural use case to improve product identification capabilities in a farmer's field (in-field product identification), focusing on actual product received by the farmer.  
 
-This allows the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment (Crop Nutrition and Crop Protection is out of scope in v1).
+This allows the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment (Crop Nutrition and Crop Protection is out of scope in v1).  The number of shipment lines on a delivery document for seed product, even the existing seed lot detail currently available today on these documents, is typically 5-20 lines.  
 
 This also allows the Farmer to leverage either a variety of tools such as a mobile application or a Farm Management Information System (FMIS), as well as the Farmer's OEM equipment manufacturer application (e.g., Deere Operations Center, AGCO Fuse, CNH AFS, etc.) to retrieve the Product shipped by a Retailer in the form of setup files.  
 
