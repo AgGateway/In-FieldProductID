@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: AgGateway Shipped Item Instance
-  description: Allows the Retailer to send information about the actual product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, mixture batch id, seed treatment and product composition.  Allows the Farmer (via a mobile application or FMIS), or the Farmer's equipment manufacturer application (e.g., Deere Ops Center, AGCO Fuse, CNH AFS, etc.) to retrieve the Product shipped by a Retailer using the GET verb.   
+  description: Allows the Retailer to send information about the actual product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, mixture batch id, seed treatment and product composition.  Allows the Farmer (via a mobile application or FMIS), or the Farmer's equipment manufacturer application (aka OEM Platform, e.g., Deere Operations Center, AGCO Fuse, CNH AFS, etc.) to retrieve the Product shipped by a Retailer using the GET verb.   
   version: '2.0'
 servers:
   - url: https://shipped-item-instance.azure-api.net/wg01
