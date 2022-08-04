@@ -170,23 +170,6 @@ components:
                 example: "seed"
                 type: "string"
                 format: "token"
-              identifier:
-                description: "Locally-scoped index identifier within the document.\
-                  \  Not related to a field in a retailer's system."
-                type: "object"
-                required:
-                - "content"
-                additionalProperties: false
-                properties:
-                  content:
-                    type: "string"
-                    format: "normalizedString"
-                    example: "1"
-                  typeCode:
-                    description: "shipment line identifier"
-                    example: "shipment_line_identifier"
-                    type: "string"
-                    format: "token"
               uid:
                 description: "DataMatrix or barcode encoding string"
                 type: "object"
@@ -287,7 +270,7 @@ components:
                     format: "normalizedString"
                   description:
                     description: "Full AGIIS description"
-                    example: "CP2585 VT2P"
+                    example: "VT DoublePro RIB Complete Relative Maturity 85 days"
                     type: "string"
                   substance:
                     description: "Item composition for Crop Nutrition and Crop Protection."
@@ -355,6 +338,28 @@ components:
                                     example: "2030-07-01"
                                     type: "string"
                                     format: "date"
+                  packaging:
+                    description: "This is the per stocking unit packaging, such as\
+                      \ a bag of seed.\nOther examples such as a carton of 2  x 2.5\
+                      \ Gallon Jugs of crop protection will be deferred to the next\
+                      \ WGxx, likely to update to the same structure as found in product\
+                      \ catalog."
+                    type: "object"
+                    additionalProperties: false
+                    properties:
+                      perPackageQuantity:
+                        type: "object"
+                        required:
+                        - "content"
+                        additionalProperties: false
+                        properties:
+                          content:
+                            type: "number"
+                            example: "55"
+                          unitCode:
+                            example: "LB"
+                            type: "string"
+                            format: "token"
                   productName:
                     description: "product name"
                     example: "CP2585"
@@ -366,7 +371,7 @@ components:
                   varietyName:
                     description: "Variety of a product or brand, perhaps a minor genetic\
                       \ trait or grading typically based on quality measures (sorting)"
-                    example: "VT2P"
+                    example: "VT2P/RIB"
                     type: "string"
                   itemTreatment:
                     description: "Seed Treatment; List of product mixture identifiers\
@@ -385,7 +390,7 @@ components:
                       name:
                         description: "Manufacturer or Retailer's name of the seed\
                           \ treatment"
-                        example: "Fortivent Plus"
+                        example: "Fortivent® Plus"
                         type: "string"
                       substance:
                         description: "Substances found in the seed treatment"
@@ -468,6 +473,8 @@ components:
                                         type: "string"
                                         format: "date"
               quantity:
+                description: "Number of seed bags or quantity of other product if\
+                  \ crop protection"
                 type: "object"
                 required:
                 - "content"
@@ -475,7 +482,7 @@ components:
                 properties:
                   content:
                     type: "number"
-                    example: "100"
+                    example: "45"
                   unitCode:
                     example: "BG"
                     type: "string"
@@ -536,22 +543,57 @@ components:
                               type: "string"
                               format: "token"
               packaging:
+                description: "Used for a shipping pallet if individual bags of seed,\
+                  \ or a seed box where multiple bags of seed are treated at a retailer\
+                  \ and conveyed into a tote or seed box (mini-bulk) for use with\
+                  \ a seed tender.  \nA printed manifest tag with barcode detailed\
+                  \ in packaging.identifier must be included with the seed box, tote\
+                  \ or pallet for ease of use.\nIt is NOT recommended to commingle\
+                  \ seed varieties and seed lots.   But if that does happen, multiple\
+                  \ shipped item instances array entries would have the same destination\
+                  \ package, denoting the which seed varieties and seed lot may have\
+                  \ been mixed into a single tote or seed box. \nThe dimensions of\
+                  \ a seed box e.g. https://www.rppcontainers.com/Hopper-Bottom-Containers/hopper-bottom-57x45x65,\
+                  \ or pallet are not in scope."
                 type: "object"
                 additionalProperties: false
                 properties:
                   typeCode:
-                    description: "type of packaging; BulkBox, Pallet; the tags will\
-                      \ continue to be sent with the bulk box"
-                    example: "BulkBox"
+                    description: "Type of packaging; Seed Box, Tote, Pallet; \n"
+                    example: "SeedBox"
                     type: "string"
                     format: "token"
                   identifier:
                     description: "Identifier of the container, often a serial number\
                       \ of a reusable containers such as a seed tender, bulk box,\
-                      \ pallet, etc."
+                      \ pallet, etc.\n"
                     example: "844f95ac-422a-406a-91c5-65d017de2f09"
                     type: "string"
                     format: "normalizedString"
+                  quantity:
+                    description: "Total gross weight of the seed box, or pallet. \
+                      \ \nThis is defined as the tare weight (weight of the container,\
+                      \ box or pallet) plus the net weight, which is the number of\
+                      \ bags x weight of each bag, plus the weight of the treatment\
+                      \ if seed treatment and loaded into the seed box."
+                    type: "object"
+                    required:
+                    - "content"
+                    additionalProperties: false
+                    properties:
+                      content:
+                        type: "number"
+                        example: "2475"
+                      typeCode:
+                        description: "Gross Weight of the shipping container"
+                        example: "GrossWeight"
+                        type: "string"
+                        format: "token"
+                      unitCode:
+                        description: "Unit of measure of the gross weight"
+                        example: "LB"
+                        type: "string"
+                        format: "token"
               attachment:
                 type: "object"
                 additionalProperties: false
@@ -562,7 +604,7 @@ components:
                     type: "string"
                     format: "token"
                   uri:
-                    description: "link to agiis or product"
+                    description: "URI link to Product as defined in AGIIS"
                     example: "https://api.agiis.org/"
                     type: "string"
                     format: "normalizedString"
@@ -581,7 +623,7 @@ components:
                       content:
                         type: "string"
                         format: "normalizedString"
-                        example: "343434"
+                        example: "34343401245"
                       typeCode:
                         description: "type of identifier for the manufacturer"
                         example: "GLN"
@@ -589,7 +631,7 @@ components:
                         format: "token"
                   name:
                     description: "product manufacturer's name"
-                    example: "Bayer"
+                    example: "WinField United"
                     type: "string"
               party:
                 description: "parties involved with the shipment transaction, usually\
