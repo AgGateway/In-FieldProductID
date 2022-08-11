@@ -24,6 +24,9 @@ namespace fxoagis
     {
         static azureDocumentDB db;
         //0-shipmentident, 1-retailerident
+        //
+        //  in V2 documentReference.identifier.content changes to shipmentReference.identifier 
+        //
         const string sqlSetupFiles = @"SELECT c.shippedItemInstance FROM c where c.shippedItemInstance[0].party[1].location.glnid='{1}'  AND c.shippedItemInstance[0].documentReference.identifier.content= '{0}'";
         const string sqlCosmoDocumentIDs = @"SELECT value c.id FROM c where c.shippedItemInstance[0].party[1].location.glnid='{1}'  AND c.shippedItemInstance[0].documentReference.identifier.content= '{0}'";
         const string sqlSetupFileDirect = @"SELECT c.shippedItemInstance FROM c where c.id = '{0}'";
@@ -42,7 +45,9 @@ namespace fxoagis
                 string requestBody = await sr.ReadToEndAsync();
 
                 data = JsonConvert.DeserializeObject(requestBody);
-
+        //
+        //  in V2 documentReference.identifier.content changes to shipmentReference.identifier 
+        //
                 var shipmentid = (string)data.shippedItemInstance[0].documentReference.identifier.content;
                 var retailerid = (string)data.shippedItemInstance[0].party[1].location.glnid;
 
@@ -95,7 +100,9 @@ namespace fxoagis
                 string requestBody = await sr.ReadToEndAsync();
 
                 data = JsonConvert.DeserializeObject(requestBody);
-
+        //
+        //  in V2 documentReference.identifier.content changes to shipmentReference.identifier 
+        //
                 var shipmentid = (string)data.shippedItemInstance[0].documentReference.identifier.content;
                 var retailerid = (string)data.shippedItemInstance[0].party[1].location.glnid;
 
@@ -259,6 +266,9 @@ namespace fxoagis
                     File.WriteAllText(tempPath, input);
 
                     //Read the input data
+                    //
+                    //  in V2 AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin changes to AgGateway.ADAPT.ShippedItemInstanceV2Plugin.Plugin 
+                    //
                     AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin p = new AgGateway.ADAPT.ShippedItemInstancePlugin.Plugin();
                     var admList = p.Import(folder);
 
@@ -323,6 +333,9 @@ namespace fxoagis
 
 /*
    This will return an array of objects below the shippedItemInstance[] as the data looks to have arrays of a single 
+   
+   In V2, documentReference.identifier.content becomes shipmentReference.identifier
+   
    SELECT  value c.shippedItemInstance[0] FROM c where c.shippedItemInstance[0].documentReference.documentDateTime = "20210202"
   
   
