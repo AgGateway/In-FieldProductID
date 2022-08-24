@@ -1,11 +1,12 @@
 # In-Field Product Identification Overview
 This GitHub repo provides the Azure resources to supports the agricultural use case to improve product identification capabilities in a farmer's field (in-field product identification), focusing on actual product received by the farmer.  
 
-This allows the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment (Crop Nutrition and Crop Protection is out of scope in v1). 
+V1 allowed the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment.   
+V2 allows the Retailer to sent Crop Nutrition and Crop Protection composition details, and improves the means to represent seed treatment and the shipment reference information.
 
 This also allows the Farmer to leverage either a variety of tools such as a mobile application or a Farm Management Information System (FMIS), as well as the Farmer's OEM equipment manufacturer application (e.g., Deere Operations Center, AGCO Fuse, CNH AFS, etc.) to retrieve the Product shipped by a Retailer in the form of setup files.  
 
-It must be clear that an OEM Platform would send to the display _essential_ identifiers needed for correlation and product instance identification.  The OEM platform would store _non-essential_ identifiers related to the product instance on their respective cloud platforms, and allow these identifiers to be referenced back via key data elements, specifically identifiers, that are captured in the work records as a result of product identification.  Essential identifiers that are useful for product identification include product id (e.g., GTIN, name), Seed Lot Identifier (optional, but ideal for germination challenges), and Seed Treatment (optional, but ideal when available, especially if prescribed by an agronomist to address nematodes or other challenges observed in the field, or for comparative analysis).  Non-essential identifiers include seed treatment composition details including EPA registrion identifiers and CAS identifiers for active ingredients.
+It must be clear that an OEM Platform would send to the display _essential_ identifiers needed for correlation and product instance identification.  The OEM platform would store _non-essential_ identifiers related to the product instance on their respective cloud platforms, and allow these identifiers to be referenced back via key data elements, specifically identifiers, that are captured in the work records as a result of product identification.  Essential identifiers that are useful for product identification include product id (e.g., GTIN, name), Seed Lot Identifier (optional, but ideal for germination challenges), and Seed Treatment (optional, but ideal when available, especially if prescribed by an agronomist to address nematodes or other challenges observed in the field, or for comparative analysis).  Non-essential identifiers include seed treatment, crop nutrition, and crop protection composition details including EPA registrion identifiers and CAS identifiers for active ingredients.
 
 It is acknowledged that many capabilities do not exist on many of the platforms used by farmers and especially older displays that rely on planting prescriptions including rate information, etc.  The use of mobile applications may be warranted to provide supplemental capabilities.  The proof-of-concept in 2021 and the pilot in 2022 proved the feasibility of loading product information, with older displays have some challenges due to display length (see Issue #9).  
 
@@ -40,7 +41,7 @@ At the time of shipment, the seed is gathered including the seed lot identifier 
 ## Crop Nutrition User Story
 The farmer places a fertilizer order with an Ag Retailer.   
 At the time of shipment, the fertilizer is dispensed into a shipping container such as a tank, including the identifiers such as the shipping container and the dispensing ticket identifier.
-The Dispensing Work Record is sent back from the process control system to the Sales Order system with the shipping information including Bill of Lading images, and composition.
+The Dispensing Work Record is sent back from the process control system to the Sales Order system with the shipping information including Bill of Lading images, and actual composition.  The work order can be the batch identifier in many process control systems.
 
 ## Common Implementation
 A shipping document is provided to the carrier, which includes a QR code the encodes the URL to retreive the shipment information.  

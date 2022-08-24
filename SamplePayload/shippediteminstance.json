@@ -1,615 +1,181 @@
-[
-	{
-		"shippedItemInstance": [
-			{
-				"identifier": {
-					"content": "6162979-1",
-					"typeCode": "shipment_line_identifier"
-				},
-				"item": {
-					"brandName": "DEKALB",
-					"manufacturerItemIdentification": {
-						"identifier": "",
-						"typeCode": ""
-					},
-					"description": "DKC64-89RIB AF VT2P SP50 BAS250",
-					"gtinid": "00883580842204",
-					"varietyName": "DKC64-89RI",
-					"productName": "DKC64-89RI"
-				},
-				"quantity": {
-					"unitCode": "UN",
-					"content": 150
-				},
-				"description": {
-					"content": "DKC64-89RI-757JRJ4JX",
-					"typeCode": "mics_display"
-				},
-				"classification": {
-					"codes": {
-						"code": [
-							{
-								"content": "CORN",
-								"typeCode": "Crop"
-							},
-							{
-								"content": "VT2P-RIB",
-								"typeCode": "Trait"
-							}
-						]
-					}
-				},
-				"lot": {
-					"identifier": {
-						"content": "757JRJ4JX",
-						"typeCode": "Lot"
-					}
-				},
-				"documentReference": {
-					"identifier": {
-						"content": "6162979"
-					},
-					"typeCode": "shipment_identifier",
-					"documentDateTime": "20210309"
-				},
-				"party": [
-					{
-						"identifier": [
-							{
-								"content": "4684125",
-								"typeCode": "retailer_grower_identifier"
-							}
-						],
-						"name": "HERD AGRI-ENTERPRISES INC",
-						"location": {
-							"glnid": "  1100065229411"
-						},
-						"typeCode": "Grower"
-					},
-					{
-						"name": "MENTONE SEED CENTER",
-						"location": {
-							"glnid": "1100062350958"
-						},
-						"typeCode": "Retailer"
-					}
-				],
-				"itemIdentifierSet": [
-					{
-						"identifier": [
-							{
-								"content": "ACCELERON 250",
-								"typeCode": "product"
-							}
-						],
-						"schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
-						"schemeIdentifier": "ACCELERON 250",
-						"typeCode": "seed_treatment"
-					}
-				]
-			},
-			{
-				"identifier": {
-					"content": "6162979-6",
-					"typeCode": "shipment_line_identifier"
-				},
-				"item": {
-					"brandName": "DEKALB",
-					"manufacturerItemIdentification": {
-						"identifier": "",
-						"typeCode": ""
-					},
-					"description": "DKC64-89RIB AF VT2P SP50 BAS250",
-					"gtinid": "00883580842204",
-					"varietyName": "DKC64-89RI",
-					"productName": "DKC64-89RI"
-				},
-				"quantity": {
-					"unitCode": "UN",
-					"content": 150
-				},
-				"description": {
-					"content": "DKC64-89RI-786WJJ9JX",
-					"typeCode": "mics_display"
-				},
-				"classification": {
-					"codes": {
-						"code": [
-							{
-								"content": "CORN",
-								"typeCode": "Crop"
-							},
-							{
-								"content": "VT2P-RIB",
-								"typeCode": "Trait"
-							}
-						]
-					}
-				},
-				"lot": {
-					"identifier": {
-						"content": "786WJJ9JX",
-						"typeCode": "Lot"
-					}
-				},
-				"documentReference": {
-					"identifier": {
-						"content": "6162979"
-					},
-					"typeCode": "shipment_identifier",
-					"documentDateTime": "20210309"
-				},
-				"party": [
-					{
-						"identifier": [
-							{
-								"content": "4684125",
-								"typeCode": "retailer_grower_identifier"
-							}
-						],
-						"name": "HERD AGRI-ENTERPRISES INC",
-						"location": {
-							"glnid": "  1100065229411"
-						},
-						"typeCode": "Grower"
-					},
-					{
-						"name": "MENTONE SEED CENTER",
-						"location": {
-							"glnid": "1100062350958"
-						},
-						"typeCode": "Retailer"
-					}
-				],
-				"itemIdentifierSet": [
-					{
-						"identifier": [
-							{
-								"content": "ACCELERON 250",
-								"typeCode": "product"
-							}
-						],
-						"schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
-						"schemeIdentifier": "ACCELERON 250",
-						"typeCode": "seed_treatment"
-					}
-				]
-			},
-			{
-				"identifier": {
-					"content": "6162979-11",
-					"typeCode": "shipment_line_identifier"
-				},
-				"item": {
-					"brandName": "DEKALB",
-					"manufacturerItemIdentification": {
-						"identifier": "",
-						"typeCode": ""
-					},
-					"description": "DKC53-27RIB AR2 SS RIB SP45 ELT500 B-E",
-					"gtinid": "00190794180320",
-					"varietyName": "DKC53-27RI",
-					"productName": "DKC53-27RI"
-				},
-				"quantity": {
-					"unitCode": "UN",
-					"content": 45
-				},
-				"description": {
-					"content": "DKC53-27RI-769WFF4JX",
-					"typeCode": "mics_display"
-				},
-				"classification": {
-					"codes": {
-						"code": [
-							{
-								"content": "CORN",
-								"typeCode": "Crop"
-							},
-							{
-								"content": "SSPRIB",
-								"typeCode": "Trait"
-							}
-						]
-					}
-				},
-				"lot": {
-					"identifier": {
-						"content": "769WFF4JX",
-						"typeCode": "Lot"
-					}
-				},
-				"documentReference": {
-					"identifier": {
-						"content": "6162979"
-					},
-					"typeCode": "shipment_identifier",
-					"documentDateTime": "20210309"
-				},
-				"party": [
-					{
-						"identifier": [
-							{
-								"content": "4684125",
-								"typeCode": "retailer_grower_identifier"
-							}
-						],
-						"name": "HERD AGRI-ENTERPRISES INC",
-						"location": {
-							"glnid": "  1100065229411"
-						},
-						"typeCode": "Grower"
-					},
-					{
-						"name": "MENTONE SEED CENTER",
-						"location": {
-							"glnid": "1100062350958"
-						},
-						"typeCode": "Retailer"
-					}
-				],
-				"itemIdentifierSet": [
-					{
-						"identifier": [
-							{
-								"content": "ACCELERON500+B300+ENHANCED DIS",
-								"typeCode": "product"
-							}
-						],
-						"schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
-						"schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
-						"typeCode": "seed_treatment"
-					}
-				]
-			},
-			{
-				"identifier": {
-					"content": "6162979-16",
-					"typeCode": "shipment_line_identifier"
-				},
-				"item": {
-					"brandName": "DEKALB",
-					"manufacturerItemIdentification": {
-						"identifier": "",
-						"typeCode": ""
-					},
-					"description": "DKC53-27RIB AR2 SS RIB 80M ELT500 B-E",
-					"gtinid": "00190794180207",
-					"varietyName": "DKC53-27RI",
-					"productName": "DKC53-27RI"
-				},
-				"quantity": {
-					"unitCode": "BG",
-					"content": 5
-				},
-				"description": {
-					"content": "DKC53-27RI-769WXL4JX",
-					"typeCode": "mics_display"
-				},
-				"classification": {
-					"codes": {
-						"code": [
-							{
-								"content": "CORN",
-								"typeCode": "Crop"
-							},
-							{
-								"content": "SSPRIB",
-								"typeCode": "Trait"
-							}
-						]
-					}
-				},
-				"lot": {
-					"identifier": {
-						"content": "769WXL4JX",
-						"typeCode": "Lot"
-					}
-				},
-				"documentReference": {
-					"identifier": {
-						"content": "6162979"
-					},
-					"typeCode": "shipment_identifier",
-					"documentDateTime": "20210309"
-				},
-				"party": [
-					{
-						"identifier": [
-							{
-								"content": "4684125",
-								"typeCode": "retailer_grower_identifier"
-							}
-						],
-						"name": "HERD AGRI-ENTERPRISES INC",
-						"location": {
-							"glnid": "  1100065229411"
-						},
-						"typeCode": "Grower"
-					},
-					{
-						"name": "MENTONE SEED CENTER",
-						"location": {
-							"glnid": "1100062350958"
-						},
-						"typeCode": "Retailer"
-					}
-				],
-				"itemIdentifierSet": [
-					{
-						"identifier": [
-							{
-								"content": "ACCELERON500+B300+ENHANCED DIS",
-								"typeCode": "product"
-							}
-						],
-						"schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
-						"schemeIdentifier": "ACCELERON500+B300+ENHANCED DIS",
-						"typeCode": "seed_treatment"
-					}
-				]
-			},
-			{
-				"identifier": {
-					"content": "6162979-21",
-					"typeCode": "shipment_line_identifier"
-				},
-				"item": {
-					"brandName": "DEKALB",
-					"manufacturerItemIdentification": {
-						"identifier": "",
-						"typeCode": ""
-					},
-					"description": "DKC60-80RIB AR VT2P SP50U ELT500 B-E",
-					"gtinid": "00190794335218",
-					"varietyName": "DKC60-80RI",
-					"productName": "DKC60-80RI"
-				},
-				"quantity": {
-					"unitCode": "UN",
-					"content": 100
-				},
-				"description": {
-					"content": "DKC60-80RI-H21N4M7JX",
-					"typeCode": "mics_display"
-				},
-				"classification": {
-					"codes": {
-						"code": [
-							{
-								"content": "CORN",
-								"typeCode": "Crop"
-							},
-							{
-								"content": "VT2P-RIB",
-								"typeCode": "Trait"
-							}
-						]
-					}
-				},
-				"lot": {
-					"identifier": {
-						"content": "H21N4M7JX",
-						"typeCode": "Lot"
-					}
-				},
-				"documentReference": {
-					"identifier": {
-						"content": "6162979"
-					},
-					"typeCode": "shipment_identifier",
-					"documentDateTime": "20210309"
-				},
-				"party": [
-					{
-						"identifier": [
-							{
-								"content": "4684125",
-								"typeCode": "retailer_grower_identifier"
-							}
-						],
-						"name": "HERD AGRI-ENTERPRISES INC",
-						"location": {
-							"glnid": "  1100065229411"
-						},
-						"typeCode": "Grower"
-					},
-					{
-						"name": "MENTONE SEED CENTER",
-						"location": {
-							"glnid": "1100062350958"
-						},
-						"typeCode": "Retailer"
-					}
-				],
-				"itemIdentifierSet": [
-					{
-						"identifier": [
-							{
-								"content": "500+B360+ENHANCED DISEASE",
-								"typeCode": "product"
-							}
-						],
-						"schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
-						"schemeIdentifier": "500+B360+ENHANCED DISEASE",
-						"typeCode": "seed_treatment"
-					}
-				]
-			},
-			{
-				"identifier": {
-					"content": "6162979-26",
-					"typeCode": "shipment_line_identifier"
-				},
-				"item": {
-					"brandName": "DEKALB",
-					"manufacturerItemIdentification": {
-						"identifier": "",
-						"typeCode": ""
-					},
-					"description": "DKC61-41RIB AF2 VT2P SP50 ELT500 B-E",
-					"gtinid": "00190794191579",
-					"varietyName": "DKC61-41RI",
-					"productName": "DKC61-41RI"
-				},
-				"quantity": {
-					"unitCode": "UN",
-					"content": 100
-				},
-				"description": {
-					"content": "DKC61-41RI-H38YRT7JX",
-					"typeCode": "mics_display"
-				},
-				"classification": {
-					"codes": {
-						"code": [
-							{
-								"content": "CORN",
-								"typeCode": "Crop"
-							},
-							{
-								"content": "VT2P-RIB",
-								"typeCode": "Trait"
-							}
-						]
-					}
-				},
-				"lot": {
-					"identifier": {
-						"content": "H38YRT7JX",
-						"typeCode": "Lot"
-					}
-				},
-				"documentReference": {
-					"identifier": {
-						"content": "6162979"
-					},
-					"typeCode": "shipment_identifier",
-					"documentDateTime": "20210309"
-				},
-				"party": [
-					{
-						"identifier": [
-							{
-								"content": "4684125",
-								"typeCode": "retailer_grower_identifier"
-							}
-						],
-						"name": "HERD AGRI-ENTERPRISES INC",
-						"location": {
-							"glnid": "  1100065229411"
-						},
-						"typeCode": "Grower"
-					},
-					{
-						"name": "MENTONE SEED CENTER",
-						"location": {
-							"glnid": "1100062350958"
-						},
-						"typeCode": "Retailer"
-					}
-				],
-				"itemIdentifierSet": [
-					{
-						"identifier": [
-							{
-								"content": "500+B360+ENHANCED DISEASE",
-								"typeCode": "product"
-							}
-						],
-						"schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
-						"schemeIdentifier": "500+B360+ENHANCED DISEASE",
-						"typeCode": "seed_treatment"
-					}
-				]
-			},
-			{
-				"identifier": {
-					"content": "6162979-31",
-					"typeCode": "shipment_line_identifier"
-				},
-				"item": {
-					"brandName": "DEKALB",
-					"manufacturerItemIdentification": {
-						"identifier": "",
-						"typeCode": ""
-					},
-					"description": "DKC63-57RIB AR2 VT2P 80M ELT500 B-E",
-					"gtinid": "00190794139922",
-					"varietyName": "DKC63-57RI",
-					"productName": "DKC63-57RI"
-				},
-				"quantity": {
-					"unitCode": "BG",
-					"content": 100
-				},
-				"description": {
-					"content": "DKC63-57RI-H35Y3L9JX",
-					"typeCode": "mics_display"
-				},
-				"classification": {
-					"codes": {
-						"code": [
-							{
-								"content": "CORN",
-								"typeCode": "Crop"
-							},
-							{
-								"content": "VT2P-RIB",
-								"typeCode": "Trait"
-							}
-						]
-					}
-				},
-				"lot": {
-					"identifier": {
-						"content": "H35Y3L9JX",
-						"typeCode": "Lot"
-					}
-				},
-				"documentReference": {
-					"identifier": {
-						"content": "6162979"
-					},
-					"typeCode": "shipment_identifier",
-					"documentDateTime": "20210309"
-				},
-				"party": [
-					{
-						"identifier": [
-							{
-								"content": "4684125",
-								"typeCode": "retailer_grower_identifier"
-							}
-						],
-						"name": "HERD AGRI-ENTERPRISES INC",
-						"location": {
-							"glnid": "  1100065229411"
-						},
-						"typeCode": "Grower"
-					},
-					{
-						"name": "MENTONE SEED CENTER",
-						"location": {
-							"glnid": "1100062350958"
-						},
-						"typeCode": "Retailer"
-					}
-				],
-				"itemIdentifierSet": [
-					{
-						"identifier": [
-							{
-								"content": "500+B360+ENHANCED DISEASE",
-								"typeCode": "product"
-							}
-						],
-						"schemeAgencyIdentifier": "manufacturer_seed_treatment_identifier",
-						"schemeIdentifier": "500+B360+ENHANCED DISEASE",
-						"typeCode": "seed_treatment"
-					}
-				]
-			}
-		]
-	}
-]
+{
+  "shippedItemInstance": [
+    {
+      "typeCode": "seed",
+      "uid": {
+        "content": "0-539f82b1-df6e-11e9-b486-5ce0c51e62ce",
+        "schemeIdentifier": "DataMatrix",
+        "schemeAgencyIdentifier": "GS1",
+        "typeCode": "AgGateway"
+      },
+      "lot": {
+        "typeCode": "Lot",
+        "identifier": {
+          "content": "769MXJ4JX",
+          "typeCode": "Lot"
+        },
+        "serialNumberIdentifier": [
+          "c93b67b1-b62e-45b4-96fe-1277a341dc0d"
+        ]
+      },
+      "item": {
+        "manufacturerItemIdentification": {
+          "typeCode": "SKU",
+          "identifier": "34323656565"
+        },
+        "upcid": "888346580291",
+        "gtinid": "00888346580291",
+        "description": "VT DoublePro RIB Complete Relative Maturity 85 days",
+        "substance": [
+          {
+            "name": "Ammonium Polyphosphate ",
+            "quantity": [
+              {
+                "content": 43,
+                "typeCode": "Minimum",
+                "unitCode": "PCT"
+              }
+            ],
+            "registrationStatus": [
+              {
+                "identifier": {
+                  "content": "68333-79-9",
+                  "typeCode": "CAS",
+                  "schemeAgencyIdentifier": "Chemical Abstract Service"
+                },
+                "effectiveTimePeriod": {
+                  "endDateTime": "2030-07-01"
+                }
+              }
+            ]
+          }
+        ],
+        "packaging": {
+          "perPackageQuantity": {
+            "content": 55,
+            "unitCode": "LB"
+          }
+        },
+        "productName": "CP2585",
+        "brandName": "CROPLAN",
+        "varietyName": "VT2P/RIB",
+        "itemTreatment": {
+          "identifier": "1001339",
+          "name": "Fortivent® Plus",
+          "substance": [
+            {
+              "typeCode": "active_ingredient",
+              "identifier": "Ethaboxam",
+              "name": "Ethaboxam Fungicide",
+              "quantity": [
+                {
+                  "content": 22,
+                  "typeCode": "Minimum ",
+                  "unitCode": "PCT"
+                }
+              ],
+              "registrationStatus": [
+                {
+                  "identifier": {
+                    "content": "162650-77-3",
+                    "schemeAgencyIdentifier": "Chemical Abstracts Service",
+                    "typeCode": "CAS"
+                  },
+                  "effectiveTimePeriod": {
+                    "endDateTime": "2030-07-01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "quantity": {
+        "content": 45,
+        "unitCode": "BG"
+      },
+      "description": {
+        "content": "CP2585-769MXJ4JX",
+        "typeCode": "mics_display"
+      },
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "11199199",
+              "listAgencyIdentifier": "USDA",
+              "typeCode": "Corn For Grain"
+            }
+          ]
+        }
+      },
+      "packaging": {
+        "typeCode": "SeedBox",
+        "identifier": "844f95ac-422a-406a-91c5-65d017de2f09",
+        "quantity": {
+          "content": 2475,
+          "typeCode": "GrossWeight",
+          "unitCode": "LB"
+        }
+      },
+      "attachment": {
+        "typeCode": "AGIIS",
+        "uri": "https://api.agiis.org/"
+      },
+      "manufacturingParty": {
+        "identifier": {
+          "content": "34343401245",
+          "typeCode": "GLN"
+        },
+        "name": "WinField United"
+      },
+      "party": [
+        {
+          "typeCode": "retailer",
+          "identifier": [
+            {
+              "content": "1100028417954",
+              "typeCode": "GLN"
+            }
+          ],
+          "name": "Ceres Solutions",
+          "location": {
+            "name": "New Lebanon Seed Hub",
+            "glnid": "1100028417954"
+          }
+        }
+      ],
+      "results": {
+        "quantitative": [
+          {
+            "typeCode": "SeedCountPerPound",
+            "name": "Seed Count Per Pound",
+            "uomCode": {
+              "content": "Seeds/LB",
+              "listIdentifier": "https://www.idseed.org/pages/seed_size_measurement_protocol_new.html",
+              "listAgencyIdentifier": "IPSA"
+            },
+            "significantDigitsNumber": 0,
+            "measurement": [
+              {
+                "dateTime": "2021-02-08T13:17:45.034-05:00",
+                "measure": 892
+              }
+            ]
+          }
+        ]
+      },
+      "shipmentReference": {
+        "identifier": "34343535",
+        "documentDateTime": "2022-04-07T15:15:01.123-05:00",
+        "lineNumberIdentifier": "34343535-1",
+        "carrierParty": {
+          "identifier": "Fleet",
+          "scacid": "NA",
+          "name": "Ceres Fleet"
+        }
+      }
+    }
+  ]
+}
