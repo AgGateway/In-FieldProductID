@@ -99,8 +99,12 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                example: 9e944f86-1038-4ffa-b1ec-aefb6bb0c8b0
+                type: object
+                  properties:
+                    id:
+                      type: string
+                      description: 'unique systematically generated id, guid, uuid or otherwise.'
+                      example: 9e944f86-1038-4ffa-b1ec-aefb6bb0c8b0
     put:
       summary: PUT an updated JSON to NoSQL Database
       description: ''
