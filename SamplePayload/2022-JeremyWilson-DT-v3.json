@@ -1,0 +1,1612 @@
+[
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "3230Enlist SDBX ESCALATE SDS+ BEANS",
+			"gtinid": "",
+			"varietyName": "3230Enlist",
+			"productName": "3230Enlist",
+			"itemTreatment": {
+				"id": "ESCALATE SDS+",
+				"name": "ESCALATE SDS+",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 135
+		},
+		"description": {
+			"content": "3230Enlist-E22388816X",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "S",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Soybeans"
+					},
+					{
+						"content": "SDBX",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "E22388816X",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-1",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "3510Enlist SDBX ESCALATE BEANS",
+			"gtinid": "",
+			"varietyName": "3510Enlist",
+			"productName": "3510Enlist",
+			"itemTreatment": {
+				"id": "ESCALATE",
+				"name": "ESCALATE",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 135
+		},
+		"description": {
+			"content": "3510Enlist-F2212127X",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "S",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Soybeans"
+					},
+					{
+						"content": "SDBX",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "F2212127X",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-2",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "XL 6081AM BAG ESCALATE MED FLAT CORN",
+			"gtinid": "",
+			"varietyName": "XL 6081AM ",
+			"productName": "XL 6081AM ",
+			"itemTreatment": {
+				"id": "ESCALATE",
+				"name": "ESCALATE",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 8
+		},
+		"description": {
+			"content": "XL 6081AM -S116FF",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "C",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Corn"
+					},
+					{
+						"content": "XL",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "S116FF",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-3",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "XL 6241QR BAG ESCALATE MED FLAT CORN",
+			"gtinid": "",
+			"varietyName": "XL 6241QR ",
+			"productName": "XL 6241QR ",
+			"itemTreatment": {
+				"id": "ESCALATE",
+				"name": "ESCALATE",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Acre",
+			"content": 24
+		},
+		"description": {
+			"content": "XL 6241QR -S260FF",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "C",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Corn"
+					},
+					{
+						"content": "XL",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "S260FF",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-4",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "6374VT2P BAG ESCALATE MED FLAT CORN",
+			"gtinid": "",
+			"varietyName": "6374VT2P B",
+			"productName": "6374VT2P B",
+			"itemTreatment": {
+				"id": "ESCALATE",
+				"name": "ESCALATE",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 24
+		},
+		"description": {
+			"content": "6374VT2P B-S65FF",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "C",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Corn"
+					},
+					{
+						"content": "VT2P",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "S65FF",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-5",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "6414VT2P BAG ESCALATE MED FLAT CORN",
+			"gtinid": "",
+			"varietyName": "6414VT2P B",
+			"productName": "6414VT2P B",
+			"itemTreatment": {
+				"id": "ESCALATE",
+				"name": "ESCALATE",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 32
+		},
+		"description": {
+			"content": "6414VT2P B-E181FF",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "C",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Corn"
+					},
+					{
+						"content": "VT2P",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "E181FF",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-6",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "3830Enlist SDBX ESCALATE SDS+ BEANS",
+			"gtinid": "",
+			"varietyName": "3830Enlist",
+			"productName": "3830Enlist",
+			"itemTreatment": {
+				"id": "ESCALATE SDS+",
+				"name": "ESCALATE SDS+",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 45
+		},
+		"description": {
+			"content": "3830Enlist-F22121214X",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "S",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Soybeans"
+					},
+					{
+						"content": "SDBX",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "F22121214X",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-7",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "4320Enlist SDBX EXCALATE SDS+ BEANS",
+			"gtinid": "",
+			"varietyName": "4320Enlist",
+			"productName": "4320Enlist",
+			"itemTreatment": {
+				"id": "ESCALATE SDS+",
+				"name": "ESCALATE SDS+",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 225
+		},
+		"description": {
+			"content": "4320Enlist-A22242312X",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "S",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Soybeans"
+					},
+					{
+						"content": "SDBX",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "A22242312X",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-8",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "4030Enlist SDBX ESCALATE SDS+ BEANS",
+			"gtinid": "",
+			"varietyName": "4030Enlist",
+			"productName": "4030Enlist",
+			"itemTreatment": {
+				"id": "ESCALATE SDS+",
+				"name": "ESCALATE SDS+",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 180
+		},
+		"description": {
+			"content": "4030Enlist-B2227251X",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "S",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Soybeans"
+					},
+					{
+						"content": "SDBX",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "B2227251X",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-9",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "3030Enlist SDBX ESCALATE SDS+ BEANS",
+			"gtinid": "",
+			"varietyName": "3030Enlist",
+			"productName": "3030Enlist",
+			"itemTreatment": {
+				"id": "ESCALATE SDS+",
+				"name": "ESCALATE SDS+",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 90
+		},
+		"description": {
+			"content": "3030Enlist-E2238579X",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "S",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Soybeans"
+					},
+					{
+						"content": "SDBX",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "E2238579X",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-10",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "Beck's",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "4030Enlist SDBX ILEVO TWO BEANS",
+			"gtinid": "",
+			"varietyName": "4030Enlist",
+			"productName": "4030Enlist",
+			"itemTreatment": {
+				"id": "ILEVO",
+				"name": "ILEVO",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 45
+		},
+		"description": {
+			"content": "4030Enlist-B2223136XI",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "S",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Soybeans"
+					},
+					{
+						"content": "SDBX",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "B2223136XI",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-11",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "AgriGold",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "A6544-VT2RIB",
+			"gtinid": "",
+			"varietyName": "A6544",
+			"productName": "A6544",
+			"itemTreatment": {
+				"id": "NA",
+				"name": "NA",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 1
+		},
+		"description": {
+			"content": "A6544-EF06466361",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "C",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Corn"
+					},
+					{
+						"content": "VT2RIB",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "EF06466361",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-12",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "AgriGold",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "A64516-VT2RIB",
+			"gtinid": "",
+			"varietyName": "A64516",
+			"productName": "A64516",
+			"itemTreatment": {
+				"id": "NA",
+				"name": "NA",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 1
+		},
+		"description": {
+			"content": "A64516-EF09168506",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "C",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Corn"
+					},
+					{
+						"content": "VT2RIB",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "EF09168506",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-13",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	},
+	{
+		"typeCode": "seed",
+		"item": {
+			"brandName": "AgriGold",
+			"manufacturerItemIdentification": {
+				"id": "",
+				"typeCode": ""
+			},
+			"description": "A64259-VT2RIB",
+			"gtinid": "",
+			"varietyName": "A64259",
+			"productName": "A64259",
+			"itemTreatment": {
+				"id": "NA",
+				"name": "NA",
+				"substance": [
+					{
+						"typeCode": "active_ingredient",
+						"id": "Ethaboxam",
+						"name": "Ethaboxam Fungicide",
+						"quantity": [
+							{
+								"content": 22.154545,
+								"typeCode": "Actual",
+								"unitCode": "PCT"
+							}
+						],
+						"registrationStatus": [
+							{
+								"id": {
+									"content": "162650-77-3",
+									"schemeAgencyId": "Chemical Abstracts Service",
+									"typeCode": "CAS"
+								},
+								"effectiveTimePeriod": {
+									"endDateTime": "2030-07-01"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"quantity": {
+			"unitCode": "Bags",
+			"content": 1
+		},
+		"description": {
+			"content": "A64259-II36062097",
+			"typeCode": "mics_display"
+		},
+		"classification": {
+			"codes": {
+				"code": [
+					{
+						"content": "C",
+						"listAgencyId": "AGIIS",
+						"typeCode": "Corn"
+					},
+					{
+						"content": "VT2RIB",
+						"typeCode": "Trait"
+					}
+				]
+			},
+			"typeCode": "Crop"
+		},
+		"lot": {
+			"id": {
+				"content": "II36062097",
+				"typeCode": "Lot"
+			}
+		},
+		"manufacturingParty": {},
+		"party": [
+			{
+				"id": [
+					{
+						"content": "13",
+						"typeCode": "retailer_grower_identifier"
+					}
+				],
+				"name": "Jeremy Wilson",
+				"location": {
+					"glnid": "null"
+				},
+				"typeCode": "Grower"
+			},
+			{
+				"name": "SSI Ag Supply & Services - North Plant",
+				"location": {
+					"glnid": "1369458675000"
+				},
+				"typeCode": "Retailer"
+			}
+		],
+		"shipmentReference": {
+			"id": "7302",
+			"lineNumberId": "7302-14",
+			"shipUnitReference": {
+				"typeCode": "Semi-Trailer",
+				"id": {
+					"content": "12345678",
+					"typeCode": " USDOT_Number"
+				}
+			},
+			"actualShipDateTime": "2022-04-19T00:00:00.000-05:00",
+			"actualDeliveryDateTime": "",
+			"carrierParty": {
+				"id": "Fleet",
+				"scacid": "NA",
+				"name": "Retailer Fleet"
+			}
+		}
+	}
+]
