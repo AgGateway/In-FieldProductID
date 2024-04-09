@@ -115,7 +115,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/shipmentReferenceListResponse"
-  /in-field-product-id/v4/setup-files:
+  /in-field-product-id/V4/setup-files:
     get:
       summary: GET a zipped file of setup files to load into the tractor display
       description: Using the shipment identifier and retailer's GLN, the API will return an octet-stream of zip file containing either ISOBUS XML or the ADAPT ADM protobuf formatted files.
