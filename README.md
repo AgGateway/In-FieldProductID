@@ -3,6 +3,13 @@ This GitHub repo provides the Azure resources to supports the agricultural use c
 
 V1 allowed the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment.   
 V2 allows the Retailer to sent Crop Nutrition and Crop Protection composition details, and improves the means to represent seed treatment and the shipment reference information.
+Changes V3-V4:
+1) Party -> shipToParty (grower) and shipFromParty (Retailer), etc.
+2) Attachment -> item.relatedIds -- URI reference to AGIIS
+3) Quantity removed from Substance (Not realistic)
+4) Lot flattened
+5) Shipment Reference now includes shipTo and shipFrom parties, receipt date at the farm, or pickup date at the retailer, and received, accepted, rejected, and return quantities and RMA identifier.
+6) Simplified the Results.Quantitative.Measurement[] structure, flattening measurement
 
 This also allows the Farmer to leverage either a variety of tools such as a mobile application or a Farm Management Information System (FMIS), as well as the Farmer's OEM equipment manufacturer application (e.g., Deere Operations Center, AGCO Fuse, CNH AFS, etc.) to retrieve the Product shipped by a Retailer in the form of setup files.  
 
