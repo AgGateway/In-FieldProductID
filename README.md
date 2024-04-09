@@ -23,7 +23,7 @@ What IS encouraging is the ability of the Retailer ERP systems to digitize the d
 Future work aims to add further efficiencies to provide auto-identification capabilities including BLE beacons, Data Matrix barcoding (product, lot/batch, etc), and/ or RFID tags on bags and seed boxes for use with tenders.  We aim, over time, to avoid having the farmer enter into the cab to select the product.  Solutions could leverage Wi-Fi on a tractor displays, future High-Speed ISOBUS over Ethernet connections, and so forth.
 
 # API Implementation Details
-The components within the Green system node in the deployment diagram below reside in this GitHub repository.  
+The V1 components within the Green system node in the deployment diagram below reside in this GitHub repository.  These ONLY SUPPORT the V1 release of this component.  This is only provided as guidance for potential implementors.
 
 The solution provides a three tier architecture including authentization/authorization, API logic, and persistent storage.  There are four types of components:
 
