@@ -1,0 +1,1027 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "required" : [ "shippedItemInstance" ],
+  "additionalProperties" : false,
+  "properties" : {
+    "shippedItemInstance" : {
+      "type" : "array",
+      "items" : {
+        "additionalProperties" : false,
+        "properties" : {
+          "typeCode" : {
+            "allOf" : [ {
+              "$ref" : "#/definitions/token"
+            }, {
+              "description" : "type of product shipped; Seed, CP = Crop protection, or CN = Crop Nutrition",
+              "examples" : [ "seed" ]
+            } ]
+          },
+          "id" : {
+            "$ref" : "#/definitions/normalizedString"
+          },
+          "uid" : {
+            "description" : "DataMatrix or barcode encoding string",
+            "type" : "object",
+            "required" : [ "content" ],
+            "additionalProperties" : false,
+            "properties" : {
+              "content" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/normalizedString"
+                }, {
+                  "examples" : [ "0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" ]
+                } ]
+              },
+              "schemeId" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/token"
+                }, {
+                  "description" : "encoding scheme",
+                  "examples" : [ "DataMatrix" ]
+                } ]
+              },
+              "schemeAgencyId" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/token"
+                }, {
+                  "description" : "Agency defining bar coding scheme",
+                  "examples" : [ "GS1" ]
+                } ]
+              },
+              "typeCode" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/token"
+                }, {
+                  "description" : "Implementation Guideline for encoding scheme",
+                  "examples" : [ "AgGateway" ]
+                } ]
+              }
+            }
+          },
+          "lot" : {
+            "description" : "the various lot and / or batch identifiers associated to the shipped item\nLot identifier is related to homogeneous items, such as seed, grains.\nBatch identifiers are related to the mixture of homogeneous items, based on a formulation of mixed active ingredient of crop nutrition or crop protection.",
+            "type" : "object",
+            "additionalProperties" : false,
+            "properties" : {
+              "typeCode" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/token"
+                }, {
+                  "description" : "if typeCode=Seed, then Lot, else Batch for CN and CP",
+                  "examples" : [ "Lot" ]
+                } ]
+              },
+              "id" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/normalizedString"
+                }, {
+                  "description" : "lot or batch identifier value",
+                  "examples" : [ "769MXJ4JX" ]
+                } ]
+              },
+              "serialNumberId" : {
+                "type" : "array",
+                "items" : {
+                  "allOf" : [ {
+                    "$ref" : "#/definitions/normalizedString"
+                  }, {
+                    "description" : "If typeCode = CP; array of serial numbers for serialized jugs of crop protection products linked to a special batch.  Useful for blockchain applications such as Crop Protection.",
+                    "examples" : [ "c93b67b1-b62e-45b4-96fe-1277a341dc0d" ]
+                  } ]
+                }
+              }
+            }
+          },
+          "item" : {
+            "$ref" : "#/definitions/item"
+          },
+          "quantity" : {
+            "description" : "Number of seed bags or quantity of other product if crop protection",
+            "type" : "object",
+            "required" : [ "content" ],
+            "additionalProperties" : false,
+            "properties" : {
+              "content" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/decimal"
+                }, {
+                  "examples" : [ "45" ]
+                } ]
+              },
+              "unitCode" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/token"
+                }, {
+                  "examples" : [ "BG" ]
+                } ]
+              }
+            }
+          },
+          "packaging" : {
+            "description" : "Transport Package;\n- Shipping pallet of bags of seed or cartons of crop protection.\n- Seed bulk box where multiple bags of seed are treated at a retailer and conveyed into a tote or seed box (mini-bulk) for use with a seed tender.  \n\nA printed manifest tag with barcode detailed in packaging.identifier must be included with the seed box, tote or pallet for ease of use.\nIt is NOT recommended to commingle seed varieties and seed lots.   But if that does happen, multiple shipped item instances array entries would have the same destination package, denoting the which seed varieties and seed lot may have been mixed into a single tote or seed box. \nThe dimensions of a seed box e.g. https://www.rppcontainers.com/Hopper-Bottom-Containers/hopper-bottom-57x45x65, or pallet are not in scope.",
+            "type" : "object",
+            "additionalProperties" : false,
+            "properties" : {
+              "typeCode" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/token"
+                }, {
+                  "description" : "Type of packaging; Seed Box, Tote, Pallet; \n",
+                  "examples" : [ "SeedBox" ]
+                } ]
+              },
+              "id" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/normalizedString"
+                }, {
+                  "description" : "Identifier of the container, often a serial number of a reusable containers such as a seed tender, bulk box, pallet, etc.\n",
+                  "examples" : [ "844f95ac-422a-406a-91c5-65d017de2f09" ]
+                } ]
+              },
+              "quantity" : {
+                "description" : "Total gross weight of the seed box, or pallet.  \nThis is defined as the tare weight (weight of the container, box or pallet) plus the net weight, which is the number of bags x weight of each bag, plus the weight of the treatment if seed treatment and loaded into the seed box.",
+                "type" : "object",
+                "required" : [ "content" ],
+                "additionalProperties" : false,
+                "properties" : {
+                  "content" : {
+                    "allOf" : [ {
+                      "$ref" : "#/definitions/decimal"
+                    }, {
+                      "examples" : [ "2475" ]
+                    } ]
+                  },
+                  "typeCode" : {
+                    "allOf" : [ {
+                      "$ref" : "#/definitions/token"
+                    }, {
+                      "description" : "Gross Weight of the shipping container",
+                      "examples" : [ "GrossWeight" ]
+                    } ]
+                  },
+                  "unitCode" : {
+                    "allOf" : [ {
+                      "$ref" : "#/definitions/token"
+                    }, {
+                      "description" : "Unit of measure of the gross weight",
+                      "examples" : [ "LB" ]
+                    } ]
+                  }
+                }
+              }
+            }
+          },
+          "results" : {
+            "type" : "object",
+            "additionalProperties" : false,
+            "properties" : {
+              "quantitative" : {
+                "type" : "object",
+                "additionalProperties" : false,
+                "properties" : {
+                  "measurement" : {
+                    "$ref" : "#/definitions/measurementList"
+                  }
+                }
+              }
+            }
+          },
+          "displayName" : {
+            "allOf" : [ {
+              "$ref" : "#/definitions/string"
+            }, {
+              "description" : "This is a concatenation seed lot identifier, prefixed by the product description that will appear in the MICS display.",
+              "examples" : [ "CP2585-769MXJ4JX" ]
+            } ]
+          },
+          "shipmentReference" : {
+            "$ref" : "#/definitions/shipmentReference"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "token" : {
+      "type" : "string"
+    },
+    "normalizedString" : {
+      "type" : "string"
+    },
+    "string" : {
+      "type" : "string"
+    },
+    "classification" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "typeCode" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/token"
+          }, {
+            "description" : "Type of classification",
+            "examples" : [ "Crop" ]
+          } ]
+        },
+        "codes" : {
+          "type" : "object",
+          "required" : [ "code" ],
+          "additionalProperties" : false,
+          "properties" : {
+            "code" : {
+              "type" : "array",
+              "minItems" : 1,
+              "items" : {
+                "type" : "object",
+                "required" : [ "content" ],
+                "additionalProperties" : false,
+                "properties" : {
+                  "content" : {
+                    "allOf" : [ {
+                      "$ref" : "#/definitions/normalizedString"
+                    }, {
+                      "examples" : [ "11199199" ]
+                    } ]
+                  },
+                  "listAgencyId" : {
+                    "allOf" : [ {
+                      "$ref" : "#/definitions/token"
+                    }, {
+                      "examples" : [ "USDA" ]
+                    } ]
+                  },
+                  "typeCode" : {
+                    "allOf" : [ {
+                      "$ref" : "#/definitions/token"
+                    }, {
+                      "description" : "Use as the description / definition.",
+                      "examples" : [ "Corn For Grain" ]
+                    } ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "date" : {
+      "type" : "string"
+    },
+    "decimal" : {
+      "type" : "number"
+    },
+    "item" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "relatedId" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "additionalProperties" : false,
+            "properties" : {
+              "typeCode" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/token"
+                }, {
+                  "examples" : [ "Linked" ]
+                } ]
+              },
+              "id" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/normalizedString"
+                }, {
+                  "examples" : [ "https://api.agiis.org/?gtinid=00888346580291" ]
+                } ]
+              },
+              "sourceId" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/normalizedString"
+                }, {
+                  "examples" : [ "AGIIS" ]
+                } ]
+              },
+              "partyId" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/normalizedString"
+                }, {
+                  "examples" : [ "AgGateway" ]
+                } ]
+              }
+            }
+          }
+        },
+        "manufacturerItemIdentification" : {
+          "description" : "Manufacturer's Item identifier",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "typeCode" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/token"
+              }, {
+                "description" : "type of manufacturer's item identifier",
+                "examples" : [ "SKU" ]
+              } ]
+            },
+            "id" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/normalizedString"
+              }, {
+                "description" : "if no GTIN, then this is required, likely the manufacturer's SKU",
+                "examples" : [ "34323656565" ]
+              } ]
+            }
+          }
+        },
+        "upcid" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "description" : "Uniform Product Code",
+            "examples" : [ "888346580291" ]
+          } ]
+        },
+        "gtinid" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "description" : "GTIN for the packaged product instance, as maintained by GS1",
+            "examples" : [ "00888346580291" ]
+          } ]
+        },
+        "description" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/string"
+          }, {
+            "description" : "Full AGIIS description",
+            "examples" : [ "VT DoublePro RIB Complete Relative Maturity 85 days" ]
+          } ]
+        },
+        "classification" : {
+          "$ref" : "#/definitions/classification"
+        },
+        "substance" : {
+          "description" : "Item composition for Crop Nutrition and Crop Protection.",
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "additionalProperties" : false,
+            "properties" : {
+              "name" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/string"
+                }, {
+                  "examples" : [ "Ammonium Polyphosphate " ]
+                } ]
+              },
+              "registrationStatus" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "id" : {
+                      "type" : "object",
+                      "required" : [ "content" ],
+                      "additionalProperties" : false,
+                      "properties" : {
+                        "content" : {
+                          "allOf" : [ {
+                            "$ref" : "#/definitions/normalizedString"
+                          }, {
+                            "examples" : [ "68333-79-9" ]
+                          } ]
+                        },
+                        "typeCode" : {
+                          "allOf" : [ {
+                            "$ref" : "#/definitions/token"
+                          }, {
+                            "examples" : [ "CAS" ]
+                          } ]
+                        },
+                        "schemeAgencyId" : {
+                          "allOf" : [ {
+                            "$ref" : "#/definitions/token"
+                          }, {
+                            "examples" : [ "Chemical Abstract Service" ]
+                          } ]
+                        }
+                      }
+                    },
+                    "effectiveTimePeriod" : {
+                      "type" : "object",
+                      "additionalProperties" : false,
+                      "properties" : {
+                        "endDateTime" : {
+                          "allOf" : [ {
+                            "$ref" : "#/definitions/date"
+                          }, {
+                            "description" : "End date for Registration",
+                            "examples" : [ "2030-07-01" ]
+                          } ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "packaging" : {
+          "description" : "This is the retail stocking unit packaging, such as a bag of seed.\nOther examples such as a carton of 2  x 2.5 Gallon Jugs of crop protection.",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "perPackageQuantity" : {
+              "type" : "object",
+              "required" : [ "content" ],
+              "additionalProperties" : false,
+              "properties" : {
+                "content" : {
+                  "allOf" : [ {
+                    "$ref" : "#/definitions/decimal"
+                  }, {
+                    "examples" : [ "55" ]
+                  } ]
+                },
+                "unitCode" : {
+                  "allOf" : [ {
+                    "$ref" : "#/definitions/token"
+                  }, {
+                    "examples" : [ "LB" ]
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "manufacturingParty" : {
+          "description" : "Manufacturer of the Item instance",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "id" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/normalizedString"
+              }, {
+                "description" : "GLN for the manufacturer",
+                "examples" : [ "34343401245" ]
+              } ]
+            },
+            "name" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/string"
+              }, {
+                "description" : "Product manufacturer's name",
+                "examples" : [ "WinField United" ]
+              } ]
+            }
+          }
+        },
+        "productName" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/string"
+          }, {
+            "description" : "product name",
+            "examples" : [ "CP2585" ]
+          } ]
+        },
+        "brandName" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/string"
+          }, {
+            "description" : "brand name",
+            "examples" : [ "CROPLAN" ]
+          } ]
+        },
+        "varietyName" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/string"
+          }, {
+            "description" : "Variety of a product or brand, perhaps a minor genetic trait or grading typically based on quality measures (sorting)",
+            "examples" : [ "VT2P/RIB" ]
+          } ]
+        },
+        "itemTreatment" : {
+          "description" : "Seed Treatment; List of product mixture identifiers that were blended together to create the seed treatment, and when lot[typeCode='batch'].identifier is present\nThis should be Item Composition component",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "id" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/normalizedString"
+              }, {
+                "description" : "Manufacturer's or Retailer's Seed Treatment identifier",
+                "examples" : [ "1001339" ]
+              } ]
+            },
+            "name" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/string"
+              }, {
+                "description" : "Manufacturer or Retailer's name of the seed treatment",
+                "examples" : [ "Fortivent® Plus" ]
+              } ]
+            },
+            "substance" : {
+              "description" : "Substances found in the seed treatment",
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "additionalProperties" : false,
+                "properties" : {
+                  "typeCode" : {
+                    "allOf" : [ {
+                      "$ref" : "#/definitions/token"
+                    }, {
+                      "examples" : [ "active_ingredient" ]
+                    } ]
+                  },
+                  "id" : {
+                    "allOf" : [ {
+                      "$ref" : "#/definitions/normalizedString"
+                    }, {
+                      "description" : "AgGateway will use the same controlled vocabulary as active ingredient in Product Catalog",
+                      "examples" : [ "Ethaboxam" ]
+                    } ]
+                  },
+                  "name" : {
+                    "allOf" : [ {
+                      "$ref" : "#/definitions/string"
+                    }, {
+                      "description" : "The name of the substance found in the seed treatment",
+                      "examples" : [ "Ethaboxam Fungicide" ]
+                    } ]
+                  },
+                  "registrationStatus" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "additionalProperties" : false,
+                      "properties" : {
+                        "id" : {
+                          "description" : "Registration Identifier provided by the agency maintaining the registry; e.g, CAS, EPA, PRMA (Canada)",
+                          "type" : "object",
+                          "required" : [ "content" ],
+                          "additionalProperties" : false,
+                          "properties" : {
+                            "content" : {
+                              "allOf" : [ {
+                                "$ref" : "#/definitions/normalizedString"
+                              }, {
+                                "examples" : [ "162650-77-3" ]
+                              } ]
+                            },
+                            "schemeAgencyId" : {
+                              "allOf" : [ {
+                                "$ref" : "#/definitions/token"
+                              }, {
+                                "examples" : [ "Chemical Abstracts Service" ]
+                              } ]
+                            },
+                            "typeCode" : {
+                              "allOf" : [ {
+                                "$ref" : "#/definitions/token"
+                              }, {
+                                "examples" : [ "CAS" ]
+                              } ]
+                            }
+                          }
+                        },
+                        "effectiveTimePeriod" : {
+                          "type" : "object",
+                          "additionalProperties" : false,
+                          "properties" : {
+                            "endDateTime" : {
+                              "allOf" : [ {
+                                "$ref" : "#/definitions/date"
+                              }, {
+                                "examples" : [ "2030-07-01" ]
+                              } ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "dateTime" : {
+      "type" : "string",
+      "format" : "date-time"
+    },
+    "measurement" : {
+      "type" : "object",
+      "required" : [ "measure" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "typeCode" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/token"
+          }, {
+            "description" : "Type of Quantitative Measure; classification of the value; e.g.,  \nOperational (allows equipment adjustment, seed size), \nAgronomic (days to full growth, nitrogen percent for CN), \nQuality (CN, CP manufacturing quality)",
+            "examples" : [ "Operational" ]
+          } ]
+        },
+        "name" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/string"
+          }, {
+            "description" : "Name of the measurement",
+            "examples" : [ "Seed Count" ]
+          } ]
+        },
+        "dateTime" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/dateTime"
+          }, {
+            "description" : "Timestamp of the measurement",
+            "examples" : [ "2021-02-08T13:17:45.034-05:00" ]
+          } ]
+        },
+        "measure" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/decimal"
+          }, {
+            "description" : "Measurement value",
+            "examples" : [ "892" ]
+          } ]
+        },
+        "unitCode" : {
+          "$ref" : "#/definitions/normalizedString"
+        }
+      }
+    },
+    "measurementList" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/measurement"
+      }
+    },
+    "shipmentReference" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "description" : "shipment identifier created by the retailer ERP system",
+            "examples" : [ "34343535" ]
+          } ]
+        },
+        "status" : {
+          "description" : "Status of the shipment line",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "code" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/normalizedString"
+              }, {
+                "examples" : [ "In-Transit" ]
+              } ]
+            },
+            "reasonCode" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/normalizedString"
+              }, {
+                "description" : "Damaged | Partial-Received | Wrong Product | Other"
+              } ]
+            },
+            "reason" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/string"
+              }, {
+                "description" : "Free-form description of Other reason code"
+              } ]
+            }
+          }
+        },
+        "lineNumberId" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "description" : "Line Identifier on the delivery document the shipped item appears.   This could be a concatenation of the shipment identifier and a line identifier to guarantee uniqueness within this document.",
+            "examples" : [ "34343535-1" ]
+          } ]
+        },
+        "shipUnitReference" : {
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "typeCode" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/token"
+              }, {
+                "description" : "The type of ship unit the shipped item is transported.  Most often a semi-trailer, liquid tank, etc.  ",
+                "examples" : [ "Semi-Trailer" ]
+              } ]
+            },
+            "id" : {
+              "description" : "Identifier of the shipping container, usually a US DOT trailer identifier, or similiar.",
+              "type" : "object",
+              "required" : [ "content" ],
+              "additionalProperties" : false,
+              "properties" : {
+                "content" : {
+                  "allOf" : [ {
+                    "$ref" : "#/definitions/normalizedString"
+                  }, {
+                    "examples" : [ "12345678" ]
+                  } ]
+                },
+                "typeCode" : {
+                  "allOf" : [ {
+                    "$ref" : "#/definitions/token"
+                  }, {
+                    "examples" : [ " USDOT_Number" ]
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "actualPickupDateTime" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/dateTime"
+          }, {
+            "description" : "Timestamp that the Farmer picked up the shipment at the Retailer -- if so Carrier Party is either not present or the name of the driver that picked up the shipment.  If Pickup then ActualShipmentDateTime and ActualDeliverDateTime are null."
+          } ]
+        },
+        "actualShipDateTime" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/dateTime"
+          }, {
+            "description" : "Actual date the Retailer's fleet or contractor truck left the retailer's warehouse, departing to the farm.  ",
+            "examples" : [ "2022-04-25T09:06:07-05:00" ]
+          } ]
+        },
+        "actualDeliveryDateTime" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/dateTime"
+          }, {
+            "description" : "Timestamp that the Farmer received the shipment at the Farm Location -- if so Carrier Party is the name of the driver that delivered the shipment.\nIf Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is null."
+          } ]
+        },
+        "deliveredQuantity" : {
+          "type" : "object",
+          "required" : [ "content" ],
+          "additionalProperties" : false,
+          "properties" : {
+            "content" : {
+              "$ref" : "#/definitions/decimal"
+            },
+            "unitCode" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/token"
+              }, {
+                "description" : "Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed."
+              } ]
+            }
+          }
+        },
+        "acceptedQuantity" : {
+          "description" : "The quantity of product accepted by the farmer.",
+          "type" : "object",
+          "required" : [ "content" ],
+          "additionalProperties" : false,
+          "properties" : {
+            "content" : {
+              "$ref" : "#/definitions/decimal"
+            },
+            "unitCode" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/token"
+              }, {
+                "description" : "Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed."
+              } ]
+            }
+          }
+        },
+        "rejectedQuantity" : {
+          "description" : "The quantity of product rejected by the farmer.",
+          "type" : "object",
+          "required" : [ "content" ],
+          "additionalProperties" : false,
+          "properties" : {
+            "content" : {
+              "$ref" : "#/definitions/decimal"
+            },
+            "unitCode" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/token"
+              }, {
+                "description" : "Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed."
+              } ]
+            }
+          }
+        },
+        "returnedQuantity" : {
+          "description" : "The quantity of product returned to the retailer.",
+          "type" : "object",
+          "required" : [ "content" ],
+          "additionalProperties" : false,
+          "properties" : {
+            "content" : {
+              "$ref" : "#/definitions/decimal"
+            },
+            "unitCode" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/token"
+              }, {
+                "description" : "Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed."
+              } ]
+            }
+          }
+        },
+        "returnMaterialAuthorizationId" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "description" : "RMA identifier issued by the retailer authorizing the return of the rejected quantity back to the retailer's warehouse."
+          } ]
+        },
+        "shipFromParty" : {
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "typeCode" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/token"
+              }, {
+                "examples" : [ "retailer" ]
+              } ]
+            },
+            "id" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/normalizedString"
+              }, {
+                "examples" : [ "1" ]
+              } ]
+            },
+            "name" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/string"
+              }, {
+                "examples" : [ "Ceres Solutions" ]
+              } ]
+            },
+            "location" : {
+              "description" : "Branch Location which the seed was shipped from.",
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "name" : {
+                  "allOf" : [ {
+                    "$ref" : "#/definitions/string"
+                  }, {
+                    "examples" : [ "New Lebanon Seed Hub" ]
+                  } ]
+                },
+                "glnid" : {
+                  "allOf" : [ {
+                    "$ref" : "#/definitions/normalizedString"
+                  }, {
+                    "examples" : [ "1100028417954" ]
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "shipToParty" : {
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "typeCode" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/token"
+              }, {
+                "examples" : [ "Farmer" ]
+              } ]
+            },
+            "name" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/string"
+              }, {
+                "examples" : [ "Farmer Bob" ]
+              } ]
+            },
+            "accountId" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/normalizedString"
+              }, {
+                "description" : "Retailer's account number for the grower",
+                "examples" : [ "12345" ]
+              } ]
+            },
+            "location" : {
+              "description" : "Location the shipped is delivered to.",
+              "type" : "object",
+              "additionalProperties" : false,
+              "properties" : {
+                "address" : {
+                  "description" : "Address of the ship to location",
+                  "type" : "object",
+                  "additionalProperties" : false,
+                  "properties" : {
+                    "addressLine" : {
+                      "type" : "array",
+                      "items" : {
+                        "allOf" : [ {
+                          "$ref" : "#/definitions/string"
+                        }, {
+                          "examples" : [ "1234 County Road 5" ]
+                        } ]
+                      }
+                    },
+                    "cityName" : {
+                      "allOf" : [ {
+                        "$ref" : "#/definitions/string"
+                      }, {
+                        "examples" : [ "FarmTown" ]
+                      } ]
+                    },
+                    "countrySubDivisionCode" : {
+                      "type" : "object",
+                      "required" : [ "content" ],
+                      "additionalProperties" : false,
+                      "properties" : {
+                        "content" : {
+                          "allOf" : [ {
+                            "$ref" : "#/definitions/token"
+                          }, {
+                            "examples" : [ "IA" ]
+                          } ]
+                        },
+                        "typeCode" : {
+                          "allOf" : [ {
+                            "$ref" : "#/definitions/token"
+                          }, {
+                            "examples" : [ "State" ]
+                          } ]
+                        }
+                      }
+                    },
+                    "postalCode" : {
+                      "allOf" : [ {
+                        "$ref" : "#/definitions/normalizedString"
+                      }, {
+                        "examples" : [ "45677" ]
+                      } ]
+                    }
+                  }
+                },
+                "glnid" : {
+                  "allOf" : [ {
+                    "$ref" : "#/definitions/normalizedString"
+                  }, {
+                    "examples" : [ "NA" ]
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "carrierParty" : {
+          "description" : "If Pickup, this is the farmer's driver that picked up the shipment at the Retailer and the ActualPickupDateTime is present and ActualDeliveryDateTime is null. \nIf Delivery, this is the retailer's driver (either Fleet or Contracted) that delivered the shipment to the farm, and the ActualDeliveryDateTime is present, and ActualPickupDateTime is null",
+          "type" : "object",
+          "additionalProperties" : false,
+          "properties" : {
+            "id" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/normalizedString"
+              }, {
+                "examples" : [ "Fleet" ]
+              } ]
+            },
+            "name" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/string"
+              }, {
+                "description" : "Name of carrier",
+                "examples" : [ "Ceres Fleet" ]
+              } ]
+            },
+            "scacid" : {
+              "allOf" : [ {
+                "$ref" : "#/definitions/normalizedString"
+              }, {
+                "examples" : [ "NA" ]
+              } ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
