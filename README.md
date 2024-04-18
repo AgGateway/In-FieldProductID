@@ -22,26 +22,6 @@ What IS encouraging is the ability of the Retailer ERP systems to digitize the d
 
 Future work aims to add further efficiencies to provide auto-identification capabilities including BLE beacons, Data Matrix barcoding (product, lot/batch, etc), and/ or RFID tags on bags and seed boxes for use with tenders.  We aim, over time, to avoid having the farmer enter into the cab to select the product.  Solutions could leverage Wi-Fi on a tractor displays, future High-Speed ISOBUS over Ethernet connections, and so forth.
 
-# API Implementation Details
-The V1 components within the Green system node in the deployment diagram below reside in this GitHub repository.  These ONLY SUPPORT the V1 release of this component.  This is only provided as guidance for potential implementors.
-
-The solution provides a three tier architecture including authentization/authorization, API logic, and persistent storage.  There are four types of components:
-
-* API Management to provide a security layer for access to the Azure unction and Logic App:
-  * each verb/ resource has a specific XML policy
-  * the all proxy provides the configuration to the Identity Provider to validate the token generated based on the client id and secret provided by the IdP
-* Azure C# function
-  * Provides the ability to POST (insert) the ShippedItemInstance JSON in Cosmos, first creating an /id with the SDK then adding the document
-  * Provides the ability to PUT (replace) the ShippedItemInstance JSON in Cosmos based on the /id from the POST endpoint
-  * Provides the ability to DELETE (remove) the ShippedItemInstance JSON in Cosmos based on the /id from the POST endpoint
-  * Provides the ability to GET /setupfiles based on the content-Type HTTP header, returning either the ADAPT ADM.zip or ISOXML zip file as octet-stream.
-* Logic App
-  * Provides the ability GET the original JSON for Farm Management Information Systems that want to receive the product into inventory at the time of receipt
-* Cosmos DB
-  * Provides the persistent storage of the Shipped Item Instance JSON payload
-
-![In-Field Product Identification](https://github.com/AgGateway/In-FieldProductID/blob/main/Documentation/InFieldProductIDDeploymentDiagram.png)
-
 ## Seed User Story
 The farmer places a seed order with an Ag Retailer.   
 At the time of shipment, the seed is gathered including the seed lot identifier and other identifying information such as seed treatement with EPA registration identifier for the primary active ingredient.
