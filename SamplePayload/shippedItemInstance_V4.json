@@ -1,0 +1,206 @@
+[
+  {
+    "typeCode": "seed",
+    "id": "",
+    "uid": {
+      "content": "0-539f82b1-df6e-11e9-b486-5ce0c51e62ce",
+      "schemeId": "DataMatrix",
+      "schemeAgencyId": "GS1",
+      "typeCode": "AgGateway"
+    },
+    "lot": {
+      "typeCode": "Lot",
+      "id": "769MXJ4JX",
+      "serialNumberId": [
+        "c93b67b1-b62e-45b4-96fe-1277a341dc0d"
+      ]
+    },
+    "item": {
+      "relatedId": [
+        {
+          "typeCode": "URL",
+          "id": "https://agiis.aggateway.org/gtin/012323232",
+          "sourceId": "AGIIS",
+          "partyId": "AgGateway"
+        }
+      ],
+      "manufacturerItemIdentification": {
+        "typeCode": "SKU",
+        "id": "34323656565"
+      },
+      "upcid": "888346580291",
+      "gtinid": "00888346580291",
+      "description": "VT DoublePro RIB Complete Relative Maturity 85 days",
+      "classification": {
+        "typeCode": "Crop",
+        "codes": {
+          "code": [
+            {
+              "content": "11199199",
+              "listAgencyId": "USDA",
+              "typeCode": "Corn For Grain"
+            }
+          ]
+        }
+      },
+      "substance": [
+        {
+          "name": "Ammonium Polyphosphate ",
+          "registrationStatus": [
+            {
+              "id": {
+                "content": "68333-79-9",
+                "typeCode": "CAS",
+                "schemeAgencyId": "Chemical Abstract Service"
+              },
+              "effectiveTimePeriod": {
+                "endDateTime": "2030-07-01"
+              }
+            }
+          ]
+        }
+      ],
+      "packaging": {
+        "perPackageQuantity": {
+          "content": 55,
+          "unitCode": "LB"
+        }
+      },
+      "manufacturingParty": {
+        "id": "34343401245",
+        "name": "WinField United"
+      },
+      "productName": "CP2585",
+      "brandName": "CROPLAN",
+      "varietyName": "VT2P/RIB",
+      "itemTreatment": {
+        "typeCode": "",
+        "id": "1001339",
+        "relatedId": [
+          {
+            "typeCode": "URL",
+            "id": "https://agiis.aggateway.org/gtin/012323232",
+            "sourceId": "AGIIS",
+            "partyId": "AgGateway"
+          }
+        ],
+        "name": "Fortivent® Plus",
+        "substance": [
+          {
+            "typeCode": "active_ingredient",
+            "id": "Ethaboxam",
+            "name": "Ethaboxam Fungicide",
+            "registrationStatus": [
+              {
+                "id": {
+                  "content": "162650-77-3",
+                  "schemeAgencyId": "Chemical Abstracts Service",
+                  "typeCode": "CAS"
+                },
+                "effectiveTimePeriod": {
+                  "endDateTime": "2030-07-01"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "quantity": {
+      "content": 45,
+      "unitCode": "BG"
+    },
+    "packaging": {
+      "typeCode": "SeedBox",
+      "id": "844f95ac-422a-406a-91c5-65d017de2f09",
+      "quantity": {
+        "content": 2475,
+        "typeCode": "GrossWeight",
+        "unitCode": "LB"
+      }
+    },
+    "results": {
+      "quantitative": {
+        "measurement": [
+          {
+            "typeCode": "Operational",
+            "name": "Seed Count",
+            "dateTime": "2021-02-08T13:17:45.034-05:00",
+            "measure": 892,
+            "unitCode": ""
+          }
+        ]
+      }
+    },
+    "displayName": "CP2585-769MXJ4JX",
+    "shipmentReference": {
+      "id": "34343535",
+      "status": {
+        "code": "In-Transit",
+        "reasonCode": "",
+        "reason": ""
+      },
+      "lineNumberId": "34343535-1",
+      "shipUnitReference": {
+        "typeCode": "Semi-Trailer",
+        "id": {
+          "content": "12345678",
+          "typeCode": " USDOT_Number"
+        }
+      },
+      "actualPickupDateTime": "",
+      "actualShipDateTime": "2022-04-25T09:06:07-05:00",
+      "actualDeliveryDateTime": "",
+      "deliveredQuantity": {
+        "content": null,
+        "unitCode": ""
+      },
+      "acceptedQuantity": {
+        "content": null,
+        "unitCode": ""
+      },
+      "rejectedQuantity": {
+        "content": null,
+        "unitCode": ""
+      },
+      "returnedQuantity": {
+        "content": null,
+        "unitCode": ""
+      },
+      "returnMaterialAuthorizationId": "",
+      "shipFromParty": {
+        "typeCode": "retailer",
+        "id": "1",
+        "name": "Ceres Solutions",
+        "location": {
+          "name": "New Lebanon Seed Hub",
+          "glnid": "1100028417954"
+        }
+      },
+      "shipToParty": {
+        "typeCode": "Farmer",
+        "name": "Farmer Bob",
+        "accountId": "12345",
+        "location": {
+          "address": {
+            "addressLine": [
+              "1234 County Road 5"
+            ],
+            "cityName": "FarmTown",
+            "countrySubDivisionCode": {
+              "content": "IA",
+              "typeCode": "State"
+            },
+            "postalCode": "45677"
+          },
+          "glnid": "NA"
+        }
+      },
+      "carrierParty": {
+        "id": "Fleet",
+        "name": "Ceres Fleet",
+        "scacid": "NA"
+      }
+    }
+  }
+]
