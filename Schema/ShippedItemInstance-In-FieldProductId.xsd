@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis/10" targetNamespace="http://www.openapplications.org/oagis/10" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:element name="ShippedItemInstance">
+		<xsd:annotation>
+			<xsd:documentation source="http://www.openapplications.org/oagis/10">Changes V3-V4:
+1) Party -&gt; shipToParty (grower) and shipFromParty (Retailer), etc.
+2) Attachment -&gt; item.relatedIds -- URI reference to AGIIS
+3) Quantity removed from Substance (Not realistic)
+4) Lot flattened
+5) Shipment Reference now includes shipTo and shipFrom parties, receipt date at the farm, or pickup date at the retailer, and received, accepted, rejected, and return quantities and RMA identifier.
+6) Simplified the Results.Quantitative.Measurement[] structure, flattening measurement
+
+Shipped Item Instance is an implementation guideline of a simplified Advance Ship Notice allow Retailers to send a digital representation of their delivery document regarding products such as seed, crop nutrition, and crop protection delivered to a farmer.  The JSON representation can be processed by a FMIS, mobile application or OEM platform to load product information directly into a tractor display to help identify products during the actual field operations.  Other information may be retained within the processing application for correlation after the operation is completed for further record keeping based on key identifiers pushed to the tractor display and returned back in the work records for that operation.
+
+Approved in Standards and Guidelines 2022-08-18</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+				<xsd:element name="UID" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">DataMatrix or barcode encoding string</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:simpleContent>
+							<xsd:extension base="xsd:normalizedString">
+								<xsd:attribute name="schemeID" use="optional" type="xsd:token">
+									<xsd:annotation>
+										<xsd:documentation source="http://www.openapplications.org/oagis/10">encoding scheme</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+								<xsd:attribute name="schemeAgencyID" use="optional" type="xsd:token">
+									<xsd:annotation>
+										<xsd:documentation source="http://www.openapplications.org/oagis/10">Agency defining bar coding scheme</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+								<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+									<xsd:annotation>
+										<xsd:documentation source="http://www.openapplications.org/oagis/10">Implementation Guideline for encoding scheme</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="Lot">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">the various lot and / or batch identifiers associated to the shipped item
+Lot identifier is related to homogeneous items, such as seed, grains.
+Batch identifiers are related to the mixture of homogeneous items, based on a formulation of mixed active ingredient of crop nutrition or crop protection.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">lot or batch identifier value</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="SerialNumberID" minOccurs="0" maxOccurs="unbounded" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">If typeCode = CP; array of serial numbers for serialized jugs of crop protection products linked to a special batch.  Useful for blockchain applications such as Crop Protection.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+						<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+							<xsd:annotation>
+								<xsd:documentation source="http://www.openapplications.org/oagis/10">if typeCode=Seed, then Lot, else Batch for CN and CP</xsd:documentation>
+							</xsd:annotation>
+						</xsd:attribute>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="Item">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Item is the reference information, whereas the item instance is the physical instantiation of the item include all variability such as density, lot /batch, quality attributes, etc.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element minOccurs="0" maxOccurs="unbounded" name="RelatedID">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="SourceID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="PartyID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ManufacturerItemIdentification">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer's Item identifier</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">if no GTIN, then this is required, likely the manufacturer's SKU</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">type of manufacturer's item identifier</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="UPCID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Uniform Product Code</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="GTINID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">GTIN for the packaged product instance, as maintained by GS1</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Description" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Full AGIIS description</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="Classification">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element minOccurs="0" maxOccurs="1" name="Codes">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Code" minOccurs="1" maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:simpleContent>
+																<xsd:extension base="xsd:normalizedString">
+																	<xsd:attribute name="listAgencyID" use="optional" type="xsd:token" />
+																	<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+																		<xsd:annotation>
+																			<xsd:documentation source="http://www.openapplications.org/oagis/10">Use as the description / definition.</xsd:documentation>
+																		</xsd:annotation>
+																	</xsd:attribute>
+																</xsd:extension>
+															</xsd:simpleContent>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of classification</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="unbounded" name="Substance">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Item composition for Crop Nutrition and Crop Protection.</xsd:documentation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Used in Catalog and Shipped Item Instance for Seed Treatment and Product Composition</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
+										<xsd:element minOccurs="0" maxOccurs="unbounded" name="RegistrationStatus">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="ID" minOccurs="0" maxOccurs="1">
+														<xsd:complexType>
+															<xsd:simpleContent>
+																<xsd:extension base="xsd:normalizedString">
+																	<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+																	<xsd:attribute name="schemeAgencyID" use="optional" type="xsd:token" />
+																</xsd:extension>
+															</xsd:simpleContent>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element minOccurs="0" maxOccurs="1" name="EffectiveTimePeriod">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="EndDateTime" minOccurs="0" maxOccurs="1" type="xsd:date">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">End date for Registration</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="Packaging">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">This is the retail stocking unit packaging, such as a bag of seed.
+Other examples such as a carton of 2  x 2.5 Gallon Jugs of crop protection.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="PerPackageQuantity" minOccurs="0" maxOccurs="1">
+											<xsd:complexType>
+												<xsd:simpleContent>
+													<xsd:extension base="xsd:decimal">
+														<xsd:attribute name="unitCode" use="optional" type="xsd:token" />
+													</xsd:extension>
+												</xsd:simpleContent>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ManufacturingParty">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer of the Item instance</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">GLN for the manufacturer</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Product manufacturer's name</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ProductName" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">product name</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="BrandName" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">brand name</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="VarietyName" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Variety of a product or brand, perhaps a minor genetic trait or grading typically based on quality measures (sorting)</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ItemTreatment">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Seed Treatment; List of product mixture identifiers that were blended together to create the seed treatment, and when lot[typeCode='batch'].identifier is present
+This should be Item Composition component</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer's or Retailer's Seed Treatment identifier</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer or Retailer's name of the seed treatment</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" maxOccurs="unbounded" name="Substance">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Substances found in the seed treatment</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">AgGateway will use the same controlled vocabulary as active ingredient in Product Catalog</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">The name of the substance found in the seed treatment</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element minOccurs="0" maxOccurs="unbounded" name="RegistrationStatus">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="ID" minOccurs="0" maxOccurs="1">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">Registration Identifier provided by the agency maintaining the registry; e.g, CAS, EPA, PRMA (Canada)</xsd:documentation>
+																	</xsd:annotation>
+																	<xsd:complexType>
+																		<xsd:simpleContent>
+																			<xsd:extension base="xsd:normalizedString">
+																				<xsd:attribute name="schemeAgencyID" use="optional" type="xsd:token" />
+																				<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+																			</xsd:extension>
+																		</xsd:simpleContent>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element minOccurs="0" maxOccurs="1" name="EffectiveTimePeriod">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="EndDateTime" minOccurs="0" maxOccurs="1" type="xsd:date" />
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+												<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Quantity" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Number of seed bags or quantity of other product if crop protection</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:simpleContent>
+							<xsd:extension base="xsd:decimal">
+								<xsd:attribute name="unitCode" use="optional" type="xsd:token" />
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="Packaging">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Transport Package;
+- Shipping pallet of bags of seed or cartons of crop protection.
+- Seed bulk box where multiple bags of seed are treated at a retailer and conveyed into a tote or seed box (mini-bulk) for use with a seed tender.  
+
+A printed manifest tag with barcode detailed in packaging.identifier must be included with the seed box, tote or pallet for ease of use.
+It is NOT recommended to commingle seed varieties and seed lots.   But if that does happen, multiple shipped item instances array entries would have the same destination package, denoting the which seed varieties and seed lot may have been mixed into a single tote or seed box. 
+The dimensions of a seed box e.g. https://www.rppcontainers.com/Hopper-Bottom-Containers/hopper-bottom-57x45x65, or pallet are not in scope.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifier of the container, often a serial number of a reusable containers such as a seed tender, bulk box, pallet, etc.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Quantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Total gross weight of the seed box, or pallet.  
+This is defined as the tare weight (weight of the container, box or pallet) plus the net weight, which is the number of bags x weight of each bag, plus the weight of the treatment if seed treatment and loaded into the seed box.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Gross Weight of the shipping container</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure of the gross weight</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+						<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+							<xsd:annotation>
+								<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of packaging; Seed Box, Tote, Pallet;</xsd:documentation>
+							</xsd:annotation>
+						</xsd:attribute>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="Results">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element minOccurs="0" maxOccurs="1" name="Quantitative">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element minOccurs="0" maxOccurs="unbounded" name="Measurement">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of the measurement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="DateTime" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Timestamp of the measurement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="Measure" minOccurs="1" maxOccurs="1" type="xsd:decimal">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Measurement value</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="UnitCode" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+												</xsd:sequence>
+												<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+													<xsd:annotation>
+														<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of Quantitative Measure; classification of the value; e.g.,  
+Operational (allows equipment adjustment, seed size), 
+Agronomic (days to full growth, nitrogen percent for CN), 
+Quality (CN, CP manufacturing quality)</xsd:documentation>
+													</xsd:annotation>
+												</xsd:attribute>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="DisplayName" minOccurs="0" maxOccurs="1" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">This is a concatenation seed lot identifier, prefixed by the product description that will appear in the MICS display.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="ShipmentReference">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Shipment reference information</xsd:documentation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product shipped to the farm</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">shipment identifier created by the retailer ERP system</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="Status">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Status of the shipment line</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Code" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="ReasonCode" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Damaged | Partial-Received | Wrong Product | Other</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Reason" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Free-form description of Other reason code</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="LineNumberID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Line Identifier on the delivery document the shipped item appears.   This could be a concatenation of the shipment identifier and a line identifier to guarantee uniqueness within this document.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ShipUnitReference">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifier of the shipping container, usually a US DOT trailer identifier, or similiar.</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:simpleContent>
+													<xsd:extension base="xsd:normalizedString">
+														<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+													</xsd:extension>
+												</xsd:simpleContent>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">The type of ship unit the shipped item is transported.  Most often a semi-trailer, liquid tank, etc.</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ActualPickupDateTime" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Timestamp that the Farmer picked up the shipment at the Retailer -- if so Carrier Party is either not present or the name of the driver that picked up the shipment.  If Pickup then ActualShipmentDateTime and ActualDeliverDateTime are null.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ActualShipDateTime" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Actual date the Retailer's fleet or contractor truck left the retailer's warehouse, departing to the farm.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ActualDeliveryDateTime" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Timestamp that the Farmer received the shipment at the Farm Location -- if so Carrier Party is the name of the driver that delivered the shipment.
+If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is null.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="DeliveredQuantity" minOccurs="0" maxOccurs="1">
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="AcceptedQuantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product accepted by the farmer.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="RejectedQuantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product rejected by the farmer.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ReturnedQuantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product returned to the retailer.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ReturnMaterialAuthorizationID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">RMA identifier issued by the retailer authorizing the return of the rejected quantity back to the retailer's warehouse.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ShipFromParty">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
+										<xsd:element minOccurs="0" maxOccurs="1" name="Location">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Branch Location which the seed was shipped from.</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
+													<xsd:element name="GLNID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ShipToParty">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
+										<xsd:element name="AccountID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Retailer's account number for the grower</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" maxOccurs="1" name="Location">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Location the shipped is delivered to.</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element minOccurs="0" maxOccurs="1" name="Address">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Address of the ship to location</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="AddressLine" minOccurs="0" maxOccurs="unbounded" type="xsd:string" />
+																<xsd:element name="CityName" minOccurs="0" maxOccurs="1" type="xsd:string" />
+																<xsd:element name="CountrySubDivisionCode" minOccurs="0" maxOccurs="1">
+																	<xsd:complexType>
+																		<xsd:simpleContent>
+																			<xsd:extension base="xsd:token">
+																				<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+																			</xsd:extension>
+																		</xsd:simpleContent>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="PostalCode" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="GLNID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="CarrierParty">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">If Pickup, this is the farmer's driver that picked up the shipment at the Retailer and the ActualPickupDateTime is present and ActualDeliveryDateTime is null. 
+If Delivery, this is the retailer's driver (either Fleet or Contracted) that delivered the shipment to the farm, and the ActualDeliveryDateTime is present, and ActualPickupDateTime is null</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of carrier</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="SCACID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+				<xsd:annotation>
+					<xsd:documentation source="http://www.openapplications.org/oagis/10">type of product shipped; Seed, CP = Crop protection, or CN = Crop Nutrition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

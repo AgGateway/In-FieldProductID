@@ -18,8 +18,8 @@
     "item": {
       "relatedId": [
         {
-          "typeCode": "Linked",
-          "id": "https://api.agiis.org/?gtinid=00888346580291",
+          "typeCode": "URL",
+          "id": "https://agiis.aggateway.org/gtin/012323232",
           "sourceId": "AGIIS",
           "partyId": "AgGateway"
         }
@@ -74,7 +74,16 @@
       "brandName": "CROPLAN",
       "varietyName": "VT2P/RIB",
       "itemTreatment": {
+        "typeCode": "",
         "id": "1001339",
+        "relatedId": [
+          {
+            "typeCode": "URL",
+            "id": "https://agiis.aggateway.org/gtin/012323232",
+            "sourceId": "AGIIS",
+            "partyId": "AgGateway"
+          }
+        ],
         "name": "Fortivent® Plus",
         "substance": [
           {

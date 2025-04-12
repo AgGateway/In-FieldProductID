@@ -4,6 +4,14 @@ This GitHub repo provides the Azure resources to supports the agricultural use c
 V1 allowed the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment.   
 V2 allows the Retailer to sent Crop Nutrition and Crop Protection composition details, and improves the means to represent seed treatment and the shipment reference information.
 
+Changes V3-V4:
+1) Party -> shipToParty (grower) and shipFromParty (Retailer), etc.
+2) Attachment -> item.relatedIds -- URI reference to AGIIS
+3) Quantity removed from Substance (Not realistic)
+4) Lot flattened
+5) Shipment Reference now includes shipTo and shipFrom parties, receipt date at the farm, or pickup date at the retailer, and received, accepted, rejected, and return quantities and RMA identifier.
+6) Simplified the Results.Quantitative.Measurement[] structure, flattening measurement
+
 This also allows the Farmer to leverage either a variety of tools such as a mobile application or a Farm Management Information System (FMIS), as well as the Farmer's OEM equipment manufacturer application (e.g., Deere Operations Center, AGCO Fuse, CNH AFS, etc.) to retrieve the Product shipped by a Retailer in the form of setup files.  
 
 It must be clear that an OEM Platform would send to the display _essential_ identifiers needed for correlation and product instance identification.  The OEM platform would store _non-essential_ identifiers related to the product instance on their respective cloud platforms, and allow these identifiers to be referenced back via key data elements, specifically identifiers, that are captured in the work records as a result of product identification.  Essential identifiers that are useful for product identification include product id (e.g., GTIN, name), Seed Lot Identifier (optional, but ideal for germination challenges), and Seed Treatment (optional, but ideal when available, especially if prescribed by an agronomist to address nematodes or other challenges observed in the field, or for comparative analysis).  Non-essential identifiers include seed treatment, crop nutrition, and crop protection composition details including EPA registrion identifiers and CAS identifiers for active ingredients.
@@ -13,26 +21,6 @@ It is acknowledged that many capabilities do not exist on many of the platforms 
 What IS encouraging is the ability of the Retailer ERP systems to digitize the delivery document in the Shipped Item Instance JSON format.  Other than the seed treatment composition (e.g., EPA, CAS ids), this information is already avaialable on existing paper-based delivery documents.  The integration using the OpenAPI allows the generation of a QR code that can be included on the delivery document provided to a driver, allowing the farmer to retrieve the shipment detail once logged into the platform of choice.  The number of shipment lines on a delivery document for seed product, even accounting for the existing seed lot detail _currently available_ today on these documents, is typically 5-20 lines.  
 
 Future work aims to add further efficiencies to provide auto-identification capabilities including BLE beacons, Data Matrix barcoding (product, lot/batch, etc), and/ or RFID tags on bags and seed boxes for use with tenders.  We aim, over time, to avoid having the farmer enter into the cab to select the product.  Solutions could leverage Wi-Fi on a tractor displays, future High-Speed ISOBUS over Ethernet connections, and so forth.
-
-# API Implementation Details
-The components within the Green system node in the deployment diagram below reside in this GitHub repository.  
-
-The solution provides a three tier architecture including authentization/authorization, API logic, and persistent storage.  There are four types of components:
-
-* API Management to provide a security layer for access to the Azure unction and Logic App:
-  * each verb/ resource has a specific XML policy
-  * the all proxy provides the configuration to the Identity Provider to validate the token generated based on the client id and secret provided by the IdP
-* Azure C# function
-  * Provides the ability to POST (insert) the ShippedItemInstance JSON in Cosmos, first creating an /id with the SDK then adding the document
-  * Provides the ability to PUT (replace) the ShippedItemInstance JSON in Cosmos based on the /id from the POST endpoint
-  * Provides the ability to DELETE (remove) the ShippedItemInstance JSON in Cosmos based on the /id from the POST endpoint
-  * Provides the ability to GET /setupfiles based on the content-Type HTTP header, returning either the ADAPT ADM.zip or ISOXML zip file as octet-stream.
-* Logic App
-  * Provides the ability GET the original JSON for Farm Management Information Systems that want to receive the product into inventory at the time of receipt
-* Cosmos DB
-  * Provides the persistent storage of the Shipped Item Instance JSON payload
-
-![In-Field Product Identification](https://github.com/AgGateway/In-FieldProductID/blob/main/Documentation/InFieldProductIDDeploymentDiagram.png)
 
 ## Seed User Story
 The farmer places a seed order with an Ag Retailer.   
