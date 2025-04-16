@@ -205,28 +205,6 @@ components:
             shipmentReferenceRead: "Allows Shipment Reference data to be read"
             shipmentReferenceWrite: "Allows Shipment Reference data to be written"
   schemas:
-    carrierParty:
-      x-oagis-bie-guid: "f0624df251ad49f783b8e7f82890701a"
-      x-oagis-bie-date-time: "2024-04-17T01:40:39+0000"
-      x-oagis-bie-version: "V4"
-      x-oagis-bie-den: "Carrier Party"
-      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/928"
-      x-oagis-release: "10.10.4"
-      x-oagis-release-date: "2024-04-03"
-      type: "object"
-      additionalProperties: false
-      properties:
-        id:
-          example: "Fleet"
-          type: "string"
-          format: "normalizedString"
-        name:
-          example: "Ceres Fleet"
-          type: "string"
-        scacid:
-          example: "NA"
-          type: "string"
-          format: "normalizedString"
     measurement:
       x-oagis-bie-guid: "3677055fe37b4397afd9dfe0537c6211"
       x-oagis-bie-date-time: "2024-04-09T02:19:39+0000"
@@ -280,6 +258,10 @@ components:
         name:
           example: "Ceres Solutions"
           type: "string"
+        accountId:
+          example: "NA"
+          type: "string"
+          format: "normalizedString"
         location:
           type: "object"
           additionalProperties: false
@@ -306,6 +288,10 @@ components:
           example: "Farmer"
           type: "string"
           format: "token"
+        id:
+          example: "NA"
+          type: "string"
+          format: "normalizedString"
         name:
           example: "Farmer Bob"
           type: "string"
@@ -351,6 +337,28 @@ components:
               example: "NA"
               type: "string"
               format: "normalizedString"
+    carrierParty:
+      x-oagis-bie-guid: "f0624df251ad49f783b8e7f82890701a"
+      x-oagis-bie-date-time: "2024-04-17T01:40:39+0000"
+      x-oagis-bie-version: "V4"
+      x-oagis-bie-den: "Carrier Party"
+      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/928"
+      x-oagis-release: "10.10.4"
+      x-oagis-release-date: "2024-04-03"
+      type: "object"
+      additionalProperties: false
+      properties:
+        id:
+          example: "Fleet"
+          type: "string"
+          format: "normalizedString"
+        name:
+          example: "Ceres Fleet"
+          type: "string"
+        scacid:
+          example: "NA"
+          type: "string"
+          format: "normalizedString"
     shipmentReference:
       x-oagis-bie-guid: "48e884e23f01497ba71ec31cecb25443"
       x-oagis-bie-date-time: "2024-04-09T02:10:03+0000"
@@ -366,6 +374,9 @@ components:
           example: "34343535"
           type: "string"
           format: "normalizedString"
+        note:
+          example: ""
+          type: "string"
         status:
           type: "object"
           additionalProperties: false
@@ -529,6 +540,10 @@ components:
           properties:
             measurement:
               $ref: "#/components/schemas/measurementList"
+    relatedIdList:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/relatedId"
     classification:
       x-oagis-bie-guid: "20775b5ae61a41e3ab1fab73e3e78394"
       x-oagis-bie-date-time: "2024-04-09T02:20:42+0000"
@@ -571,10 +586,6 @@ components:
                     example: "Corn For Grain"
                     type: "string"
                     format: "token"
-    relatedIdList:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/relatedId"
     item:
       x-oagis-bie-guid: "0d65bd04b21f4caea6e113aeb5484e0f"
       x-oagis-bie-date-time: "2024-04-09T02:22:01+0000"
@@ -764,7 +775,7 @@ components:
     shippedItemInstance:
       x-oagis-bie-guid: "51cadda6385548768ea5bed056342fa1"
       x-oagis-bie-date-time: "2024-04-09T02:24:23+0000"
-      x-oagis-bie-version: "V4"
+      x-oagis-bie-version: "V4.1"
       x-oagis-bie-den: "Shipped Item Instance"
       x-oagis-bie-uri: "https://oagiscore.net/profile_bie/924"
       x-oagis-release: "10.10.4"
@@ -833,6 +844,10 @@ components:
               example: "45"
             unitCode:
               example: "BG"
+              type: "string"
+              format: "token"
+            typeCode:
+              example: "PackageCount"
               type: "string"
               format: "token"
         packaging:
