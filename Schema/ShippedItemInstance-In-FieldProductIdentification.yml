@@ -7,12 +7,16 @@ info:
     \ mixture batch id, seed treatment and product composition.  Allows the Farmer\
     \ (via a mobile application or FMIS), or the Farmer's equipment manufacturer application\
     \ (aka OEM Platform, e.g., Deere Operations Center, AGCO Fuse, CNH AFS, etc.)\
-    \ to retrieve the Product shipped by a Retailer using GET /setupfiles.   "
+    \ to retrieve the Product shipped by a Retailer using GET /setupfiles.   \nV4.1\
+    \ Allows shipments from the farm to the retailer/ elevator / processor as these\
+    \ roles are reversed as the shipFromParty is the farmer and shipToParty is the\
+    \ commodity processor or elevator for storage.  This improves the process for\
+    \ receipts at the elevator.  "
   contact:
     name: "WG01"
     url: "https://wg01.aggateway.org/info"
     email: "wg01@aggateway.org"
-  version: "V4"
+  version: "V4.1"
   x-oagis-license: ""
 paths:
   /in-field-product-id/v4/setup-files:
