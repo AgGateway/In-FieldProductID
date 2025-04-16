@@ -2,7 +2,18 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis/10" targetNamespace="http://www.openapplications.org/oagis/10" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:element name="ShippedItemInstance">
 		<xsd:annotation>
-			<xsd:documentation source="http://www.openapplications.org/oagis/10">Changes V3-V4:
+			<xsd:documentation>Below is the 'appinfo' element containing BIE version information in beta format.</xsd:documentation>
+			<xsd:appinfo>Version ID = V4.1</xsd:appinfo>
+			<xsd:documentation source="http://www.openapplications.org/oagis/10">V4.1
+To enable PackageQuantity, for the number of bags that were placed in a seed tender box
+-enabled ShippedItemInstance.Quantity.TypeCode
+To allow for rejected quantity  reasons
+-enable ShipmentReference.Note (0:1) - 
+Allow shipments from the farm to the retailer/ elevator / processor
+-enabled ShipFromParty.AccountIdentifier (0:1)
+-enabled ShipToParty.Identifier (0:1)
+
+Changes V3-V4:
 1) Party -&gt; shipToParty (grower) and shipFromParty (Retailer), etc.
 2) Attachment -&gt; item.relatedIds -- URI reference to AGIIS
 3) Quantity removed from Substance (Not realistic)
@@ -253,6 +264,16 @@ This should be Item Composition component</xsd:documentation>
 												<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer's or Retailer's Seed Treatment identifier</xsd:documentation>
 											</xsd:annotation>
 										</xsd:element>
+										<xsd:element minOccurs="0" maxOccurs="unbounded" name="RelatedID">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+													<xsd:element name="SourceID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+													<xsd:element name="PartyID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+												</xsd:sequence>
+												<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+											</xsd:complexType>
+										</xsd:element>
 										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
 											<xsd:annotation>
 												<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer or Retailer's name of the seed treatment</xsd:documentation>
@@ -305,6 +326,7 @@ This should be Item Composition component</xsd:documentation>
 											</xsd:complexType>
 										</xsd:element>
 									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
 								</xsd:complexType>
 							</xsd:element>
 						</xsd:sequence>
@@ -318,6 +340,7 @@ This should be Item Composition component</xsd:documentation>
 						<xsd:simpleContent>
 							<xsd:extension base="xsd:decimal">
 								<xsd:attribute name="unitCode" use="optional" type="xsd:token" />
+								<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
 							</xsd:extension>
 						</xsd:simpleContent>
 					</xsd:complexType>
@@ -428,6 +451,7 @@ Quality (CN, CP manufacturing quality)</xsd:documentation>
 									<xsd:documentation source="http://www.openapplications.org/oagis/10">shipment identifier created by the retailer ERP system</xsd:documentation>
 								</xsd:annotation>
 							</xsd:element>
+							<xsd:element name="Note" minOccurs="0" maxOccurs="1" type="xsd:string" />
 							<xsd:element minOccurs="0" maxOccurs="1" name="Status">
 								<xsd:annotation>
 									<xsd:documentation source="http://www.openapplications.org/oagis/10">Status of the shipment line</xsd:documentation>
@@ -563,6 +587,7 @@ If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is nul
 									<xsd:sequence>
 										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
 										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
+										<xsd:element name="AccountID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
 										<xsd:element minOccurs="0" maxOccurs="1" name="Location">
 											<xsd:annotation>
 												<xsd:documentation source="http://www.openapplications.org/oagis/10">Branch Location which the seed was shipped from.</xsd:documentation>
@@ -581,6 +606,7 @@ If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is nul
 							<xsd:element minOccurs="0" maxOccurs="1" name="ShipToParty">
 								<xsd:complexType>
 									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
 										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
 										<xsd:element name="AccountID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
 											<xsd:annotation>
