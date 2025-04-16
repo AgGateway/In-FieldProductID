@@ -114,6 +114,13 @@
                 }, {
                   "examples" : [ "BG" ]
                 } ]
+              },
+              "typeCode" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/token"
+                }, {
+                  "examples" : [ "PackageCount" ]
+                } ]
               }
             }
           },
@@ -196,6 +203,46 @@
     "normalizedString" : {
       "type" : "string"
     },
+    "relatedId" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "typeCode" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/token"
+          }, {
+            "examples" : [ "URL" ]
+          } ]
+        },
+        "id" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "examples" : [ "https://agiis.aggateway.org/gtin/012323232" ]
+          } ]
+        },
+        "sourceId" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "examples" : [ "AGIIS" ]
+          } ]
+        },
+        "partyId" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "examples" : [ "AgGateway" ]
+          } ]
+        }
+      }
+    },
+    "relatedIdList" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/relatedId"
+      }
+    },
     "string" : {
       "type" : "string"
     },
@@ -264,41 +311,7 @@
       "additionalProperties" : false,
       "properties" : {
         "relatedId" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "additionalProperties" : false,
-            "properties" : {
-              "typeCode" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/token"
-                }, {
-                  "examples" : [ "Linked" ]
-                } ]
-              },
-              "id" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/normalizedString"
-                }, {
-                  "examples" : [ "https://api.agiis.org/?gtinid=00888346580291" ]
-                } ]
-              },
-              "sourceId" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/normalizedString"
-                }, {
-                  "examples" : [ "AGIIS" ]
-                } ]
-              },
-              "partyId" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/normalizedString"
-                }, {
-                  "examples" : [ "AgGateway" ]
-                } ]
-              }
-            }
-          }
+          "$ref" : "#/definitions/relatedIdList"
         },
         "manufacturerItemIdentification" : {
           "description" : "Manufacturer's Item identifier",
@@ -498,6 +511,9 @@
           "type" : "object",
           "additionalProperties" : false,
           "properties" : {
+            "typeCode" : {
+              "$ref" : "#/definitions/token"
+            },
             "id" : {
               "allOf" : [ {
                 "$ref" : "#/definitions/normalizedString"
@@ -505,6 +521,9 @@
                 "description" : "Manufacturer's or Retailer's Seed Treatment identifier",
                 "examples" : [ "1001339" ]
               } ]
+            },
+            "relatedId" : {
+              "$ref" : "#/definitions/relatedIdList"
             },
             "name" : {
               "allOf" : [ {
@@ -694,6 +713,13 @@
             "examples" : [ "Ceres Solutions" ]
           } ]
         },
+        "accountId" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "examples" : [ "NA" ]
+          } ]
+        },
         "location" : {
           "description" : "Branch Location which the seed was shipped from.",
           "type" : "object",
@@ -726,6 +752,13 @@
             "$ref" : "#/definitions/token"
           }, {
             "examples" : [ "Farmer" ]
+          } ]
+        },
+        "id" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "examples" : [ "NA" ]
           } ]
         },
         "name" : {
@@ -850,6 +883,9 @@
             "description" : "shipment identifier created by the retailer ERP system",
             "examples" : [ "34343535" ]
           } ]
+        },
+        "note" : {
+          "$ref" : "#/definitions/string"
         },
         "status" : {
           "description" : "Status of the shipment line",
