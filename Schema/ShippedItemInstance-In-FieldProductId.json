@@ -1,1074 +1,760 @@
-{
-  "$schema" : "http://json-schema.org/draft-04/schema#",
-  "required" : [ "shippedItemInstance" ],
-  "additionalProperties" : false,
-  "properties" : {
-    "shippedItemInstance" : {
-      "type" : "array",
-      "items" : {
-        "additionalProperties" : false,
-        "properties" : {
-          "typeCode" : {
-            "allOf" : [ {
-              "$ref" : "#/definitions/token"
-            }, {
-              "description" : "type of product shipped; Seed, CP = Crop protection, or CN = Crop Nutrition",
-              "examples" : [ "seed" ]
-            } ]
-          },
-          "id" : {
-            "$ref" : "#/definitions/normalizedString"
-          },
-          "uid" : {
-            "description" : "DataMatrix or barcode encoding string",
-            "type" : "object",
-            "required" : [ "content" ],
-            "additionalProperties" : false,
-            "properties" : {
-              "content" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/normalizedString"
-                }, {
-                  "examples" : [ "0-539f82b1-df6e-11e9-b486-5ce0c51e62ce" ]
-                } ]
-              },
-              "schemeId" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/token"
-                }, {
-                  "description" : "encoding scheme",
-                  "examples" : [ "DataMatrix" ]
-                } ]
-              },
-              "schemeAgencyId" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/token"
-                }, {
-                  "description" : "Agency defining bar coding scheme",
-                  "examples" : [ "GS1" ]
-                } ]
-              },
-              "typeCode" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/token"
-                }, {
-                  "description" : "Implementation Guideline for encoding scheme",
-                  "examples" : [ "AgGateway" ]
-                } ]
-              }
-            }
-          },
-          "lot" : {
-            "description" : "the various lot and / or batch identifiers associated to the shipped item\nLot identifier is related to homogeneous items, such as seed, grains.\nBatch identifiers are related to the mixture of homogeneous items, based on a formulation of mixed active ingredient of crop nutrition or crop protection.",
-            "type" : "object",
-            "additionalProperties" : false,
-            "properties" : {
-              "typeCode" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/token"
-                }, {
-                  "description" : "if typeCode=Seed, then Lot, else Batch for CN and CP",
-                  "examples" : [ "Lot" ]
-                } ]
-              },
-              "id" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/normalizedString"
-                }, {
-                  "description" : "lot or batch identifier value",
-                  "examples" : [ "769MXJ4JX" ]
-                } ]
-              },
-              "serialNumberId" : {
-                "type" : "array",
-                "items" : {
-                  "allOf" : [ {
-                    "$ref" : "#/definitions/normalizedString"
-                  }, {
-                    "description" : "If typeCode = CP; array of serial numbers for serialized jugs of crop protection products linked to a special batch.  Useful for blockchain applications such as Crop Protection.",
-                    "examples" : [ "c93b67b1-b62e-45b4-96fe-1277a341dc0d" ]
-                  } ]
-                }
-              }
-            }
-          },
-          "item" : {
-            "$ref" : "#/definitions/item"
-          },
-          "quantity" : {
-            "description" : "Number of seed bags or quantity of other product if crop protection",
-            "type" : "object",
-            "required" : [ "content" ],
-            "additionalProperties" : false,
-            "properties" : {
-              "content" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/decimal"
-                }, {
-                  "examples" : [ "45" ]
-                } ]
-              },
-              "unitCode" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/token"
-                }, {
-                  "examples" : [ "BG" ]
-                } ]
-              },
-              "typeCode" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/token"
-                }, {
-                  "examples" : [ "PackageCount" ]
-                } ]
-              }
-            }
-          },
-          "packaging" : {
-            "description" : "Transport Package;\n- Shipping pallet of bags of seed or cartons of crop protection.\n- Seed bulk box where multiple bags of seed are treated at a retailer and conveyed into a tote or seed box (mini-bulk) for use with a seed tender.  \n\nA printed manifest tag with barcode detailed in packaging.identifier must be included with the seed box, tote or pallet for ease of use.\nIt is NOT recommended to commingle seed varieties and seed lots.   But if that does happen, multiple shipped item instances array entries would have the same destination package, denoting the which seed varieties and seed lot may have been mixed into a single tote or seed box. \nThe dimensions of a seed box e.g. https://www.rppcontainers.com/Hopper-Bottom-Containers/hopper-bottom-57x45x65, or pallet are not in scope.",
-            "type" : "object",
-            "additionalProperties" : false,
-            "properties" : {
-              "typeCode" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/token"
-                }, {
-                  "description" : "Type of packaging; Seed Box, Tote, Pallet; \n",
-                  "examples" : [ "SeedBox" ]
-                } ]
-              },
-              "id" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/normalizedString"
-                }, {
-                  "description" : "Identifier of the container, often a serial number of a reusable containers such as a seed tender, bulk box, pallet, etc.\n",
-                  "examples" : [ "844f95ac-422a-406a-91c5-65d017de2f09" ]
-                } ]
-              },
-              "quantity" : {
-                "description" : "Total gross weight of the seed box, or pallet.  \nThis is defined as the tare weight (weight of the container, box or pallet) plus the net weight, which is the number of bags x weight of each bag, plus the weight of the treatment if seed treatment and loaded into the seed box.",
-                "type" : "object",
-                "required" : [ "content" ],
-                "additionalProperties" : false,
-                "properties" : {
-                  "content" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/decimal"
-                    }, {
-                      "examples" : [ "2475" ]
-                    } ]
-                  },
-                  "typeCode" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/token"
-                    }, {
-                      "description" : "Gross Weight of the shipping container",
-                      "examples" : [ "GrossWeight" ]
-                    } ]
-                  },
-                  "unitCode" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/token"
-                    }, {
-                      "description" : "Unit of measure of the gross weight",
-                      "examples" : [ "LB" ]
-                    } ]
-                  }
-                }
-              }
-            }
-          },
-          "results" : {
-            "$ref" : "#/definitions/results"
-          },
-          "displayName" : {
-            "allOf" : [ {
-              "$ref" : "#/definitions/string"
-            }, {
-              "description" : "This is a concatenation seed lot identifier, prefixed by the product description that will appear in the MICS display.",
-              "examples" : [ "CP2585-769MXJ4JX" ]
-            } ]
-          },
-          "shipmentReference" : {
-            "$ref" : "#/definitions/shipmentReference"
-          }
-        }
-      }
-    }
-  },
-  "definitions" : {
-    "token" : {
-      "type" : "string"
-    },
-    "normalizedString" : {
-      "type" : "string"
-    },
-    "relatedId" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "typeCode" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/token"
-          }, {
-            "examples" : [ "URL" ]
-          } ]
-        },
-        "id" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "examples" : [ "https://agiis.aggateway.org/gtin/012323232" ]
-          } ]
-        },
-        "sourceId" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "examples" : [ "AGIIS" ]
-          } ]
-        },
-        "partyId" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "examples" : [ "AgGateway" ]
-          } ]
-        }
-      }
-    },
-    "relatedIdList" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/relatedId"
-      }
-    },
-    "string" : {
-      "type" : "string"
-    },
-    "classification" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "typeCode" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/token"
-          }, {
-            "description" : "Type of classification",
-            "examples" : [ "Crop" ]
-          } ]
-        },
-        "codes" : {
-          "type" : "object",
-          "required" : [ "code" ],
-          "additionalProperties" : false,
-          "properties" : {
-            "code" : {
-              "type" : "array",
-              "minItems" : 1,
-              "items" : {
-                "type" : "object",
-                "required" : [ "content" ],
-                "additionalProperties" : false,
-                "properties" : {
-                  "content" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/normalizedString"
-                    }, {
-                      "examples" : [ "11199199" ]
-                    } ]
-                  },
-                  "listAgencyId" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/token"
-                    }, {
-                      "examples" : [ "USDA" ]
-                    } ]
-                  },
-                  "typeCode" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/token"
-                    }, {
-                      "description" : "Use as the description / definition.",
-                      "examples" : [ "Corn For Grain" ]
-                    } ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "date" : {
-      "type" : "string"
-    },
-    "decimal" : {
-      "type" : "number"
-    },
-    "item" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "relatedId" : {
-          "$ref" : "#/definitions/relatedIdList"
-        },
-        "manufacturerItemIdentification" : {
-          "description" : "Manufacturer's Item identifier",
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "typeCode" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/token"
-              }, {
-                "description" : "type of manufacturer's item identifier",
-                "examples" : [ "SKU" ]
-              } ]
-            },
-            "id" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/normalizedString"
-              }, {
-                "description" : "if no GTIN, then this is required, likely the manufacturer's SKU",
-                "examples" : [ "34323656565" ]
-              } ]
-            }
-          }
-        },
-        "upcid" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "description" : "Uniform Product Code",
-            "examples" : [ "888346580291" ]
-          } ]
-        },
-        "gtinid" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "description" : "GTIN for the packaged product instance, as maintained by GS1",
-            "examples" : [ "00888346580291" ]
-          } ]
-        },
-        "description" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/string"
-          }, {
-            "description" : "Full AGIIS description",
-            "examples" : [ "VT DoublePro RIB Complete Relative Maturity 85 days" ]
-          } ]
-        },
-        "classification" : {
-          "$ref" : "#/definitions/classification"
-        },
-        "substance" : {
-          "description" : "Item composition for Crop Nutrition and Crop Protection.",
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "additionalProperties" : false,
-            "properties" : {
-              "name" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/string"
-                }, {
-                  "examples" : [ "Ammonium Polyphosphate " ]
-                } ]
-              },
-              "registrationStatus" : {
-                "type" : "array",
-                "items" : {
-                  "type" : "object",
-                  "additionalProperties" : false,
-                  "properties" : {
-                    "id" : {
-                      "type" : "object",
-                      "required" : [ "content" ],
-                      "additionalProperties" : false,
-                      "properties" : {
-                        "content" : {
-                          "allOf" : [ {
-                            "$ref" : "#/definitions/normalizedString"
-                          }, {
-                            "examples" : [ "68333-79-9" ]
-                          } ]
-                        },
-                        "typeCode" : {
-                          "allOf" : [ {
-                            "$ref" : "#/definitions/token"
-                          }, {
-                            "examples" : [ "CAS" ]
-                          } ]
-                        },
-                        "schemeAgencyId" : {
-                          "allOf" : [ {
-                            "$ref" : "#/definitions/token"
-                          }, {
-                            "examples" : [ "Chemical Abstract Service" ]
-                          } ]
-                        }
-                      }
-                    },
-                    "effectiveTimePeriod" : {
-                      "type" : "object",
-                      "additionalProperties" : false,
-                      "properties" : {
-                        "endDateTime" : {
-                          "allOf" : [ {
-                            "$ref" : "#/definitions/date"
-                          }, {
-                            "description" : "End date for Registration",
-                            "examples" : [ "2030-07-01" ]
-                          } ]
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "packaging" : {
-          "description" : "This is the retail stocking unit packaging, such as a bag of seed.\nOther examples such as a carton of 2  x 2.5 Gallon Jugs of crop protection.",
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "perPackageQuantity" : {
-              "type" : "object",
-              "required" : [ "content" ],
-              "additionalProperties" : false,
-              "properties" : {
-                "content" : {
-                  "allOf" : [ {
-                    "$ref" : "#/definitions/decimal"
-                  }, {
-                    "examples" : [ "55" ]
-                  } ]
-                },
-                "unitCode" : {
-                  "allOf" : [ {
-                    "$ref" : "#/definitions/token"
-                  }, {
-                    "examples" : [ "LB" ]
-                  } ]
-                }
-              }
-            }
-          }
-        },
-        "manufacturingParty" : {
-          "description" : "Manufacturer of the Item instance",
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "id" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/normalizedString"
-              }, {
-                "description" : "GLN for the manufacturer",
-                "examples" : [ "34343401245" ]
-              } ]
-            },
-            "name" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/string"
-              }, {
-                "description" : "Product manufacturer's name",
-                "examples" : [ "WinField United" ]
-              } ]
-            }
-          }
-        },
-        "productName" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/string"
-          }, {
-            "description" : "product name",
-            "examples" : [ "CP2585" ]
-          } ]
-        },
-        "brandName" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/string"
-          }, {
-            "description" : "brand name",
-            "examples" : [ "CROPLAN" ]
-          } ]
-        },
-        "varietyName" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/string"
-          }, {
-            "description" : "Variety of a product or brand, perhaps a minor genetic trait or grading typically based on quality measures (sorting)",
-            "examples" : [ "VT2P/RIB" ]
-          } ]
-        },
-        "itemTreatment" : {
-          "description" : "Seed Treatment; List of product mixture identifiers that were blended together to create the seed treatment, and when lot[typeCode='batch'].identifier is present\nThis should be Item Composition component",
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "typeCode" : {
-              "$ref" : "#/definitions/token"
-            },
-            "id" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/normalizedString"
-              }, {
-                "description" : "Manufacturer's or Retailer's Seed Treatment identifier",
-                "examples" : [ "1001339" ]
-              } ]
-            },
-            "relatedId" : {
-              "$ref" : "#/definitions/relatedIdList"
-            },
-            "name" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/string"
-              }, {
-                "description" : "Manufacturer or Retailer's name of the seed treatment",
-                "examples" : [ "Fortivent® Plus" ]
-              } ]
-            },
-            "substance" : {
-              "description" : "Substances found in the seed treatment",
-              "type" : "array",
-              "items" : {
-                "type" : "object",
-                "additionalProperties" : false,
-                "properties" : {
-                  "typeCode" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/token"
-                    }, {
-                      "examples" : [ "active_ingredient" ]
-                    } ]
-                  },
-                  "id" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/normalizedString"
-                    }, {
-                      "description" : "AgGateway will use the same controlled vocabulary as active ingredient in Product Catalog",
-                      "examples" : [ "Ethaboxam" ]
-                    } ]
-                  },
-                  "name" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/string"
-                    }, {
-                      "description" : "The name of the substance found in the seed treatment",
-                      "examples" : [ "Ethaboxam Fungicide" ]
-                    } ]
-                  },
-                  "registrationStatus" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "object",
-                      "additionalProperties" : false,
-                      "properties" : {
-                        "id" : {
-                          "description" : "Registration Identifier provided by the agency maintaining the registry; e.g, CAS, EPA, PRMA (Canada)",
-                          "type" : "object",
-                          "required" : [ "content" ],
-                          "additionalProperties" : false,
-                          "properties" : {
-                            "content" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/normalizedString"
-                              }, {
-                                "examples" : [ "162650-77-3" ]
-                              } ]
-                            },
-                            "schemeAgencyId" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/token"
-                              }, {
-                                "examples" : [ "Chemical Abstracts Service" ]
-                              } ]
-                            },
-                            "typeCode" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/token"
-                              }, {
-                                "examples" : [ "CAS" ]
-                              } ]
-                            }
-                          }
-                        },
-                        "effectiveTimePeriod" : {
-                          "type" : "object",
-                          "additionalProperties" : false,
-                          "properties" : {
-                            "endDateTime" : {
-                              "allOf" : [ {
-                                "$ref" : "#/definitions/date"
-                              }, {
-                                "examples" : [ "2030-07-01" ]
-                              } ]
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "dateTime" : {
-      "type" : "string",
-      "format" : "date-time"
-    },
-    "measurement" : {
-      "type" : "object",
-      "required" : [ "measure" ],
-      "additionalProperties" : false,
-      "properties" : {
-        "typeCode" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/token"
-          }, {
-            "description" : "Type of Quantitative Measure; classification of the value; e.g.,  \nOperational (allows equipment adjustment, seed size), \nAgronomic (days to full growth, nitrogen percent for CN), \nQuality (CN, CP manufacturing quality)",
-            "examples" : [ "Operational" ]
-          } ]
-        },
-        "name" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/string"
-          }, {
-            "description" : "Name of the measurement",
-            "examples" : [ "Seed Count" ]
-          } ]
-        },
-        "dateTime" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/dateTime"
-          }, {
-            "description" : "Timestamp of the measurement",
-            "examples" : [ "2021-02-08T13:17:45.034-05:00" ]
-          } ]
-        },
-        "measure" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/decimal"
-          }, {
-            "description" : "Measurement value",
-            "examples" : [ "892" ]
-          } ]
-        },
-        "unitCode" : {
-          "$ref" : "#/definitions/normalizedString"
-        }
-      }
-    },
-    "measurementList" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/measurement"
-      }
-    },
-    "results" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "quantitative" : {
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "measurement" : {
-              "$ref" : "#/definitions/measurementList"
-            }
-          }
-        }
-      }
-    },
-    "shipFromParty" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "typeCode" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/token"
-          }, {
-            "examples" : [ "retailer" ]
-          } ]
-        },
-        "id" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "examples" : [ "1" ]
-          } ]
-        },
-        "name" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/string"
-          }, {
-            "examples" : [ "Ceres Solutions" ]
-          } ]
-        },
-        "accountId" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "examples" : [ "NA" ]
-          } ]
-        },
-        "location" : {
-          "description" : "Branch Location which the seed was shipped from.",
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "name" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/string"
-              }, {
-                "examples" : [ "New Lebanon Seed Hub" ]
-              } ]
-            },
-            "glnid" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/normalizedString"
-              }, {
-                "examples" : [ "1100028417954" ]
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "shipToParty" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "typeCode" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/token"
-          }, {
-            "examples" : [ "Farmer" ]
-          } ]
-        },
-        "id" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "examples" : [ "NA" ]
-          } ]
-        },
-        "name" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/string"
-          }, {
-            "examples" : [ "Farmer Bob" ]
-          } ]
-        },
-        "accountId" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "description" : "Retailer's account number for the grower",
-            "examples" : [ "12345" ]
-          } ]
-        },
-        "location" : {
-          "description" : "Location the shipped is delivered to.",
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "address" : {
-              "description" : "Address of the ship to location",
-              "type" : "object",
-              "additionalProperties" : false,
-              "properties" : {
-                "addressLine" : {
-                  "type" : "array",
-                  "items" : {
-                    "allOf" : [ {
-                      "$ref" : "#/definitions/string"
-                    }, {
-                      "examples" : [ "1234 County Road 5" ]
-                    } ]
-                  }
-                },
-                "cityName" : {
-                  "allOf" : [ {
-                    "$ref" : "#/definitions/string"
-                  }, {
-                    "examples" : [ "FarmTown" ]
-                  } ]
-                },
-                "countrySubDivisionCode" : {
-                  "type" : "object",
-                  "required" : [ "content" ],
-                  "additionalProperties" : false,
-                  "properties" : {
-                    "content" : {
-                      "allOf" : [ {
-                        "$ref" : "#/definitions/token"
-                      }, {
-                        "examples" : [ "IA" ]
-                      } ]
-                    },
-                    "typeCode" : {
-                      "allOf" : [ {
-                        "$ref" : "#/definitions/token"
-                      }, {
-                        "examples" : [ "State" ]
-                      } ]
-                    }
-                  }
-                },
-                "postalCode" : {
-                  "allOf" : [ {
-                    "$ref" : "#/definitions/normalizedString"
-                  }, {
-                    "examples" : [ "45677" ]
-                  } ]
-                }
-              }
-            },
-            "glnid" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/normalizedString"
-              }, {
-                "examples" : [ "NA" ]
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "carrierParty" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "id" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "examples" : [ "Fleet" ]
-          } ]
-        },
-        "name" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/string"
-          }, {
-            "description" : "Name of carrier",
-            "examples" : [ "Ceres Fleet" ]
-          } ]
-        },
-        "scacid" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "examples" : [ "NA" ]
-          } ]
-        }
-      }
-    },
-    "shipmentReference" : {
-      "type" : "object",
-      "additionalProperties" : false,
-      "properties" : {
-        "id" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "description" : "shipment identifier created by the retailer ERP system",
-            "examples" : [ "34343535" ]
-          } ]
-        },
-        "note" : {
-          "$ref" : "#/definitions/string"
-        },
-        "status" : {
-          "description" : "Status of the shipment line",
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "code" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/normalizedString"
-              }, {
-                "examples" : [ "In-Transit" ]
-              } ]
-            },
-            "reasonCode" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/normalizedString"
-              }, {
-                "description" : "Damaged | Partial-Received | Wrong Product | Other"
-              } ]
-            },
-            "reason" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/string"
-              }, {
-                "description" : "Free-form description of Other reason code"
-              } ]
-            }
-          }
-        },
-        "lineNumberId" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "description" : "Line Identifier on the delivery document the shipped item appears.   This could be a concatenation of the shipment identifier and a line identifier to guarantee uniqueness within this document.",
-            "examples" : [ "34343535-1" ]
-          } ]
-        },
-        "shipUnitReference" : {
-          "type" : "object",
-          "additionalProperties" : false,
-          "properties" : {
-            "typeCode" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/token"
-              }, {
-                "description" : "The type of ship unit the shipped item is transported.  Most often a semi-trailer, liquid tank, etc.  ",
-                "examples" : [ "Semi-Trailer" ]
-              } ]
-            },
-            "id" : {
-              "description" : "Identifier of the shipping container, usually a US DOT trailer identifier, or similiar.",
-              "type" : "object",
-              "required" : [ "content" ],
-              "additionalProperties" : false,
-              "properties" : {
-                "content" : {
-                  "allOf" : [ {
-                    "$ref" : "#/definitions/normalizedString"
-                  }, {
-                    "examples" : [ "12345678" ]
-                  } ]
-                },
-                "typeCode" : {
-                  "allOf" : [ {
-                    "$ref" : "#/definitions/token"
-                  }, {
-                    "examples" : [ " USDOT_Number" ]
-                  } ]
-                }
-              }
-            }
-          }
-        },
-        "actualPickupDateTime" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/dateTime"
-          }, {
-            "description" : "Timestamp that the Farmer picked up the shipment at the Retailer -- if so Carrier Party is either not present or the name of the driver that picked up the shipment.  If Pickup then ActualShipmentDateTime and ActualDeliverDateTime are null."
-          } ]
-        },
-        "actualShipDateTime" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/dateTime"
-          }, {
-            "description" : "Actual date the Retailer's fleet or contractor truck left the retailer's warehouse, departing to the farm.  ",
-            "examples" : [ "2022-04-25T09:06:07-05:00" ]
-          } ]
-        },
-        "actualDeliveryDateTime" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/dateTime"
-          }, {
-            "description" : "Timestamp that the Farmer received the shipment at the Farm Location -- if so Carrier Party is the name of the driver that delivered the shipment.\nIf Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is null."
-          } ]
-        },
-        "deliveredQuantity" : {
-          "type" : "object",
-          "required" : [ "content" ],
-          "additionalProperties" : false,
-          "properties" : {
-            "content" : {
-              "$ref" : "#/definitions/decimal"
-            },
-            "unitCode" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/token"
-              }, {
-                "description" : "Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed."
-              } ]
-            }
-          }
-        },
-        "acceptedQuantity" : {
-          "description" : "The quantity of product accepted by the farmer.",
-          "type" : "object",
-          "required" : [ "content" ],
-          "additionalProperties" : false,
-          "properties" : {
-            "content" : {
-              "$ref" : "#/definitions/decimal"
-            },
-            "unitCode" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/token"
-              }, {
-                "description" : "Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed."
-              } ]
-            }
-          }
-        },
-        "rejectedQuantity" : {
-          "description" : "The quantity of product rejected by the farmer.",
-          "type" : "object",
-          "required" : [ "content" ],
-          "additionalProperties" : false,
-          "properties" : {
-            "content" : {
-              "$ref" : "#/definitions/decimal"
-            },
-            "unitCode" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/token"
-              }, {
-                "description" : "Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed."
-              } ]
-            }
-          }
-        },
-        "returnedQuantity" : {
-          "description" : "The quantity of product returned to the retailer.",
-          "type" : "object",
-          "required" : [ "content" ],
-          "additionalProperties" : false,
-          "properties" : {
-            "content" : {
-              "$ref" : "#/definitions/decimal"
-            },
-            "unitCode" : {
-              "allOf" : [ {
-                "$ref" : "#/definitions/token"
-              }, {
-                "description" : "Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed."
-              } ]
-            }
-          }
-        },
-        "returnMaterialAuthorizationId" : {
-          "allOf" : [ {
-            "$ref" : "#/definitions/normalizedString"
-          }, {
-            "description" : "RMA identifier issued by the retailer authorizing the return of the rejected quantity back to the retailer's warehouse."
-          } ]
-        },
-        "shipFromParty" : {
-          "$ref" : "#/definitions/shipFromParty"
-        },
-        "shipToParty" : {
-          "$ref" : "#/definitions/shipToParty"
-        },
-        "carrierParty" : {
-          "$ref" : "#/definitions/carrierParty"
-        }
-      }
-    }
-  }
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis/10" targetNamespace="http://www.openapplications.org/oagis/10" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:element name="ShippedItemInstance">
+		<xsd:annotation>
+			<xsd:documentation>Below is the 'appinfo' element containing BIE version information in beta format.</xsd:documentation>
+			<xsd:appinfo>Version ID = V4.1</xsd:appinfo>
+			<xsd:documentation source="http://www.openapplications.org/oagis/10">V4.1 S&amp;G approved 2025-04-17
+To enable PackageQuantity, for the number of bags that were placed in a seed tender box
+-enabled ShippedItemInstance.Quantity.TypeCode
+To allow for rejected quantity  reasons
+-enable ShipmentReference.Note (0:1) - 
+Allow shipments from the farm to the retailer/ elevator / processor
+-enabled ShipFromParty.AccountIdentifier (0:1)
+-enabled ShipToParty.Identifier (0:1)
+
+Changes V3-V4:
+1) Party -&gt; shipToParty (grower) and shipFromParty (Retailer), etc.
+2) Attachment -&gt; item.relatedIds -- URI reference to AGIIS
+3) Quantity removed from Substance (Not realistic)
+4) Lot flattened
+5) Shipment Reference now includes shipTo and shipFrom parties, receipt date at the farm, or pickup date at the retailer, and received, accepted, rejected, and return quantities and RMA identifier.
+6) Simplified the Results.Quantitative.Measurement[] structure, flattening measurement
+
+Shipped Item Instance is an implementation guideline of a simplified Advance Ship Notice allow Retailers to send a digital representation of their delivery document regarding products such as seed, crop nutrition, and crop protection delivered to a farmer.  The JSON representation can be processed by a FMIS, mobile application or OEM platform to load product information directly into a tractor display to help identify products during the actual field operations.  Other information may be retained within the processing application for correlation after the operation is completed for further record keeping based on key identifiers pushed to the tractor display and returned back in the work records for that operation.
+
+Approved in Standards and Guidelines 2022-08-18</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+				<xsd:element name="UID" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">DataMatrix or barcode encoding string</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:simpleContent>
+							<xsd:extension base="xsd:normalizedString">
+								<xsd:attribute name="schemeID" use="optional" type="xsd:token">
+									<xsd:annotation>
+										<xsd:documentation source="http://www.openapplications.org/oagis/10">encoding scheme</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+								<xsd:attribute name="schemeAgencyID" use="optional" type="xsd:token">
+									<xsd:annotation>
+										<xsd:documentation source="http://www.openapplications.org/oagis/10">Agency defining bar coding scheme</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+								<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+									<xsd:annotation>
+										<xsd:documentation source="http://www.openapplications.org/oagis/10">Implementation Guideline for encoding scheme</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="Lot">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">the various lot and / or batch identifiers associated to the shipped item
+Lot identifier is related to homogeneous items, such as seed, grains.
+Batch identifiers are related to the mixture of homogeneous items, based on a formulation of mixed active ingredient of crop nutrition or crop protection.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">lot or batch identifier value</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="SerialNumberID" minOccurs="0" maxOccurs="unbounded" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">If typeCode = CP; array of serial numbers for serialized jugs of crop protection products linked to a special batch.  Useful for blockchain applications such as Crop Protection.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:sequence>
+						<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+							<xsd:annotation>
+								<xsd:documentation source="http://www.openapplications.org/oagis/10">if typeCode=Seed, then Lot, else Batch for CN and CP</xsd:documentation>
+							</xsd:annotation>
+						</xsd:attribute>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="Item">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Item is the reference information, whereas the item instance is the physical instantiation of the item include all variability such as density, lot /batch, quality attributes, etc.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element minOccurs="0" maxOccurs="unbounded" name="RelatedID">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="SourceID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="PartyID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ManufacturerItemIdentification">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer's Item identifier</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">if no GTIN, then this is required, likely the manufacturer's SKU</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">type of manufacturer's item identifier</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="UPCID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Uniform Product Code</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="GTINID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">GTIN for the packaged product instance, as maintained by GS1</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Description" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Full AGIIS description</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="Classification">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element minOccurs="0" maxOccurs="1" name="Codes">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Code" minOccurs="1" maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:simpleContent>
+																<xsd:extension base="xsd:normalizedString">
+																	<xsd:attribute name="listAgencyID" use="optional" type="xsd:token" />
+																	<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+																		<xsd:annotation>
+																			<xsd:documentation source="http://www.openapplications.org/oagis/10">Use as the description / definition.</xsd:documentation>
+																		</xsd:annotation>
+																	</xsd:attribute>
+																</xsd:extension>
+															</xsd:simpleContent>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of classification</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="unbounded" name="Substance">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Item composition for Crop Nutrition and Crop Protection.</xsd:documentation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Used in Catalog and Shipped Item Instance for Seed Treatment and Product Composition</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
+										<xsd:element minOccurs="0" maxOccurs="unbounded" name="RegistrationStatus">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="ID" minOccurs="0" maxOccurs="1">
+														<xsd:complexType>
+															<xsd:simpleContent>
+																<xsd:extension base="xsd:normalizedString">
+																	<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+																	<xsd:attribute name="schemeAgencyID" use="optional" type="xsd:token" />
+																</xsd:extension>
+															</xsd:simpleContent>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element minOccurs="0" maxOccurs="1" name="EffectiveTimePeriod">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="EndDateTime" minOccurs="0" maxOccurs="1" type="xsd:date">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">End date for Registration</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="Packaging">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">This is the retail stocking unit packaging, such as a bag of seed.
+Other examples such as a carton of 2  x 2.5 Gallon Jugs of crop protection.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="PerPackageQuantity" minOccurs="0" maxOccurs="1">
+											<xsd:complexType>
+												<xsd:simpleContent>
+													<xsd:extension base="xsd:decimal">
+														<xsd:attribute name="unitCode" use="optional" type="xsd:token" />
+													</xsd:extension>
+												</xsd:simpleContent>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ManufacturingParty">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer of the Item instance</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">GLN for the manufacturer</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Product manufacturer's name</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ProductName" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">product name</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="BrandName" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">brand name</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="VarietyName" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Variety of a product or brand, perhaps a minor genetic trait or grading typically based on quality measures (sorting)</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ItemTreatment">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Seed Treatment; List of product mixture identifiers that were blended together to create the seed treatment, and when lot[typeCode='batch'].identifier is present
+This should be Item Composition component</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer's or Retailer's Seed Treatment identifier</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" maxOccurs="unbounded" name="RelatedID">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+													<xsd:element name="SourceID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+													<xsd:element name="PartyID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+												</xsd:sequence>
+												<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Manufacturer or Retailer's name of the seed treatment</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" maxOccurs="unbounded" name="Substance">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Substances found in the seed treatment</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">AgGateway will use the same controlled vocabulary as active ingredient in Product Catalog</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">The name of the substance found in the seed treatment</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element minOccurs="0" maxOccurs="unbounded" name="RegistrationStatus">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="ID" minOccurs="0" maxOccurs="1">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">Registration Identifier provided by the agency maintaining the registry; e.g, CAS, EPA, PRMA (Canada)</xsd:documentation>
+																	</xsd:annotation>
+																	<xsd:complexType>
+																		<xsd:simpleContent>
+																			<xsd:extension base="xsd:normalizedString">
+																				<xsd:attribute name="schemeAgencyID" use="optional" type="xsd:token" />
+																				<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+																			</xsd:extension>
+																		</xsd:simpleContent>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element minOccurs="0" maxOccurs="1" name="EffectiveTimePeriod">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element name="EndDateTime" minOccurs="0" maxOccurs="1" type="xsd:date" />
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+												<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Quantity" minOccurs="0" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Number of seed bags or quantity of other product if crop protection</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:simpleContent>
+							<xsd:extension base="xsd:decimal">
+								<xsd:attribute name="unitCode" use="optional" type="xsd:token" />
+								<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+									<xsd:annotation>
+										<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of quantity, as related to the packaging instance (shippedItemInstance.Packaging).  For example, the number of bags that were loaded into a seed tender box during seed treatment.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="Packaging">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Transport Package;
+- Shipping pallet of bags of seed or cartons of crop protection.
+- Seed bulk box where multiple bags of seed are treated at a retailer and conveyed into a tote or seed box (mini-bulk) for use with a seed tender.  
+
+A printed manifest tag with barcode detailed in packaging.identifier must be included with the seed box, tote or pallet for ease of use.
+It is NOT recommended to commingle seed varieties and seed lots.   But if that does happen, multiple shipped item instances array entries would have the same destination package, denoting the which seed varieties and seed lot may have been mixed into a single tote or seed box. 
+The dimensions of a seed box e.g. https://www.rppcontainers.com/Hopper-Bottom-Containers/hopper-bottom-57x45x65, or pallet are not in scope.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifier of the container, often a serial number of a reusable containers such as a seed tender, bulk box, pallet, etc.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Quantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Total gross weight of the seed box, or pallet.  
+This is defined as the tare weight (weight of the container, box or pallet) plus the net weight, which is the number of bags x weight of each bag, plus the weight of the treatment if seed treatment and loaded into the seed box.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Gross Weight of the shipping container</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure of the gross weight</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+						<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+							<xsd:annotation>
+								<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of packaging; SeedBox, Tote, Pallet;</xsd:documentation>
+							</xsd:annotation>
+						</xsd:attribute>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="Results">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element minOccurs="0" maxOccurs="1" name="Quantitative">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element minOccurs="0" maxOccurs="unbounded" name="Measurement">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of the measurement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="DateTime" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Timestamp of the measurement</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="Measure" minOccurs="1" maxOccurs="1" type="xsd:decimal">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Measurement value</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="UnitCode" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+												</xsd:sequence>
+												<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+													<xsd:annotation>
+														<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of Quantitative Measure; classification of the value; e.g.,  
+Operational (allows equipment adjustment, seed size), 
+Agronomic (days to full growth, nitrogen percent for CN), 
+Quality (CN, CP manufacturing quality)</xsd:documentation>
+													</xsd:annotation>
+												</xsd:attribute>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="DisplayName" minOccurs="0" maxOccurs="1" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">This is a concatenation seed lot identifier, prefixed by the product description that will appear in the MICS display.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element minOccurs="0" maxOccurs="1" name="ShipmentReference">
+					<xsd:annotation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Shipment reference information</xsd:documentation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Information related to the shipment and shipment line, include status, line number, ship units, dates, and quantities delivered, accepted, rejected and returned.  This detail is helpful for invoice reconcilation.</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">shipment identifier created by the retailer ERP system</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="Note" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">If there are rejected or returns for a given shipment line, these notes are helpful for processing.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="Status">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Status of the shipment line</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="Code" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="ReasonCode" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Damaged | Partial-Received | Wrong Product | Other</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Reason" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Free-form description of Other reason code</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="LineNumberID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Line Identifier on the delivery document the shipped item appears.   This could be a concatenation of the shipment identifier and a line identifier to guarantee uniqueness within this document.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ShipUnitReference">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Ship units are tyically rail cars, semi-trailers, etc.  A seed tender box is not the ship unit.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifier of the shipping container, usually a US DOT trailer identifier, or similiar.</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:simpleContent>
+													<xsd:extension base="xsd:normalizedString">
+														<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+													</xsd:extension>
+												</xsd:simpleContent>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">The type of ship unit the shipped item is transported.  Most often a semi-trailer, liquid tank, etc.</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ActualPickupDateTime" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Timestamp that the Farmer picked up the shipment at the Retailer -- if so Carrier Party is either not present or the name of the driver that picked up the shipment.  If Pickup then ActualShipmentDateTime and ActualDeliverDateTime are null.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ActualShipDateTime" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Actual date the Retailer's fleet or contractor truck left the retailer's warehouse, departing to the farm.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="ActualDeliveryDateTime" minOccurs="0" maxOccurs="1" type="xsd:dateTime">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Timestamp that the Farmer received the shipment at the Farm Location -- if so Carrier Party is the name of the driver that delivered the shipment.
+If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is null.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="DeliveredQuantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Quantity on the shipment, as delivered to the ship to party location.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="AcceptedQuantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product accepted at the ship to party location.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="RejectedQuantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product rejected at the ship to party location.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ReturnedQuantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product returned to the shipper; e.g., retailer.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:simpleContent>
+										<xsd:extension base="xsd:decimal">
+											<xsd:attribute name="unitCode" use="optional" type="xsd:token">
+												<xsd:annotation>
+													<xsd:documentation source="http://www.openapplications.org/oagis/10">Unit of measure, typically bags for pallets, totes or bulk boxes for treated seed.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:extension>
+									</xsd:simpleContent>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="ReturnMaterialAuthorizationID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">RMA identifier issued by the retailer authorizing the return of the rejected quantity back to the shipper's warehouse.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ShipFromParty">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifier for the ship from party, such as a UUID.  This is not the same as the GLN that identifies the location of the party.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of the Ship From Party</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="AccountID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">The account identifier for the party, e.g., a farmer's account with a retailer.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" maxOccurs="1" name="Location">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Location which the shipment originated from.</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of the shipper's location</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="GLNID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">GS1 Global Location Number of shipment originated from .</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">The type of ship from party; e.g., Farmer | Retailer</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="ShipToParty">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifies the party that the goods or services are being shipped or sent to.</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifier for the ship to party, such as a UUID.  This is not the same as the GLN that identifies the location of the party.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of the Ship To Party</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="AccountID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">The account identifier for the party, e.g., a farmer's account with a retailer.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" maxOccurs="1" name="Location">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Location the shipped is delivered to.</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element minOccurs="0" maxOccurs="1" name="Address">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Address of the ship to location</xsd:documentation>
+														</xsd:annotation>
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element name="AddressLine" minOccurs="0" maxOccurs="unbounded" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">Array of address lines</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+																<xsd:element name="CityName" minOccurs="0" maxOccurs="1" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">City Name</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+																<xsd:element name="CountrySubDivisionCode" minOccurs="0" maxOccurs="1">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">Qualifies the further division of the Country. These may be Districts, Regions, States, Provinces etc. A possible list of values is as specified in ISO 3166-2. The name attribute identifies the name of this e.g. District, Region etc, and there is a pre-defined list of types supported, with the ability to add new ones as necessary</xsd:documentation>
+																	</xsd:annotation>
+																	<xsd:complexType>
+																		<xsd:simpleContent>
+																			<xsd:extension base="xsd:token">
+																				<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+																					<xsd:annotation>
+																						<xsd:documentation source="http://www.openapplications.org/oagis/10">Permission values include State and County in the United States, Province in Canada, etc.</xsd:documentation>
+																					</xsd:annotation>
+																				</xsd:attribute>
+																			</xsd:extension>
+																		</xsd:simpleContent>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="PostalCode" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">Zip code in the United States</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+															</xsd:sequence>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="GLNID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">GS1 Global Location Number of the location the shipment is intended to ship to.</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">The type of ship to party; e.g., Farmer | Retailer | Processor | CPG</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element minOccurs="0" maxOccurs="1" name="CarrierParty">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">If Pickup, this is the farmer's driver that picked up the shipment at the Retailer and the ActualPickupDateTime is present and ActualDeliveryDateTime is null. 
+If Delivery, this is the retailer's driver (either Fleet or Contracted) that delivered the shipment to the farm, and the ActualDeliveryDateTime is present, and ActualPickupDateTime is null</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of carrier</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="SCACID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+						<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+							<xsd:annotation>
+								<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of shipment; either Pickup or Delivery</xsd:documentation>
+							</xsd:annotation>
+						</xsd:attribute>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+				<xsd:annotation>
+					<xsd:documentation source="http://www.openapplications.org/oagis/10">type of product shipped; Seed, CP = Crop protection, or CN = Crop Nutrition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
