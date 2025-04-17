@@ -243,7 +243,7 @@ components:
     shipFromParty:
       x-oagis-bie-guid: "fd407b771c3f40ba8785e5913cf3721c"
       x-oagis-bie-date-time: "2024-04-17T01:39:06+0000"
-      x-oagis-bie-version: "V4"
+      x-oagis-bie-version: "V4.1"
       x-oagis-bie-den: "Ship From Party"
       x-oagis-bie-uri: "https://oagiscore.net/profile_bie/926"
       x-oagis-release: "10.10.4"
@@ -252,11 +252,11 @@ components:
       additionalProperties: false
       properties:
         typeCode:
-          example: "retailer"
+          example: "Retailer"
           type: "string"
           format: "token"
         id:
-          example: "1"
+          example: "1b1de899-1597-4abb-826e-dce597d15942"
           type: "string"
           format: "normalizedString"
         name:
@@ -280,7 +280,7 @@ components:
     shipToParty:
       x-oagis-bie-guid: "aa7c141083c74657b919c77727decc64"
       x-oagis-bie-date-time: "2024-04-17T01:40:23+0000"
-      x-oagis-bie-version: "V4"
+      x-oagis-bie-version: "V4.1"
       x-oagis-bie-den: "Ship To Party"
       x-oagis-bie-uri: "https://oagiscore.net/profile_bie/927"
       x-oagis-release: "10.10.4"
@@ -293,7 +293,7 @@ components:
           type: "string"
           format: "token"
         id:
-          example: "NA"
+          example: "65d9e5d3-ed3d-4e23-a6a8-f5a06b1b215c"
           type: "string"
           format: "normalizedString"
         name:
@@ -366,7 +366,7 @@ components:
     shipmentReference:
       x-oagis-bie-guid: "48e884e23f01497ba71ec31cecb25443"
       x-oagis-bie-date-time: "2024-04-09T02:10:03+0000"
-      x-oagis-bie-version: "V4"
+      x-oagis-bie-version: "V4.1"
       x-oagis-bie-den: "Shipment Reference"
       x-oagis-bie-uri: "https://oagiscore.net/profile_bie/919"
       x-oagis-release: "10.10.4"
@@ -378,8 +378,12 @@ components:
           example: "34343535"
           type: "string"
           format: "normalizedString"
-        note:
+        typeCode:
           example: ""
+          type: "string"
+          format: "token"
+        note:
+          example: "NA"
           type: "string"
         status:
           type: "object"
