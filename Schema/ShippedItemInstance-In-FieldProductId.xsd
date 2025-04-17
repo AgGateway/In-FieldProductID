@@ -4,7 +4,7 @@
 		<xsd:annotation>
 			<xsd:documentation>Below is the 'appinfo' element containing BIE version information in beta format.</xsd:documentation>
 			<xsd:appinfo>Version ID = V4.1</xsd:appinfo>
-			<xsd:documentation source="http://www.openapplications.org/oagis/10">V4.1
+			<xsd:documentation source="http://www.openapplications.org/oagis/10">V4.1 S&amp;G approved 2025-04-17
 To enable PackageQuantity, for the number of bags that were placed in a seed tender box
 -enabled ShippedItemInstance.Quantity.TypeCode
 To allow for rejected quantity  reasons
@@ -340,7 +340,11 @@ This should be Item Composition component</xsd:documentation>
 						<xsd:simpleContent>
 							<xsd:extension base="xsd:decimal">
 								<xsd:attribute name="unitCode" use="optional" type="xsd:token" />
-								<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+								<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+									<xsd:annotation>
+										<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of quantity, as related to the packaging instance (shippedItemInstance.Packaging).  For example, the number of bags that were loaded into a seed tender box during seed treatment.</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
 							</xsd:extension>
 						</xsd:simpleContent>
 					</xsd:complexType>
@@ -387,7 +391,7 @@ This is defined as the tare weight (weight of the container, box or pallet) plus
 						</xsd:sequence>
 						<xsd:attribute name="typeCode" use="optional" type="xsd:token">
 							<xsd:annotation>
-								<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of packaging; Seed Box, Tote, Pallet;</xsd:documentation>
+								<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of packaging; SeedBox, Tote, Pallet;</xsd:documentation>
 							</xsd:annotation>
 						</xsd:attribute>
 					</xsd:complexType>
@@ -442,7 +446,7 @@ Quality (CN, CP manufacturing quality)</xsd:documentation>
 				<xsd:element minOccurs="0" maxOccurs="1" name="ShipmentReference">
 					<xsd:annotation>
 						<xsd:documentation source="http://www.openapplications.org/oagis/10">Shipment reference information</xsd:documentation>
-						<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product shipped to the farm</xsd:documentation>
+						<xsd:documentation source="http://www.openapplications.org/oagis/10">Information related to the shipment and shipment line, include status, line number, ship units, dates, and quantities delivered, accepted, rejected and returned.  This detail is helpful for invoice reconcilation.</xsd:documentation>
 					</xsd:annotation>
 					<xsd:complexType>
 						<xsd:sequence>
@@ -451,7 +455,11 @@ Quality (CN, CP manufacturing quality)</xsd:documentation>
 									<xsd:documentation source="http://www.openapplications.org/oagis/10">shipment identifier created by the retailer ERP system</xsd:documentation>
 								</xsd:annotation>
 							</xsd:element>
-							<xsd:element name="Note" minOccurs="0" maxOccurs="1" type="xsd:string" />
+							<xsd:element name="Note" minOccurs="0" maxOccurs="1" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">If there are rejected or returns for a given shipment line, these notes are helpful for processing.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
 							<xsd:element minOccurs="0" maxOccurs="1" name="Status">
 								<xsd:annotation>
 									<xsd:documentation source="http://www.openapplications.org/oagis/10">Status of the shipment line</xsd:documentation>
@@ -478,6 +486,9 @@ Quality (CN, CP manufacturing quality)</xsd:documentation>
 								</xsd:annotation>
 							</xsd:element>
 							<xsd:element minOccurs="0" maxOccurs="1" name="ShipUnitReference">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Ship units are tyically rail cars, semi-trailers, etc.  A seed tender box is not the ship unit.</xsd:documentation>
+								</xsd:annotation>
 								<xsd:complexType>
 									<xsd:sequence>
 										<xsd:element name="ID" minOccurs="0" maxOccurs="1">
@@ -517,6 +528,9 @@ If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is nul
 								</xsd:annotation>
 							</xsd:element>
 							<xsd:element name="DeliveredQuantity" minOccurs="0" maxOccurs="1">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Quantity on the shipment, as delivered to the ship to party location.</xsd:documentation>
+								</xsd:annotation>
 								<xsd:complexType>
 									<xsd:simpleContent>
 										<xsd:extension base="xsd:decimal">
@@ -531,7 +545,7 @@ If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is nul
 							</xsd:element>
 							<xsd:element name="AcceptedQuantity" minOccurs="0" maxOccurs="1">
 								<xsd:annotation>
-									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product accepted by the farmer.</xsd:documentation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product accepted at the ship to party location.</xsd:documentation>
 								</xsd:annotation>
 								<xsd:complexType>
 									<xsd:simpleContent>
@@ -547,7 +561,7 @@ If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is nul
 							</xsd:element>
 							<xsd:element name="RejectedQuantity" minOccurs="0" maxOccurs="1">
 								<xsd:annotation>
-									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product rejected by the farmer.</xsd:documentation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product rejected at the ship to party location.</xsd:documentation>
 								</xsd:annotation>
 								<xsd:complexType>
 									<xsd:simpleContent>
@@ -563,7 +577,7 @@ If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is nul
 							</xsd:element>
 							<xsd:element name="ReturnedQuantity" minOccurs="0" maxOccurs="1">
 								<xsd:annotation>
-									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product returned to the retailer.</xsd:documentation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">The quantity of product returned to the shipper; e.g., retailer.</xsd:documentation>
 								</xsd:annotation>
 								<xsd:complexType>
 									<xsd:simpleContent>
@@ -579,38 +593,73 @@ If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is nul
 							</xsd:element>
 							<xsd:element name="ReturnMaterialAuthorizationID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
 								<xsd:annotation>
-									<xsd:documentation source="http://www.openapplications.org/oagis/10">RMA identifier issued by the retailer authorizing the return of the rejected quantity back to the retailer's warehouse.</xsd:documentation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">RMA identifier issued by the retailer authorizing the return of the rejected quantity back to the shipper's warehouse.</xsd:documentation>
 								</xsd:annotation>
 							</xsd:element>
 							<xsd:element minOccurs="0" maxOccurs="1" name="ShipFromParty">
 								<xsd:complexType>
 									<xsd:sequence>
-										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
-										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
-										<xsd:element name="AccountID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifier for the ship from party, such as a UUID.  This is not the same as the GLN that identifies the location of the party.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of the Ship From Party</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="AccountID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">The account identifier for the party, e.g., a farmer's account with a retailer.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
 										<xsd:element minOccurs="0" maxOccurs="1" name="Location">
 											<xsd:annotation>
-												<xsd:documentation source="http://www.openapplications.org/oagis/10">Branch Location which the seed was shipped from.</xsd:documentation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Location which the shipment originated from.</xsd:documentation>
 											</xsd:annotation>
 											<xsd:complexType>
 												<xsd:sequence>
-													<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
-													<xsd:element name="GLNID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+													<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of the shipper's location</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
+													<xsd:element name="GLNID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">GS1 Global Location Number of shipment originated from .</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
 												</xsd:sequence>
 											</xsd:complexType>
 										</xsd:element>
 									</xsd:sequence>
-									<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">The type of ship from party; e.g., Farmer | Retailer</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
 								</xsd:complexType>
 							</xsd:element>
 							<xsd:element minOccurs="0" maxOccurs="1" name="ShipToParty">
+								<xsd:annotation>
+									<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifies the party that the goods or services are being shipped or sent to.</xsd:documentation>
+								</xsd:annotation>
 								<xsd:complexType>
 									<xsd:sequence>
-										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
-										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string" />
+										<xsd:element name="ID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Identifier for the ship to party, such as a UUID.  This is not the same as the GLN that identifies the location of the party.</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element name="Name" minOccurs="0" maxOccurs="1" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">Name of the Ship To Party</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
 										<xsd:element name="AccountID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
 											<xsd:annotation>
-												<xsd:documentation source="http://www.openapplications.org/oagis/10">Retailer's account number for the grower</xsd:documentation>
+												<xsd:documentation source="http://www.openapplications.org/oagis/10">The account identifier for the party, e.g., a farmer's account with a retailer.</xsd:documentation>
 											</xsd:annotation>
 										</xsd:element>
 										<xsd:element minOccurs="0" maxOccurs="1" name="Location">
@@ -625,27 +674,54 @@ If Delivery, then ActualShipDateTime is present, and ActualPickupDateTime is nul
 														</xsd:annotation>
 														<xsd:complexType>
 															<xsd:sequence>
-																<xsd:element name="AddressLine" minOccurs="0" maxOccurs="unbounded" type="xsd:string" />
-																<xsd:element name="CityName" minOccurs="0" maxOccurs="1" type="xsd:string" />
+																<xsd:element name="AddressLine" minOccurs="0" maxOccurs="unbounded" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">Array of address lines</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
+																<xsd:element name="CityName" minOccurs="0" maxOccurs="1" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">City Name</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
 																<xsd:element name="CountrySubDivisionCode" minOccurs="0" maxOccurs="1">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">Qualifies the further division of the Country. These may be Districts, Regions, States, Provinces etc. A possible list of values is as specified in ISO 3166-2. The name attribute identifies the name of this e.g. District, Region etc, and there is a pre-defined list of types supported, with the ability to add new ones as necessary</xsd:documentation>
+																	</xsd:annotation>
 																	<xsd:complexType>
 																		<xsd:simpleContent>
 																			<xsd:extension base="xsd:token">
-																				<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+																				<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+																					<xsd:annotation>
+																						<xsd:documentation source="http://www.openapplications.org/oagis/10">Permission values include State and County in the United States, Province in Canada, etc.</xsd:documentation>
+																					</xsd:annotation>
+																				</xsd:attribute>
 																			</xsd:extension>
 																		</xsd:simpleContent>
 																	</xsd:complexType>
 																</xsd:element>
-																<xsd:element name="PostalCode" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+																<xsd:element name="PostalCode" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+																	<xsd:annotation>
+																		<xsd:documentation source="http://www.openapplications.org/oagis/10">Zip code in the United States</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:element>
 															</xsd:sequence>
 														</xsd:complexType>
 													</xsd:element>
-													<xsd:element name="GLNID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString" />
+													<xsd:element name="GLNID" minOccurs="0" maxOccurs="1" type="xsd:normalizedString">
+														<xsd:annotation>
+															<xsd:documentation source="http://www.openapplications.org/oagis/10">GS1 Global Location Number of the location the shipment is intended to ship to.</xsd:documentation>
+														</xsd:annotation>
+													</xsd:element>
 												</xsd:sequence>
 											</xsd:complexType>
 										</xsd:element>
 									</xsd:sequence>
-									<xsd:attribute name="typeCode" use="optional" type="xsd:token" />
+									<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+										<xsd:annotation>
+											<xsd:documentation source="http://www.openapplications.org/oagis/10">The type of ship to party; e.g., Farmer | Retailer | Processor | CPG</xsd:documentation>
+										</xsd:annotation>
+									</xsd:attribute>
 								</xsd:complexType>
 							</xsd:element>
 							<xsd:element minOccurs="0" maxOccurs="1" name="CarrierParty">
@@ -666,6 +742,11 @@ If Delivery, this is the retailer's driver (either Fleet or Contracted) that del
 								</xsd:complexType>
 							</xsd:element>
 						</xsd:sequence>
+						<xsd:attribute name="typeCode" use="optional" type="xsd:token">
+							<xsd:annotation>
+								<xsd:documentation source="http://www.openapplications.org/oagis/10">Type of shipment; either Pickup or Delivery</xsd:documentation>
+							</xsd:annotation>
+						</xsd:attribute>
 					</xsd:complexType>
 				</xsd:element>
 			</xsd:sequence>
