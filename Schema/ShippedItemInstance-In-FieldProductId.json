@@ -114,6 +114,14 @@
                 }, {
                   "examples" : [ "BG" ]
                 } ]
+              },
+              "typeCode" : {
+                "allOf" : [ {
+                  "$ref" : "#/definitions/token"
+                }, {
+                  "description" : "Type of quantity, as related to the packaging instance (shippedItemInstance.Packaging).  For example, the number of bags that were loaded into a seed tender box during seed treatment.",
+                  "examples" : [ "PackageCount" ]
+                } ]
               }
             }
           },
@@ -126,7 +134,7 @@
                 "allOf" : [ {
                   "$ref" : "#/definitions/token"
                 }, {
-                  "description" : "Type of packaging; Seed Box, Tote, Pallet; \n",
+                  "description" : "Type of packaging; SeedBox, Tote, Pallet; \n",
                   "examples" : [ "SeedBox" ]
                 } ]
               },
@@ -196,6 +204,46 @@
     "normalizedString" : {
       "type" : "string"
     },
+    "relatedId" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "typeCode" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/token"
+          }, {
+            "examples" : [ "URL" ]
+          } ]
+        },
+        "id" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "examples" : [ "https://agiis.aggateway.org/gtin/012323232" ]
+          } ]
+        },
+        "sourceId" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "examples" : [ "AGIIS" ]
+          } ]
+        },
+        "partyId" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "examples" : [ "AgGateway" ]
+          } ]
+        }
+      }
+    },
+    "relatedIdList" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/relatedId"
+      }
+    },
     "string" : {
       "type" : "string"
     },
@@ -264,41 +312,7 @@
       "additionalProperties" : false,
       "properties" : {
         "relatedId" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "additionalProperties" : false,
-            "properties" : {
-              "typeCode" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/token"
-                }, {
-                  "examples" : [ "Linked" ]
-                } ]
-              },
-              "id" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/normalizedString"
-                }, {
-                  "examples" : [ "https://api.agiis.org/?gtinid=00888346580291" ]
-                } ]
-              },
-              "sourceId" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/normalizedString"
-                }, {
-                  "examples" : [ "AGIIS" ]
-                } ]
-              },
-              "partyId" : {
-                "allOf" : [ {
-                  "$ref" : "#/definitions/normalizedString"
-                }, {
-                  "examples" : [ "AgGateway" ]
-                } ]
-              }
-            }
-          }
+          "$ref" : "#/definitions/relatedIdList"
         },
         "manufacturerItemIdentification" : {
           "description" : "Manufacturer's Item identifier",
@@ -498,6 +512,9 @@
           "type" : "object",
           "additionalProperties" : false,
           "properties" : {
+            "typeCode" : {
+              "$ref" : "#/definitions/token"
+            },
             "id" : {
               "allOf" : [ {
                 "$ref" : "#/definitions/normalizedString"
@@ -505,6 +522,9 @@
                 "description" : "Manufacturer's or Retailer's Seed Treatment identifier",
                 "examples" : [ "1001339" ]
               } ]
+            },
+            "relatedId" : {
+              "$ref" : "#/definitions/relatedIdList"
             },
             "name" : {
               "allOf" : [ {
@@ -677,25 +697,36 @@
           "allOf" : [ {
             "$ref" : "#/definitions/token"
           }, {
-            "examples" : [ "retailer" ]
+            "description" : "The type of ship from party; e.g., Farmer | Retailer",
+            "examples" : [ "Retailer" ]
           } ]
         },
         "id" : {
           "allOf" : [ {
             "$ref" : "#/definitions/normalizedString"
           }, {
-            "examples" : [ "1" ]
+            "description" : "Identifier for the ship from party, such as a UUID.  This is not the same as the GLN that identifies the location of the party.",
+            "examples" : [ "1b1de899-1597-4abb-826e-dce597d15942" ]
           } ]
         },
         "name" : {
           "allOf" : [ {
             "$ref" : "#/definitions/string"
           }, {
+            "description" : "Name of the Ship From Party",
             "examples" : [ "Ceres Solutions" ]
           } ]
         },
+        "accountId" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "description" : "The account identifier for the party, e.g., a farmer's account with a retailer.",
+            "examples" : [ "NA" ]
+          } ]
+        },
         "location" : {
-          "description" : "Branch Location which the seed was shipped from.",
+          "description" : "Location which the shipment originated from.",
           "type" : "object",
           "additionalProperties" : false,
           "properties" : {
@@ -703,6 +734,7 @@
               "allOf" : [ {
                 "$ref" : "#/definitions/string"
               }, {
+                "description" : "Name of the shipper's location",
                 "examples" : [ "New Lebanon Seed Hub" ]
               } ]
             },
@@ -710,6 +742,7 @@
               "allOf" : [ {
                 "$ref" : "#/definitions/normalizedString"
               }, {
+                "description" : "GS1 Global Location Number of shipment originated from .",
                 "examples" : [ "1100028417954" ]
               } ]
             }
@@ -725,13 +758,23 @@
           "allOf" : [ {
             "$ref" : "#/definitions/token"
           }, {
+            "description" : "The type of ship to party; e.g., Farmer | Retailer | Processor | CPG",
             "examples" : [ "Farmer" ]
+          } ]
+        },
+        "id" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/normalizedString"
+          }, {
+            "description" : "Identifier for the ship to party, such as a UUID.  This is not the same as the GLN that identifies the location of the party.",
+            "examples" : [ "65d9e5d3-ed3d-4e23-a6a8-f5a06b1b215c" ]
           } ]
         },
         "name" : {
           "allOf" : [ {
             "$ref" : "#/definitions/string"
           }, {
+            "description" : "Name of the Ship To Party",
             "examples" : [ "Farmer Bob" ]
           } ]
         },
@@ -739,7 +782,7 @@
           "allOf" : [ {
             "$ref" : "#/definitions/normalizedString"
           }, {
-            "description" : "Retailer's account number for the grower",
+            "description" : "The account identifier for the party, e.g., a farmer's account with a retailer.",
             "examples" : [ "12345" ]
           } ]
         },
@@ -759,6 +802,7 @@
                     "allOf" : [ {
                       "$ref" : "#/definitions/string"
                     }, {
+                      "description" : "Array of address lines",
                       "examples" : [ "1234 County Road 5" ]
                     } ]
                   }
@@ -767,10 +811,12 @@
                   "allOf" : [ {
                     "$ref" : "#/definitions/string"
                   }, {
+                    "description" : "City Name",
                     "examples" : [ "FarmTown" ]
                   } ]
                 },
                 "countrySubDivisionCode" : {
+                  "description" : "Qualifies the further division of the Country. These may be Districts, Regions, States, Provinces etc. A possible list of values is as specified in ISO 3166-2. The name attribute identifies the name of this e.g. District, Region etc, and there is a pre-defined list of types supported, with the ability to add new ones as necessary",
                   "type" : "object",
                   "required" : [ "content" ],
                   "additionalProperties" : false,
@@ -786,6 +832,7 @@
                       "allOf" : [ {
                         "$ref" : "#/definitions/token"
                       }, {
+                        "description" : "Permission values include State and County in the United States, Province in Canada, etc.",
                         "examples" : [ "State" ]
                       } ]
                     }
@@ -795,6 +842,7 @@
                   "allOf" : [ {
                     "$ref" : "#/definitions/normalizedString"
                   }, {
+                    "description" : "Zip code in the United States",
                     "examples" : [ "45677" ]
                   } ]
                 }
@@ -804,6 +852,7 @@
               "allOf" : [ {
                 "$ref" : "#/definitions/normalizedString"
               }, {
+                "description" : "GS1 Global Location Number of the location the shipment is intended to ship to.",
                 "examples" : [ "NA" ]
               } ]
             }
@@ -851,6 +900,21 @@
             "examples" : [ "34343535" ]
           } ]
         },
+        "typeCode" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/token"
+          }, {
+            "description" : "Type of shipment; either Pickup or Delivery"
+          } ]
+        },
+        "note" : {
+          "allOf" : [ {
+            "$ref" : "#/definitions/string"
+          }, {
+            "description" : "If there are rejected or returns for a given shipment line, these notes are helpful for processing.",
+            "examples" : [ "NA" ]
+          } ]
+        },
         "status" : {
           "description" : "Status of the shipment line",
           "type" : "object",
@@ -888,6 +952,7 @@
           } ]
         },
         "shipUnitReference" : {
+          "description" : "Ship units are tyically rail cars, semi-trailers, etc.  A seed tender box is not the ship unit.",
           "type" : "object",
           "additionalProperties" : false,
           "properties" : {
@@ -946,6 +1011,7 @@
           } ]
         },
         "deliveredQuantity" : {
+          "description" : "Quantity on the shipment, as delivered to the ship to party location.",
           "type" : "object",
           "required" : [ "content" ],
           "additionalProperties" : false,
@@ -963,7 +1029,7 @@
           }
         },
         "acceptedQuantity" : {
-          "description" : "The quantity of product accepted by the farmer.",
+          "description" : "The quantity of product accepted at the ship to party location.",
           "type" : "object",
           "required" : [ "content" ],
           "additionalProperties" : false,
@@ -981,7 +1047,7 @@
           }
         },
         "rejectedQuantity" : {
-          "description" : "The quantity of product rejected by the farmer.",
+          "description" : "The quantity of product rejected at the ship to party location.",
           "type" : "object",
           "required" : [ "content" ],
           "additionalProperties" : false,
@@ -999,7 +1065,7 @@
           }
         },
         "returnedQuantity" : {
-          "description" : "The quantity of product returned to the retailer.",
+          "description" : "The quantity of product returned to the shipper; e.g., retailer.",
           "type" : "object",
           "required" : [ "content" ],
           "additionalProperties" : false,
@@ -1020,7 +1086,7 @@
           "allOf" : [ {
             "$ref" : "#/definitions/normalizedString"
           }, {
-            "description" : "RMA identifier issued by the retailer authorizing the return of the rejected quantity back to the retailer's warehouse."
+            "description" : "RMA identifier issued by the retailer authorizing the return of the rejected quantity back to the shipper's warehouse."
           } ]
         },
         "shipFromParty" : {

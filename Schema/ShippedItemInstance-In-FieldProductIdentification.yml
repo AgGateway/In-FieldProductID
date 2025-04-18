@@ -7,12 +7,16 @@ info:
     \ mixture batch id, seed treatment and product composition.  Allows the Farmer\
     \ (via a mobile application or FMIS), or the Farmer's equipment manufacturer application\
     \ (aka OEM Platform, e.g., Deere Operations Center, AGCO Fuse, CNH AFS, etc.)\
-    \ to retrieve the Product shipped by a Retailer using GET /setupfiles.   "
+    \ to retrieve the Product shipped by a Retailer using GET /setupfiles.   \nV4.1\
+    \ Allows shipments from the farm to the retailer/ elevator / processor as these\
+    \ roles are reversed as the shipFromParty is the farmer and shipToParty is the\
+    \ commodity processor or elevator for storage.  This improves the process for\
+    \ receipts at the elevator.  "
   contact:
     name: "WG01"
     url: "https://wg01.aggateway.org/info"
     email: "wg01@aggateway.org"
-  version: "V4"
+  version: "V4.1"
   x-oagis-license: ""
 paths:
   /in-field-product-id/v4/setup-files:
@@ -205,28 +209,6 @@ components:
             shipmentReferenceRead: "Allows Shipment Reference data to be read"
             shipmentReferenceWrite: "Allows Shipment Reference data to be written"
   schemas:
-    carrierParty:
-      x-oagis-bie-guid: "f0624df251ad49f783b8e7f82890701a"
-      x-oagis-bie-date-time: "2024-04-17T01:40:39+0000"
-      x-oagis-bie-version: "V4"
-      x-oagis-bie-den: "Carrier Party"
-      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/928"
-      x-oagis-release: "10.10.4"
-      x-oagis-release-date: "2024-04-03"
-      type: "object"
-      additionalProperties: false
-      properties:
-        id:
-          example: "Fleet"
-          type: "string"
-          format: "normalizedString"
-        name:
-          example: "Ceres Fleet"
-          type: "string"
-        scacid:
-          example: "NA"
-          type: "string"
-          format: "normalizedString"
     measurement:
       x-oagis-bie-guid: "3677055fe37b4397afd9dfe0537c6211"
       x-oagis-bie-date-time: "2024-04-09T02:19:39+0000"
@@ -261,7 +243,7 @@ components:
     shipFromParty:
       x-oagis-bie-guid: "fd407b771c3f40ba8785e5913cf3721c"
       x-oagis-bie-date-time: "2024-04-17T01:39:06+0000"
-      x-oagis-bie-version: "V4"
+      x-oagis-bie-version: "V4.1"
       x-oagis-bie-den: "Ship From Party"
       x-oagis-bie-uri: "https://oagiscore.net/profile_bie/926"
       x-oagis-release: "10.10.4"
@@ -270,16 +252,20 @@ components:
       additionalProperties: false
       properties:
         typeCode:
-          example: "retailer"
+          example: "Retailer"
           type: "string"
           format: "token"
         id:
-          example: "1"
+          example: "1b1de899-1597-4abb-826e-dce597d15942"
           type: "string"
           format: "normalizedString"
         name:
           example: "Ceres Solutions"
           type: "string"
+        accountId:
+          example: "NA"
+          type: "string"
+          format: "normalizedString"
         location:
           type: "object"
           additionalProperties: false
@@ -294,7 +280,7 @@ components:
     shipToParty:
       x-oagis-bie-guid: "aa7c141083c74657b919c77727decc64"
       x-oagis-bie-date-time: "2024-04-17T01:40:23+0000"
-      x-oagis-bie-version: "V4"
+      x-oagis-bie-version: "V4.1"
       x-oagis-bie-den: "Ship To Party"
       x-oagis-bie-uri: "https://oagiscore.net/profile_bie/927"
       x-oagis-release: "10.10.4"
@@ -306,6 +292,10 @@ components:
           example: "Farmer"
           type: "string"
           format: "token"
+        id:
+          example: "65d9e5d3-ed3d-4e23-a6a8-f5a06b1b215c"
+          type: "string"
+          format: "normalizedString"
         name:
           example: "Farmer Bob"
           type: "string"
@@ -351,10 +341,32 @@ components:
               example: "NA"
               type: "string"
               format: "normalizedString"
+    carrierParty:
+      x-oagis-bie-guid: "f0624df251ad49f783b8e7f82890701a"
+      x-oagis-bie-date-time: "2024-04-17T01:40:39+0000"
+      x-oagis-bie-version: "V4"
+      x-oagis-bie-den: "Carrier Party"
+      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/928"
+      x-oagis-release: "10.10.4"
+      x-oagis-release-date: "2024-04-03"
+      type: "object"
+      additionalProperties: false
+      properties:
+        id:
+          example: "Fleet"
+          type: "string"
+          format: "normalizedString"
+        name:
+          example: "Ceres Fleet"
+          type: "string"
+        scacid:
+          example: "NA"
+          type: "string"
+          format: "normalizedString"
     shipmentReference:
       x-oagis-bie-guid: "48e884e23f01497ba71ec31cecb25443"
       x-oagis-bie-date-time: "2024-04-09T02:10:03+0000"
-      x-oagis-bie-version: "V4"
+      x-oagis-bie-version: "V4.1"
       x-oagis-bie-den: "Shipment Reference"
       x-oagis-bie-uri: "https://oagiscore.net/profile_bie/919"
       x-oagis-release: "10.10.4"
@@ -366,6 +378,13 @@ components:
           example: "34343535"
           type: "string"
           format: "normalizedString"
+        typeCode:
+          example: ""
+          type: "string"
+          format: "token"
+        note:
+          example: "NA"
+          type: "string"
         status:
           type: "object"
           additionalProperties: false
@@ -529,6 +548,10 @@ components:
           properties:
             measurement:
               $ref: "#/components/schemas/measurementList"
+    relatedIdList:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/relatedId"
     classification:
       x-oagis-bie-guid: "20775b5ae61a41e3ab1fab73e3e78394"
       x-oagis-bie-date-time: "2024-04-09T02:20:42+0000"
@@ -571,10 +594,6 @@ components:
                     example: "Corn For Grain"
                     type: "string"
                     format: "token"
-    relatedIdList:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/relatedId"
     item:
       x-oagis-bie-guid: "0d65bd04b21f4caea6e113aeb5484e0f"
       x-oagis-bie-date-time: "2024-04-09T02:22:01+0000"
@@ -764,7 +783,7 @@ components:
     shippedItemInstance:
       x-oagis-bie-guid: "51cadda6385548768ea5bed056342fa1"
       x-oagis-bie-date-time: "2024-04-09T02:24:23+0000"
-      x-oagis-bie-version: "V4"
+      x-oagis-bie-version: "V4.1"
       x-oagis-bie-den: "Shipped Item Instance"
       x-oagis-bie-uri: "https://oagiscore.net/profile_bie/924"
       x-oagis-release: "10.10.4"
@@ -833,6 +852,10 @@ components:
               example: "45"
             unitCode:
               example: "BG"
+              type: "string"
+              format: "token"
+            typeCode:
+              example: "PackageCount"
               type: "string"
               format: "token"
         packaging:
