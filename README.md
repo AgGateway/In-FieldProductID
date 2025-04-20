@@ -3,7 +3,7 @@ This GitHub repo provides the Azure resources to supports the agricultural use c
 
 ## Version History
 - V4.1 allows shipments from the farmer to the retailer's elevator, or direct ship to processor and CPG partners.
-## V3-V4 updates included:
+- V3-V4 updates included:
 -- Party -> shipToParty (grower) and shipFromParty (Retailer), etc.
 -- Attachment -> item.relatedIds -- URI reference to AGIIS
 -- Quantity removed from Substance (Not realistic)
