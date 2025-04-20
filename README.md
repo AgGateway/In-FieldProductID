@@ -1,16 +1,17 @@
 # In-Field Product Identification Overview
 This GitHub repo provides the Azure resources to supports the agricultural use case to improve product identification capabilities in a farmer's field (in-field product identification), focusing on actual product received by the farmer.  
 
-## V4.1 allows shipments from the farmer to the retailer's elevator, or direct ship to processor and CPG partners.
+## Version History
+- V4.1 allows shipments from the farmer to the retailer's elevator, or direct ship to processor and CPG partners.
 ## V3-V4 updates included:
-1) Party -> shipToParty (grower) and shipFromParty (Retailer), etc.
-2) Attachment -> item.relatedIds -- URI reference to AGIIS
-3) Quantity removed from Substance (Not realistic)
-4) Lot flattened
-5) Shipment Reference now includes shipTo and shipFrom parties, receipt date at the farm, or pickup date at the retailer, and received, accepted, rejected, and return quantities and RMA identifier.
-6) Simplified the Results.Quantitative.Measurement[] structure, flattening measurement
-## V2 allows the Retailer to sent Crop Nutrition and Crop Protection composition details, and improves the means to represent seed treatment and the shipment reference information.
-## V1 allowed the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment.   
+-- Party -> shipToParty (grower) and shipFromParty (Retailer), etc.
+-- Attachment -> item.relatedIds -- URI reference to AGIIS
+-- Quantity removed from Substance (Not realistic)
+-- Lot flattened
+-- Shipment Reference now includes shipTo and shipFrom parties, receipt date at the farm, or pickup date at the retailer, and received, accepted, rejected, and return quantities and RMA identifier.
+-- Simplified the Results.Quantitative.Measurement[] structure, flattening measurement
+- V2 allows the Retailer to sent Crop Nutrition and Crop Protection composition details, and improves the means to represent seed treatment and the shipment reference information.
+- V1 allowed the Retailer to send information about the actual seed product shipped to the Farmer, including shipment identifer, product identifiers, seed lot id, and seed treatment.   
 
 This also allows the Farmer to leverage either a variety of tools such as a mobile application or a Farm Management Information System (FMIS), as well as the Farmer's OEM equipment manufacturer application (e.g., Deere Operations Center, AGCO Fuse, CNH AFS, etc.) to retrieve the Product shipped by a Retailer in the form of setup files.  
 
