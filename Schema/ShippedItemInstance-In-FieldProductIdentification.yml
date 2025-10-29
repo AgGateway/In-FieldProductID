@@ -11,7 +11,8 @@ info:
     \ Allows shipments from the farm to the retailer/ elevator / processor as these\
     \ roles are reversed as the shipFromParty is the farmer and shipToParty is the\
     \ commodity processor or elevator for storage.  This improves the process for\
-    \ receipts at the elevator.  "
+    \ receipts at the elevator. \v4.1.1 - Updates YML with property level \
+    \ descriptions, after connectCenter bug fix; adds ADAPT Standard content-type  "
   contact:
     name: "WG01"
     url: "https://wg01.aggateway.org/info"
