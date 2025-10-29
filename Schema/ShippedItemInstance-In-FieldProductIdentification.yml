@@ -16,7 +16,7 @@ info:
     name: "WG01"
     url: "https://wg01.aggateway.org/info"
     email: "wg01@aggateway.org"
-  version: "V4.1"
+  version: "V4.1.1"
   x-oagis-license: ""
 paths:
   /in-field-product-id/v4/setup-files:
