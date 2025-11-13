@@ -11,12 +11,13 @@ info:
     \ Allows shipments from the farm to the retailer/ elevator / processor as these\
     \ roles are reversed as the shipFromParty is the farmer and shipToParty is the\
     \ commodity processor or elevator for storage.  This improves the process for\
-    \ receipts at the elevator.  "
+    \ receipts at the elevator. \v4.1.1 - Updates YML with property level \
+    \ descriptions, after connectCenter bug fix; adds ADAPT Standard content-type  "
   contact:
     name: "WG01"
     url: "https://wg01.aggateway.org/info"
     email: "wg01@aggateway.org"
-  version: "V4.1"
+  version: "V4.1.1"
   x-oagis-license: ""
 paths:
   /in-field-product-id/v4/setup-files:
@@ -55,8 +56,9 @@ paths:
           enum:
             - application/vnd.aggateway.adapt.adm+zip
             - application/vnd.aggateway.adapt.iso+zip
+            - application/vnd.aggateway.adapt.standard+zip
           type: string
-          default: application/vnd.aggateway.adapt.iso+zip
+          default: application/vnd.aggateway.adapt.stnadard+zip
       responses:
         '200':
           description: OAGIS JSON as profiled in Score by AgGateway
@@ -209,297 +211,6 @@ components:
             shipmentReferenceRead: "Allows Shipment Reference data to be read"
             shipmentReferenceWrite: "Allows Shipment Reference data to be written"
   schemas:
-    measurement:
-      x-oagis-bie-guid: "3677055fe37b4397afd9dfe0537c6211"
-      x-oagis-bie-date-time: "2024-04-09T02:19:39+0000"
-      x-oagis-bie-version: "V4"
-      x-oagis-bie-den: "Measurement"
-      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/921"
-      x-oagis-release: "10.10.4"
-      x-oagis-release-date: "2024-04-03"
-      type: "object"
-      required:
-      - "measure"
-      additionalProperties: false
-      properties:
-        typeCode:
-          example: "Operational"
-          type: "string"
-          format: "token"
-        name:
-          example: "Seed Count"
-          type: "string"
-        dateTime:
-          example: "2021-02-08T13:17:45.034-05:00"
-          type: "string"
-          format: "date-time"
-        measure:
-          example: "892"
-          type: "number"
-        unitCode:
-          example: ""
-          type: "string"
-          format: "normalizedString"
-    shipFromParty:
-      x-oagis-bie-guid: "fd407b771c3f40ba8785e5913cf3721c"
-      x-oagis-bie-date-time: "2024-04-17T01:39:06+0000"
-      x-oagis-bie-version: "V4.1"
-      x-oagis-bie-den: "Ship From Party"
-      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/926"
-      x-oagis-release: "10.10.4"
-      x-oagis-release-date: "2024-04-03"
-      type: "object"
-      additionalProperties: false
-      properties:
-        typeCode:
-          example: "Retailer"
-          type: "string"
-          format: "token"
-        id:
-          example: "1b1de899-1597-4abb-826e-dce597d15942"
-          type: "string"
-          format: "normalizedString"
-        name:
-          example: "Ceres Solutions"
-          type: "string"
-        accountId:
-          example: "NA"
-          type: "string"
-          format: "normalizedString"
-        location:
-          type: "object"
-          additionalProperties: false
-          properties:
-            name:
-              example: "New Lebanon Seed Hub"
-              type: "string"
-            glnid:
-              example: "1100028417954"
-              type: "string"
-              format: "normalizedString"
-    shipToParty:
-      x-oagis-bie-guid: "aa7c141083c74657b919c77727decc64"
-      x-oagis-bie-date-time: "2024-04-17T01:40:23+0000"
-      x-oagis-bie-version: "V4.1"
-      x-oagis-bie-den: "Ship To Party"
-      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/927"
-      x-oagis-release: "10.10.4"
-      x-oagis-release-date: "2024-04-03"
-      type: "object"
-      additionalProperties: false
-      properties:
-        typeCode:
-          example: "Farmer"
-          type: "string"
-          format: "token"
-        id:
-          example: "65d9e5d3-ed3d-4e23-a6a8-f5a06b1b215c"
-          type: "string"
-          format: "normalizedString"
-        name:
-          example: "Farmer Bob"
-          type: "string"
-        accountId:
-          example: "12345"
-          type: "string"
-          format: "normalizedString"
-        location:
-          type: "object"
-          additionalProperties: false
-          properties:
-            address:
-              type: "object"
-              additionalProperties: false
-              properties:
-                addressLine:
-                  type: "array"
-                  items:
-                    example: "1234 County Road 5"
-                    type: "string"
-                cityName:
-                  example: "FarmTown"
-                  type: "string"
-                countrySubDivisionCode:
-                  type: "object"
-                  required:
-                  - "content"
-                  additionalProperties: false
-                  properties:
-                    content:
-                      type: "string"
-                      format: "token"
-                      example: "IA"
-                    typeCode:
-                      example: "State"
-                      type: "string"
-                      format: "token"
-                postalCode:
-                  example: "45677"
-                  type: "string"
-                  format: "normalizedString"
-            glnid:
-              example: "NA"
-              type: "string"
-              format: "normalizedString"
-    carrierParty:
-      x-oagis-bie-guid: "f0624df251ad49f783b8e7f82890701a"
-      x-oagis-bie-date-time: "2024-04-17T01:40:39+0000"
-      x-oagis-bie-version: "V4"
-      x-oagis-bie-den: "Carrier Party"
-      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/928"
-      x-oagis-release: "10.10.4"
-      x-oagis-release-date: "2024-04-03"
-      type: "object"
-      additionalProperties: false
-      properties:
-        id:
-          example: "Fleet"
-          type: "string"
-          format: "normalizedString"
-        name:
-          example: "Ceres Fleet"
-          type: "string"
-        scacid:
-          example: "NA"
-          type: "string"
-          format: "normalizedString"
-    shipmentReference:
-      x-oagis-bie-guid: "48e884e23f01497ba71ec31cecb25443"
-      x-oagis-bie-date-time: "2024-04-09T02:10:03+0000"
-      x-oagis-bie-version: "V4.1"
-      x-oagis-bie-den: "Shipment Reference"
-      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/919"
-      x-oagis-release: "10.10.4"
-      x-oagis-release-date: "2024-04-03"
-      type: "object"
-      additionalProperties: false
-      properties:
-        id:
-          example: "34343535"
-          type: "string"
-          format: "normalizedString"
-        typeCode:
-          example: ""
-          type: "string"
-          format: "token"
-        note:
-          example: "NA"
-          type: "string"
-        status:
-          type: "object"
-          additionalProperties: false
-          properties:
-            code:
-              example: "In-Transit"
-              type: "string"
-              format: "normalizedString"
-            reasonCode:
-              example: ""
-              type: "string"
-              format: "normalizedString"
-            reason:
-              example: ""
-              type: "string"
-        lineNumberId:
-          example: "34343535-1"
-          type: "string"
-          format: "normalizedString"
-        shipUnitReference:
-          type: "object"
-          additionalProperties: false
-          properties:
-            typeCode:
-              example: "Semi-Trailer"
-              type: "string"
-              format: "token"
-            id:
-              type: "object"
-              required:
-              - "content"
-              additionalProperties: false
-              properties:
-                content:
-                  type: "string"
-                  format: "normalizedString"
-                  example: "12345678"
-                typeCode:
-                  example: " USDOT_Number"
-                  type: "string"
-                  format: "token"
-        actualPickupDateTime:
-          example: ""
-          type: "string"
-          format: "date-time"
-        actualShipDateTime:
-          example: "2022-04-25T09:06:07-05:00"
-          type: "string"
-          format: "date-time"
-        actualDeliveryDateTime:
-          example: ""
-          type: "string"
-          format: "date-time"
-        deliveredQuantity:
-          type: "object"
-          required:
-          - "content"
-          additionalProperties: false
-          properties:
-            content:
-              type: "number"
-              example: null
-            unitCode:
-              example: ""
-              type: "string"
-              format: "token"
-        acceptedQuantity:
-          type: "object"
-          required:
-          - "content"
-          additionalProperties: false
-          properties:
-            content:
-              type: "number"
-              example: null
-            unitCode:
-              example: ""
-              type: "string"
-              format: "token"
-        rejectedQuantity:
-          type: "object"
-          required:
-          - "content"
-          additionalProperties: false
-          properties:
-            content:
-              type: "number"
-              example: null
-            unitCode:
-              example: ""
-              type: "string"
-              format: "token"
-        returnedQuantity:
-          type: "object"
-          required:
-          - "content"
-          additionalProperties: false
-          properties:
-            content:
-              type: "number"
-              example: null
-            unitCode:
-              example: ""
-              type: "string"
-              format: "token"
-        returnMaterialAuthorizationId:
-          example: ""
-          type: "string"
-          format: "normalizedString"
-        shipFromParty:
-          $ref: "#/components/schemas/shipFromParty"
-        shipToParty:
-          $ref: "#/components/schemas/shipToParty"
-        carrierParty:
-          $ref: "#/components/schemas/carrierParty"
     relatedId:
       x-oagis-bie-guid: "180010389a504aad9a758096b166ef12"
       x-oagis-bie-date-time: "2024-04-26T19:42:00+0000"
@@ -527,6 +238,179 @@ components:
           example: "AgGateway"
           type: "string"
           format: "normalizedString"
+    shipToParty:
+      x-oagis-bie-guid: "aa7c141083c74657b919c77727decc64"
+      x-oagis-bie-date-time: "2024-04-17T01:40:23+0000"
+      x-oagis-bie-version: "V4.1"
+      x-oagis-bie-den: "Ship To Party"
+      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/927"
+      x-oagis-release: "10.10.4"
+      x-oagis-release-date: "2024-04-03"
+      type: "object"
+      description: "Identifies the party that the goods or services are being shipped\
+        \ or sent to."
+      additionalProperties: false
+      properties:
+        typeCode:
+          description: "The type of ship to party; e.g., Farmer | Retailer | Processor\
+            \ | CPG"
+          example: "Farmer"
+          type: "string"
+          format: "token"
+        id:
+          description: "Identifier for the ship to party, such as a UUID.  This is\
+            \ not the same as the GLN that identifies the location of the party."
+          example: "65d9e5d3-ed3d-4e23-a6a8-f5a06b1b215c"
+          type: "string"
+          format: "normalizedString"
+        name:
+          description: "Name of the Ship To Party"
+          example: "Farmer Bob"
+          type: "string"
+        accountId:
+          description: "The account identifier for the party, e.g., a farmer's account\
+            \ with a retailer."
+          example: "12345"
+          type: "string"
+          format: "normalizedString"
+        location:
+          description: "Location the shipped is delivered to."
+          type: "object"
+          additionalProperties: false
+          properties:
+            address:
+              description: "Address of the ship to location"
+              type: "object"
+              additionalProperties: false
+              properties:
+                addressLine:
+                  description: "Array of address lines"
+                  type: "array"
+                  items:
+                    example: "1234 County Road 5"
+                    type: "string"
+                cityName:
+                  description: "City Name"
+                  example: "FarmTown"
+                  type: "string"
+                countrySubDivisionCode:
+                  description: "Qualifies the further division of the Country. These\
+                    \ may be Districts, Regions, States, Provinces etc. A possible\
+                    \ list of values is as specified in ISO 3166-2. The name attribute\
+                    \ identifies the name of this e.g. District, Region etc, and there\
+                    \ is a pre-defined list of types supported, with the ability to\
+                    \ add new ones as necessary"
+                  type: "object"
+                  required:
+                  - "content"
+                  additionalProperties: false
+                  properties:
+                    content:
+                      type: "string"
+                      format: "token"
+                      example: "IA"
+                    typeCode:
+                      description: "Permission values include State and County in\
+                        \ the United States, Province in Canada, etc."
+                      example: "State"
+                      type: "string"
+                      format: "token"
+                postalCode:
+                  description: "Zip code in the United States"
+                  example: "45677"
+                  type: "string"
+                  format: "normalizedString"
+            glnid:
+              description: "GS1 Global Location Number of the location the shipment\
+                \ is intended to ship to."
+              example: "NA"
+              type: "string"
+              format: "normalizedString"
+    shipFromParty:
+      x-oagis-bie-guid: "fd407b771c3f40ba8785e5913cf3721c"
+      x-oagis-bie-date-time: "2024-04-17T01:39:06+0000"
+      x-oagis-bie-version: "V4.1"
+      x-oagis-bie-den: "Ship From Party"
+      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/926"
+      x-oagis-release: "10.10.4"
+      x-oagis-release-date: "2024-04-03"
+      type: "object"
+      additionalProperties: false
+      properties:
+        typeCode:
+          description: "The type of ship from party; e.g., Farmer | Retailer"
+          example: "Retailer"
+          type: "string"
+          format: "token"
+        id:
+          description: "Identifier for the ship from party, such as a UUID.  This\
+            \ is not the same as the GLN that identifies the location of the party."
+          example: "1b1de899-1597-4abb-826e-dce597d15942"
+          type: "string"
+          format: "normalizedString"
+        name:
+          description: "Name of the Ship From Party"
+          example: "Ceres Solutions"
+          type: "string"
+        accountId:
+          description: "The account identifier for the party, e.g., a farmer's account\
+            \ with a retailer."
+          example: "NA"
+          type: "string"
+          format: "normalizedString"
+        location:
+          description: "Location which the shipment originated from."
+          type: "object"
+          additionalProperties: false
+          properties:
+            name:
+              description: "Name of the shipper's location"
+              example: "New Lebanon Seed Hub"
+              type: "string"
+            glnid:
+              description: "GS1 Global Location Number of shipment originated from\
+                \ ."
+              example: "1100028417954"
+              type: "string"
+              format: "normalizedString"
+    measurement:
+      x-oagis-bie-guid: "3677055fe37b4397afd9dfe0537c6211"
+      x-oagis-bie-date-time: "2024-04-09T02:19:39+0000"
+      x-oagis-bie-version: "V4"
+      x-oagis-bie-den: "Measurement"
+      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/921"
+      x-oagis-release: "10.10.4"
+      x-oagis-release-date: "2024-04-03"
+      type: "object"
+      required:
+      - "measure"
+      additionalProperties: false
+      properties:
+        typeCode:
+          description: "Type of Quantitative Measure; classification of the value;\
+            \ e.g.,  \nOperational (allows equipment adjustment, seed size), \nAgronomic\
+            \ (days to full growth, nitrogen percent for CN), \nQuality (CN, CP manufacturing\
+            \ quality)"
+          example: "Operational"
+          type: "string"
+          format: "token"
+        name:
+          description: "Name of the measurement"
+          example: "Seed Count"
+          type: "string"
+        dateTime:
+          description: "Timestamp of the measurement"
+          example: "2021-02-08T13:17:45.034-05:00"
+          type: "string"
+          format: "date-time"
+        measure:
+          description: "Measurement value"
+          example: "892"
+          type: "number"
+        unitCode:
+          example: ""
+          type: "string"
+          format: "normalizedString"
     measurementList:
       type: "array"
       items:
@@ -548,10 +432,210 @@ components:
           properties:
             measurement:
               $ref: "#/components/schemas/measurementList"
-    relatedIdList:
-      type: "array"
-      items:
-        $ref: "#/components/schemas/relatedId"
+    carrierParty:
+      x-oagis-bie-guid: "f0624df251ad49f783b8e7f82890701a"
+      x-oagis-bie-date-time: "2024-04-17T01:40:39+0000"
+      x-oagis-bie-version: "V4"
+      x-oagis-bie-den: "Carrier Party"
+      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/928"
+      x-oagis-release: "10.10.4"
+      x-oagis-release-date: "2024-04-03"
+      type: "object"
+      additionalProperties: false
+      properties:
+        id:
+          example: "Fleet"
+          type: "string"
+          format: "normalizedString"
+        name:
+          description: "Name of carrier"
+          example: "Ceres Fleet"
+          type: "string"
+        scacid:
+          example: "NA"
+          type: "string"
+          format: "normalizedString"
+    shipmentReference:
+      x-oagis-bie-guid: "48e884e23f01497ba71ec31cecb25443"
+      x-oagis-bie-date-time: "2024-04-09T02:10:03+0000"
+      x-oagis-bie-version: "V4.1"
+      x-oagis-bie-den: "Shipment Reference"
+      x-oagis-bie-uri: "https://oagiscore.net/profile_bie/919"
+      x-oagis-release: "10.10.4"
+      x-oagis-release-date: "2024-04-03"
+      type: "object"
+      description: "Information related to the shipment and shipment line, include\
+        \ status, line number, ship units, dates, and quantities delivered, accepted,\
+        \ rejected and returned.  This detail is helpful for invoice reconcilation."
+      additionalProperties: false
+      properties:
+        id:
+          description: "shipment identifier created by the retailer ERP system"
+          example: "34343535"
+          type: "string"
+          format: "normalizedString"
+        typeCode:
+          description: "Type of shipment; either Pickup or Delivery"
+          example: ""
+          type: "string"
+          format: "token"
+        note:
+          description: "If there are rejected or returns for a given shipment line,\
+            \ these notes are helpful for processing."
+          example: "NA"
+          type: "string"
+        status:
+          description: "Status of the shipment line"
+          type: "object"
+          additionalProperties: false
+          properties:
+            code:
+              example: "In-Transit"
+              type: "string"
+              format: "normalizedString"
+            reasonCode:
+              description: "Damaged | Partial-Received | Wrong Product | Other"
+              example: ""
+              type: "string"
+              format: "normalizedString"
+            reason:
+              description: "Free-form description of Other reason code"
+              example: ""
+              type: "string"
+        lineNumberId:
+          description: "Line Identifier on the delivery document the shipped item\
+            \ appears.   This could be a concatenation of the shipment identifier\
+            \ and a line identifier to guarantee uniqueness within this document."
+          example: "34343535-1"
+          type: "string"
+          format: "normalizedString"
+        shipUnitReference:
+          description: "Ship units are tyically rail cars, semi-trailers, etc.  A\
+            \ seed tender box is not the ship unit."
+          type: "object"
+          additionalProperties: false
+          properties:
+            typeCode:
+              description: "The type of ship unit the shipped item is transported.\
+                \  Most often a semi-trailer, liquid tank, etc.  "
+              example: "Semi-Trailer"
+              type: "string"
+              format: "token"
+            id:
+              description: "Identifier of the shipping container, usually a US DOT\
+                \ trailer identifier, or similiar."
+              type: "object"
+              required:
+              - "content"
+              additionalProperties: false
+              properties:
+                content:
+                  type: "string"
+                  format: "normalizedString"
+                  example: "12345678"
+                typeCode:
+                  example: " USDOT_Number"
+                  type: "string"
+                  format: "token"
+        actualPickupDateTime:
+          description: "Timestamp that the Farmer picked up the shipment at the Retailer\
+            \ -- if so Carrier Party is either not present or the name of the driver\
+            \ that picked up the shipment.  If Pickup then ActualShipmentDateTime\
+            \ and ActualDeliverDateTime are null."
+          example: ""
+          type: "string"
+          format: "date-time"
+        actualShipDateTime:
+          description: "Actual date the Retailer's fleet or contractor truck left\
+            \ the retailer's warehouse, departing to the farm.  "
+          example: "2022-04-25T09:06:07-05:00"
+          type: "string"
+          format: "date-time"
+        actualDeliveryDateTime:
+          description: "Timestamp that the Farmer received the shipment at the Farm\
+            \ Location -- if so Carrier Party is the name of the driver that delivered\
+            \ the shipment.\nIf Delivery, then ActualShipDateTime is present, and\
+            \ ActualPickupDateTime is null."
+          example: ""
+          type: "string"
+          format: "date-time"
+        deliveredQuantity:
+          description: "Quantity on the shipment, as delivered to the ship to party\
+            \ location."
+          type: "object"
+          required:
+          - "content"
+          additionalProperties: false
+          properties:
+            content:
+              type: "number"
+              example: null
+            unitCode:
+              description: "Unit of measure, typically bags for pallets, totes or\
+                \ bulk boxes for treated seed."
+              example: ""
+              type: "string"
+              format: "token"
+        acceptedQuantity:
+          description: "The quantity of product accepted at the ship to party location."
+          type: "object"
+          required:
+          - "content"
+          additionalProperties: false
+          properties:
+            content:
+              type: "number"
+              example: null
+            unitCode:
+              description: "Unit of measure, typically bags for pallets, totes or\
+                \ bulk boxes for treated seed."
+              example: ""
+              type: "string"
+              format: "token"
+        rejectedQuantity:
+          description: "The quantity of product rejected at the ship to party location."
+          type: "object"
+          required:
+          - "content"
+          additionalProperties: false
+          properties:
+            content:
+              type: "number"
+              example: null
+            unitCode:
+              description: "Unit of measure, typically bags for pallets, totes or\
+                \ bulk boxes for treated seed."
+              example: ""
+              type: "string"
+              format: "token"
+        returnedQuantity:
+          description: "The quantity of product returned to the shipper; e.g., retailer."
+          type: "object"
+          required:
+          - "content"
+          additionalProperties: false
+          properties:
+            content:
+              type: "number"
+              example: null
+            unitCode:
+              description: "Unit of measure, typically bags for pallets, totes or\
+                \ bulk boxes for treated seed."
+              example: ""
+              type: "string"
+              format: "token"
+        returnMaterialAuthorizationId:
+          description: "RMA identifier issued by the retailer authorizing the return\
+            \ of the rejected quantity back to the shipper's warehouse."
+          example: ""
+          type: "string"
+          format: "normalizedString"
+        shipFromParty:
+          $ref: "#/components/schemas/shipFromParty"
+        shipToParty:
+          $ref: "#/components/schemas/shipToParty"
+        carrierParty:
+          $ref: "#/components/schemas/carrierParty"
     classification:
       x-oagis-bie-guid: "20775b5ae61a41e3ab1fab73e3e78394"
       x-oagis-bie-date-time: "2024-04-09T02:20:42+0000"
@@ -564,6 +648,7 @@ components:
       additionalProperties: false
       properties:
         typeCode:
+          description: "Type of classification"
           example: "Crop"
           type: "string"
           format: "token"
@@ -591,9 +676,14 @@ components:
                     type: "string"
                     format: "token"
                   typeCode:
+                    description: "Use as the description / definition."
                     example: "Corn For Grain"
                     type: "string"
                     format: "token"
+    relatedIdList:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/relatedId"
     item:
       x-oagis-bie-guid: "0d65bd04b21f4caea6e113aeb5484e0f"
       x-oagis-bie-date-time: "2024-04-09T02:22:01+0000"
@@ -608,31 +698,39 @@ components:
         relatedId:
           $ref: "#/components/schemas/relatedIdList"
         manufacturerItemIdentification:
+          description: "Manufacturer's Item identifier"
           type: "object"
           additionalProperties: false
           properties:
             typeCode:
+              description: "type of manufacturer's item identifier"
               example: "SKU"
               type: "string"
               format: "token"
             id:
+              description: "if no GTIN, then this is required, likely the manufacturer's\
+                \ SKU"
               example: "34323656565"
               type: "string"
               format: "normalizedString"
         upcid:
+          description: "Uniform Product Code"
           example: "888346580291"
           type: "string"
           format: "normalizedString"
         gtinid:
+          description: "GTIN for the packaged product instance, as maintained by GS1"
           example: "00888346580291"
           type: "string"
           format: "normalizedString"
         description:
+          description: "Full AGIIS description"
           example: "VT DoublePro RIB Complete Relative Maturity 85 days"
           type: "string"
         classification:
           $ref: "#/components/schemas/classification"
         substance:
+          description: "Item composition for Crop Nutrition and Crop Protection."
           type: "array"
           items:
             type: "object"
@@ -670,10 +768,14 @@ components:
                       additionalProperties: false
                       properties:
                         endDateTime:
+                          description: "End date for Registration"
                           example: "2030-07-01"
                           type: "string"
                           format: "date"
         packaging:
+          description: "This is the retail stocking unit packaging, such as a bag\
+            \ of seed.\nOther examples such as a carton of 2  x 2.5 Gallon Jugs of\
+            \ crop protection."
           type: "object"
           additionalProperties: false
           properties:
@@ -691,43 +793,56 @@ components:
                   type: "string"
                   format: "token"
         manufacturingParty:
+          description: "Manufacturer of the Item instance"
           type: "object"
           additionalProperties: false
           properties:
             id:
+              description: "GLN for the manufacturer"
               example: "34343401245"
               type: "string"
               format: "normalizedString"
             name:
+              description: "Product manufacturer's name"
               example: "WinField United"
               type: "string"
         productName:
+          description: "product name"
           example: "CP2585"
           type: "string"
         brandName:
+          description: "brand name"
           example: "CROPLAN"
           type: "string"
         varietyName:
+          description: "Variety of a product or brand, perhaps a minor genetic trait\
+            \ or grading typically based on quality measures (sorting)"
           example: "VT2P/RIB"
           type: "string"
         itemTreatment:
+          description: "Seed Treatment; List of product mixture identifiers that were\
+            \ blended together to create the seed treatment, and when lot[typeCode='batch'].identifier\
+            \ is present\nThis should be Item Composition component"
           type: "object"
           additionalProperties: false
           properties:
             typeCode:
-              example: ""
+              example: "Fungicide"
               type: "string"
               format: "token"
             id:
+              description: "Manufacturer's or Retailer's Seed Treatment identifier"
               example: "1001339"
               type: "string"
               format: "normalizedString"
             relatedId:
               $ref: "#/components/schemas/relatedIdList"
             name:
+              description: "Manufacturer or Retailer's name of the seed treatment"
               example: "Fortivent® Plus"
               type: "string"
             substance:
+              description: "Substances found in the seed treatment"
               type: "array"
               items:
                 type: "object"
@@ -738,10 +853,13 @@ components:
                     type: "string"
                     format: "token"
                   id:
+                    description: "AgGateway will use the same controlled vocabulary\
+                      \ as active ingredient in Product Catalog"
                     example: "Ethaboxam"
                     type: "string"
                     format: "normalizedString"
                   name:
+                    description: "The name of the substance found in the seed treatment"
                     example: "Ethaboxam Fungicide"
                     type: "string"
                   registrationStatus:
@@ -751,6 +869,8 @@ components:
                       additionalProperties: false
                       properties:
                         id:
+                          description: "Registration Identifier provided by the agency\
+                            \ maintaining the registry; e.g, CAS, EPA, PRMA (Canada)"
                           type: "object"
                           required:
                           - "content"
@@ -789,9 +909,33 @@ components:
       x-oagis-release: "10.10.4"
       x-oagis-release-date: "2024-04-03"
       type: "object"
+      description: "V4.1 S&G approved 2025-04-17\nTo enable PackageQuantity, for the\
+        \ number of bags that were placed in a seed tender box\n-enabled ShippedItemInstance.Quantity.TypeCode\n\
+        To allow for rejected quantity  reasons\n-enable ShipmentReference.Note (0:1)\
+        \ - \nAllow shipments from the farm to the retailer/ elevator / processor\n\
+        -enabled ShipFromParty.AccountIdentifier (0:1)\n-enabled ShipToParty.Identifier\
+        \ (0:1)\n\nChanges V3-V4:\n1) Party -> shipToParty (grower) and shipFromParty\
+        \ (Retailer), etc.\n2) Attachment -> item.relatedIds -- URI reference to AGIIS\n\
+        3) Quantity removed from Substance (Not realistic)\n4) Lot flattened\n5) Shipment\
+        \ Reference now includes shipTo and shipFrom parties, receipt date at the\
+        \ farm, or pickup date at the retailer, and received, accepted, rejected,\
+        \ and return quantities and RMA identifier.\n6) Simplified the Results.Quantitative.Measurement[]\
+        \ structure, flattening measurement\n\nShipped Item Instance is an implementation\
+        \ guideline of a simplified Advance Ship Notice allow Retailers to send a\
+        \ digital representation of their delivery document regarding products such\
+        \ as seed, crop nutrition, and crop protection delivered to a farmer.  The\
+        \ JSON representation can be processed by a FMIS, mobile application or OEM\
+        \ platform to load product information directly into a tractor display to\
+        \ help identify products during the actual field operations.  Other information\
+        \ may be retained within the processing application for correlation after\
+        \ the operation is completed for further record keeping based on key identifiers\
+        \ pushed to the tractor display and returned back in the work records for\
+        \ that operation.\n\nApproved in Standards and Guidelines 2022-08-18\n\n"
       additionalProperties: false
       properties:
         typeCode:
+          description: "type of product shipped; Seed, CP = Crop protection, or CN\
+            \ = Crop Nutrition"
           example: "seed"
           type: "string"
           format: "token"
@@ -800,6 +944,7 @@ components:
           type: "string"
           format: "normalizedString"
         uid:
+          description: "DataMatrix or barcode encoding string"
           type: "object"
           required:
           - "content"
@@ -810,30 +955,43 @@ components:
               format: "normalizedString"
               example: "0-539f82b1-df6e-11e9-b486-5ce0c51e62ce"
             schemeId:
+              description: "encoding scheme"
               example: "DataMatrix"
               type: "string"
               format: "token"
             schemeAgencyId:
+              description: "Agency defining bar coding scheme"
               example: "GS1"
               type: "string"
               format: "token"
             typeCode:
+              description: "Implementation Guideline for encoding scheme"
               example: "AgGateway"
               type: "string"
               format: "token"
         lot:
+          description: "the various lot and / or batch identifiers associated to the\
+            \ shipped item\nLot identifier is related to homogeneous items, such as\
+            \ seed, grains.\nBatch identifiers are related to the mixture of homogeneous\
+            \ items, based on a formulation of mixed active ingredient of crop nutrition\
+            \ or crop protection."
           type: "object"
           additionalProperties: false
           properties:
             typeCode:
+              description: "if typeCode=Seed, then Lot, else Batch for CN and CP"
               example: "Lot"
               type: "string"
               format: "token"
             id:
+              description: "lot or batch identifier value"
               example: "769MXJ4JX"
               type: "string"
               format: "normalizedString"
             serialNumberId:
+              description: "If typeCode = CP; array of serial numbers for serialized\
+                \ jugs of crop protection products linked to a special batch.  Useful\
+                \ for blockchain applications such as Crop Protection."
               type: "array"
               items:
                 example: "c93b67b1-b62e-45b4-96fe-1277a341dc0d"
@@ -842,6 +1000,7 @@ components:
         item:
           $ref: "#/components/schemas/item"
         quantity:
+          description: "Number of seed bags or quantity of other product if crop protection"
           type: "object"
           required:
           - "content"
@@ -855,22 +1014,44 @@ components:
               type: "string"
               format: "token"
             typeCode:
+              description: "Type of quantity, as related to the packaging instance\
+                \ (shippedItemInstance.Packaging).  For example, the number of bags\
+                \ that were loaded into a seed tender box during seed treatment."
               example: "PackageCount"
               type: "string"
               format: "token"
         packaging:
+          description: "Transport Package;\n- Shipping pallet of bags of seed or cartons\
+            \ of crop protection.\n- Seed bulk box where multiple bags of seed are\
+            \ treated at a retailer and conveyed into a tote or seed box (mini-bulk)\
+            \ for use with a seed tender.  \n\nA printed manifest tag with barcode\
+            \ detailed in packaging.identifier must be included with the seed box,\
+            \ tote or pallet for ease of use.\nIt is NOT recommended to commingle\
+            \ seed varieties and seed lots.   But if that does happen, multiple shipped\
+            \ item instances array entries would have the same destination package,\
+            \ denoting the which seed varieties and seed lot may have been mixed into\
+            \ a single tote or seed box. \nThe dimensions of a seed box e.g. https://www.rppcontainers.com/Hopper-Bottom-Containers/hopper-bottom-57x45x65,\
+            \ or pallet are not in scope."
           type: "object"
           additionalProperties: false
           properties:
             typeCode:
+              description: "Type of packaging; SeedBox, Tote, Pallet; \n"
               example: "SeedBox"
               type: "string"
               format: "token"
             id:
+              description: "Identifier of the container, often a serial number of\
+                \ a reusable containers such as a seed tender, bulk box, pallet, etc.\n"
               example: "844f95ac-422a-406a-91c5-65d017de2f09"
               type: "string"
               format: "normalizedString"
             quantity:
+              description: "Total gross weight of the seed box, or pallet.  \nThis\
+                \ is defined as the tare weight (weight of the container, box or pallet)\
+                \ plus the net weight, which is the number of bags x weight of each\
+                \ bag, plus the weight of the treatment if seed treatment and loaded\
+                \ into the seed box."
               type: "object"
               required:
               - "content"
@@ -880,16 +1061,20 @@ components:
                   type: "number"
                   example: "2475"
                 typeCode:
+                  description: "Gross Weight of the shipping container"
                   example: "GrossWeight"
                   type: "string"
                   format: "token"
                 unitCode:
+                  description: "Unit of measure of the gross weight"
                   example: "LB"
                   type: "string"
                   format: "token"
         results:
           $ref: "#/components/schemas/results"
         displayName:
+          description: "This is a concatenation seed lot identifier, prefixed by the\
+            \ product description that will appear in the MICS display."
           example: "CP2585-769MXJ4JX"
           type: "string"
         shipmentReference:
@@ -907,13 +1092,16 @@ components:
       x-oagis-release: "10.10.4"
       x-oagis-release-date: "2024-04-03"
       type: "object"
+      description: "The quantity of product shipped to the farm"
       additionalProperties: false
       properties:
         id:
+          description: "shipment identifier created by the retailer ERP system"
           example: "34343535"
           type: "string"
           format: "normalizedString"
         status:
+          description: "Status of the shipment line"
           type: "object"
           additionalProperties: false
           properties:
@@ -922,13 +1110,18 @@ components:
               type: "string"
               format: "normalizedString"
             reasonCode:
+              description: "Damaged | Partial-Received | Wrong Product | Other"
               example: ""
               type: "string"
               format: "normalizedString"
             reason:
+              description: "Free-form description of Other reason code"
               example: ""
               type: "string"
         lineNumberId:
+          description: "Line Identifier on the delivery document the shipped item\
+            \ appears.   This could be a concatenation of the shipment identifier\
+            \ and a line identifier to guarantee uniqueness within this document."
           example: "34343535-1"
           type: "string"
           format: "normalizedString"
@@ -937,10 +1130,14 @@ components:
           additionalProperties: false
           properties:
             typeCode:
+              description: "The type of ship unit the shipped item is transported.\
+                \  Most often a semi-trailer, liquid tank, etc.  "
               example: "Semi-Trailer"
               type: "string"
               format: "token"
             id:
+              description: "Identifier of the shipping container, usually a US DOT\
+                \ trailer identifier, or similiar."
               type: "object"
               required:
               - "content"
@@ -955,14 +1152,24 @@ components:
                   type: "string"
                   format: "token"
         actualPickupDateTime:
+          description: "Timestamp that the Farmer picked up the shipment at the Retailer\
+            \ -- if so Carrier Party is either not present or the name of the driver\
+            \ that picked up the shipment.  If Pickup then ActualShipmentDateTime\
+            \ and ActualDeliverDateTime are null."
           example: ""
           type: "string"
           format: "date-time"
         actualShipDateTime:
+          description: "Actual date the Retailer's fleet or contractor truck left\
+            \ the retailer's warehouse, departing to the farm.  "
           example: "2022-04-25T09:06:07-05:00"
           type: "string"
           format: "date-time"
         actualDeliveryDateTime:
+          description: "Timestamp that the Farmer received the shipment at the Farm\
+            \ Location -- if so Carrier Party is the name of the driver that delivered\
+            \ the shipment.\nIf Delivery, then ActualShipDateTime is present, and\
+            \ ActualPickupDateTime is null."
           example: ""
           type: "string"
           format: "date-time"
@@ -976,10 +1183,13 @@ components:
               type: "number"
               example: null
             unitCode:
+              description: "Unit of measure, typically bags for pallets, totes or\
+                \ bulk boxes for treated seed."
               example: ""
               type: "string"
               format: "token"
         acceptedQuantity:
+          description: "The quantity of product accepted by the farmer."
           type: "object"
           required:
           - "content"
@@ -989,10 +1199,13 @@ components:
               type: "number"
               example: null
             unitCode:
+              description: "Unit of measure, typically bags for pallets, totes or\
+                \ bulk boxes for treated seed."
               example: ""
               type: "string"
               format: "token"
         rejectedQuantity:
+          description: "The quantity of product rejected by the farmer."
           type: "object"
           required:
           - "content"
@@ -1002,10 +1215,13 @@ components:
               type: "number"
               example: null
             unitCode:
+              description: "Unit of measure, typically bags for pallets, totes or\
+                \ bulk boxes for treated seed."
               example: ""
               type: "string"
               format: "token"
         returnedQuantity:
+          description: "The quantity of product returned to the retailer."
           type: "object"
           required:
           - "content"
@@ -1015,10 +1231,14 @@ components:
               type: "number"
               example: null
             unitCode:
+              description: "Unit of measure, typically bags for pallets, totes or\
+                \ bulk boxes for treated seed."
               example: ""
               type: "string"
               format: "token"
         returnMaterialAuthorizationId:
+          description: "RMA identifier issued by the retailer authorizing the return\
+            \ of the rejected quantity back to the retailer's warehouse."
           example: ""
           type: "string"
           format: "normalizedString"
@@ -1037,6 +1257,8 @@ components:
       x-oagis-release: "10.10.4"
       x-oagis-release-date: "2024-04-03"
       type: "object"
+      description: "When a new list of shipped item instances are POST or PUT the\
+        \ endpoint, an array of ids and submitted line numbers are returned. "
       additionalProperties: false
       properties:
         id:
